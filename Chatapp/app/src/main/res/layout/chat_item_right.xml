@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/show_message"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_gravity="end"
+    android:background="@drawable/background_right_chat"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:maxWidth="300dp"
+    android:padding="8dp"
+    android:textColor="#FFF"
+    android:textSize="18sp" />
+
+</RelativeLayout>
+

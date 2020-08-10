@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">MilanFork</string>
+    <string name="profile">Profilo</string>
+    <string name="restaurants">Ristoranti</string>
+    <string name="logout">Disconnetti</string>
+    <string name="friends">Amici</string>
+
+    <string name="create_new">Crea un nuovo account</string>
+    <string name="login_account">Inserisci le credenziali</string>
+    <string name="username">Username</string>
+    <string name="mail">Mail</string>
+    <string name="password">Password</string>
+    <string name="register">Registrati</string>
+    <string name="login">Login</string>
+
+    <string name="btn_change_image">Cambia immagine profilo</string>
+    <string name="num_of_ratings">Numero recensioni</string>
+    <string name="average_rating">Media recensioni</string>
+
+    <string name="btn_add_friend">Aggiungi agli amici</string>
+    <string name="btn_accept">Accetta</string>
+    <string name="btn_x">X</string>
+    <string name="btn_view_profile">Visualizza profilo</string>
+    <string name="type_a_message">Scrivi un messaggio…</string>
+
+
+</resources>
