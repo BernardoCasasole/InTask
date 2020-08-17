@@ -1,5 +1,8 @@
 package com.example.chatapp;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -23,10 +26,18 @@ public class FriendActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+
+            NotificationChannel channel = new NotificationChannel("myNot","myNot", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
         initToolbar(R.id.start_toolbar);
-        showUsernameToolbar(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        showUsernameToolbar();
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);

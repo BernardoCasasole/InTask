@@ -102,13 +102,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void showUsernameToolbar(String userId){
+    protected void showUsernameToolbar(){
 
         imageView.setVisibility(View.VISIBLE);
         username.setVisibility(View.VISIBLE);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+        if(firebaseUser!=null){
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         storageReference = FirebaseStorage.getInstance().getReference();
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -151,4 +152,5 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         });
     }
+}
 }

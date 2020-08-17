@@ -53,17 +53,20 @@ public class UsersFragment extends Fragment {
         mUsers = new ArrayList<>();
 
         readUsers();
+
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                String mToken = instanceIdResult.getToken();
-                reference.child(firebaseUser.getUid()).setValue(mToken);
+        if(firebaseUser!=null) {
 
-            }
-        });
+            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+                @Override
+                public void onSuccess(InstanceIdResult instanceIdResult) {
+                    String mToken = instanceIdResult.getToken();
+                    reference.child(firebaseUser.getUid()).setValue(mToken);
 
+                }
+            });
+        }
         return view;
 
     }
@@ -74,34 +77,31 @@ public class UsersFragment extends Fragment {
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
 
 
-
-
-
-
-
-
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
+                List<String> values = new ArrayList<>();
+                if(firebaseUser!=null) {
                 Map<String, String> requests = (HashMap<String,String>) dataSnapshot.child(firebaseUser.getUid()).child("friend_requests_sent").getValue();
 
-                List<String> values = new ArrayList<>();
 
-                if(requests!=null) {
-                    values.addAll(requests.values());
-                }
-                requests = (HashMap<String,String>) dataSnapshot.child(firebaseUser.getUid()).child("friend_requests_received").getValue();
 
-                if(requests!=null) {
-                    values.addAll(requests.values());
-                }
+                    if (requests != null) {
+                        values.addAll(requests.values());
+                    }
+                    requests = (HashMap<String, String>) dataSnapshot.child(firebaseUser.getUid()).child("friend_requests_received").getValue();
 
-                requests = (HashMap<String,String>) dataSnapshot.child(firebaseUser.getUid()).child("friends").getValue();
+                    if (requests != null) {
+                        values.addAll(requests.values());
+                    }
 
-                if(requests!=null) {
-                    values.addAll(requests.values());
+                    requests = (HashMap<String, String>) dataSnapshot.child(firebaseUser.getUid()).child("friends").getValue();
+
+                    if (requests != null) {
+                        values.addAll(requests.values());
+                    }
                 }
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
@@ -109,7 +109,7 @@ public class UsersFragment extends Fragment {
                     assert user != null;
 
 
-                    if(!user.getId().equals(firebaseUser.getUid())&!values.contains(user.getId())){
+                    if(firebaseUser==null ||( !user.getId().equals(firebaseUser.getUid()) && !values.contains(user.getId()))){
                         mUsers.add(user);
 
                     }

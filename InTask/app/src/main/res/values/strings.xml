@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MilanFork</string>
+    <string name="app_name">InTask</string>
     <string name="profile">Profilo</string>
     <string name="restaurants">Ristoranti</string>
     <string name="logout">Disconnetti</string>

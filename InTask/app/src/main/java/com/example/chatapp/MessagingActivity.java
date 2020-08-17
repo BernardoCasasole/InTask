@@ -72,7 +72,7 @@ public class MessagingActivity extends BaseActivity {
         initToolbar(R.id.start_toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        showUsernameToolbar(userID);
+        showUsernameToolbar();
 
         recyclerView = findViewById(R.id.recycler_view_chat);
         recyclerView.setHasFixedSize(true);

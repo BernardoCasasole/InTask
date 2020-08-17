@@ -22,6 +22,9 @@
 
         </activity>
         <activity android:name=".start.StartActivity">
+
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +37,7 @@
         <activity
             android:name=".start.LoginActivity"
             android:parentActivityName=".start.StartActivity" />
-        <activity android:name=".MainActivity" />
+        
         <activity
             android:name=".FriendActivity"
             android:parentActivityName=".MainActivity" >

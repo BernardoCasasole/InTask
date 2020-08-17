@@ -12,9 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.chatapp.R;
-import com.example.chatapp.adapter.users.RequestsAdapter;
+import com.example.chatapp.adapter.users.FriendsAdapter;
 import com.example.chatapp.model.User;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,8 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,10 +28,10 @@ import java.util.List;
 import java.util.Map;
 
 
-public class RequestsFragment extends Fragment {
+public class FriendsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private RequestsAdapter requestsAdapter;
+    private FriendsAdapter friendsAdapter;
 
     private List<User> mUsers;
 
@@ -42,26 +39,18 @@ public class RequestsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_requests, container, false);
+        View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        recyclerView = view.findViewById(R.id.recycler_view_requests);
+
+        recyclerView = view.findViewById(R.id.recycler_view_friends);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
 
         mUsers = new ArrayList<>();
-
-        readUsers();
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                String mToken = instanceIdResult.getToken();
-                reference.child(firebaseUser.getUid()).setValue(mToken);
-
-            }
-        });
-
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser!=null) {
+            readUsers();
+        }
         return view;
     }
 
@@ -70,31 +59,30 @@ public class RequestsFragment extends Fragment {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
-                Map<String, String> requests = (HashMap<String,String>) dataSnapshot.child(firebaseUser.getUid()).child("friend_requests_received").getValue();
+                Map<String, String> friends = (HashMap<String,String>) dataSnapshot.child(firebaseUser.getUid()).child("friends").getValue();
 
                 List<String> values = new ArrayList<>();
 
-                if(requests!=null) {
-                    values.addAll(requests.values());
+                if(friends!=null) {
+                    values.addAll(friends.values());
                 }
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    User user = snapshot.getValue(User.class);
 
-                    assert user != null;
-                    if(!user.getId().equals(firebaseUser.getUid())&values.contains(user.getId())){
-                        mUsers.add(user);
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+
+                    String userID = snapshot.child("id").getValue(String.class);
+                    if(!userID.equals(firebaseUser.getUid())&values.contains(userID)){
+                        mUsers.add(snapshot.getValue(User.class));
 
                     }
 
                 }
-                requestsAdapter = new RequestsAdapter(recyclerView.getContext(),mUsers);
-                recyclerView.setAdapter(requestsAdapter);
+                friendsAdapter = new FriendsAdapter(recyclerView.getContext(),mUsers);
+                recyclerView.setAdapter(friendsAdapter);
             }
 
             @Override
