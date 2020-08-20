@@ -35,7 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity{
                 switch (item.getItemId()){
                     case R.id.bottom_nav_publish:
 
-                        if(firebaseUser !=null) {
+                        if(firebaseUser ==null) {
                             startActivity(new Intent(BaseActivity.this, PublicationChoiceActivity.class));
                         }else{
                             startActivity(new Intent( BaseActivity.this, StartActivity.class));

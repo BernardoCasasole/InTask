@@ -25,14 +25,14 @@ public class PublicationChoiceActivity extends BaseActivity {
         btnPublishJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PublicationChoiceActivity.this, RegisterActivity.class));
+                startActivity(new Intent(PublicationChoiceActivity.this, JobSvFormActivity.class));
             }
         });
 
         btnPublishTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PublicationChoiceActivity.this, RegisterActivity.class));
+                startActivity(new Intent(PublicationChoiceActivity.this, PublicationTimeActivity.class));
             }
         });
     }
