@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
 
     >
-
+    <include
+        android:id="@+id/bottom_nav_view"
+        layout="@layout/layout_bottom_nav"/>
     <Button
-        android:id="@+id/button_pubilsh_job"
+        android:id="@+id/button_publish_job"
         android:text="@string/button_publish_job_string"
         android:fontFamily="sans-serif-light"
         android:layout_width="270dp"
@@ -28,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:id="@+id/button_pubilsh_time"
+        android:id="@+id/button_publish_time"
         android:text="@string/button_pubilsh_time_string"
         android:fontFamily="sans-serif-light"
         android:layout_width="270dp"

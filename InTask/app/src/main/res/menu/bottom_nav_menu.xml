@@ -17,9 +17,9 @@
         android:icon="@drawable/ic_baseline_home_work_24"
         android:title="@string/bottom_nav_home_string" />
     <item
-        android:id="@+id/bottom_nav_public"
+        android:id="@+id/bottom_nav_publish"
         android:icon="@drawable/ic_baseline_post_add_24"
-        android:title="@string/bottom_nav_public_string" />
+        android:title="@string/bottom_nav_publish_string" />
 
     <item
         android:id="@+id/bottom_nav_profile"

@@ -11,19 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".PublicationChoiceActivity"></activity>
         <activity android:name=".MessagingActivity">
             <intent-filter>
                 <action android:name=".MessagingActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".ProfileActivity">
-
-        </activity>
-        <activity android:name=".start.StartActivity">
-
-        </activity>
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".start.StartActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,12 +34,12 @@
         <activity
             android:name=".start.LoginActivity"
             android:parentActivityName=".start.StartActivity" />
-        
         <activity
             android:name=".FriendActivity"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name=".FriendActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

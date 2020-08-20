@@ -51,7 +51,6 @@ public class ProfileActivity extends BaseActivity {
 
 
         setContentView(R.layout.activity_profile);
-        initToolbar(R.id.start_toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle b = getIntent().getExtras();

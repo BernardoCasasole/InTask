@@ -12,15 +12,15 @@
         android:id="@+id/app_bar_layout"
         android:theme="@style/AppTheme.AppBarOverlay">
     <include
-        android:id="@+id/start_toolbar"
-        layout="@layout/layout_toolbar"/>
+        android:id="@+id/bottom_nav_view"
+        layout="@layout/layout_bottom_nav"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_below="@id/start_toolbar"
+        android:layout_below="@id/bottom_nav_view"
         android:background="@color/colorPrimaryDark"
         app:tabIndicatorColor="#fff"
         app:tabSelectedTextColor="#fff"

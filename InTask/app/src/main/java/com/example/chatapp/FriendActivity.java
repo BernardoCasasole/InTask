@@ -36,8 +36,6 @@ public class FriendActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
-        initToolbar(R.id.start_toolbar);
-        showUsernameToolbar();
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);

@@ -23,12 +23,12 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(firebaseUser!=null){
+        /*if(firebaseUser!=null){
 
             Intent intent = new Intent( StartActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-        }
+        }*/
 
         btn_login = findViewById(R.id.btn_start_login);
 

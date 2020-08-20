@@ -25,7 +25,7 @@
 
     <string name="bottom_nav_message_string">Chats</string>
     <string name="bottom_nav_home_string">Cerca annunci</string>
-    <string name="bottom_nav_public_string">Pubblica</string>
+    <string name="bottom_nav_publish_string">Pubblica</string>
     <string name="bottom_nav_settings_string">Impostazioni</string>
     <string name="bottom_nav_profile_string">Profilo</string>
 
@@ -55,6 +55,15 @@
     <string name="titolo">Titolo</string>
     <string name="dicci_qualcosa_sul_lavoro_per_cui_ti_vuoi_proporre">Dicci qualcosa sul lavoro per cui ti vuoi proporre</string>
     <string name="quanto_puoi_allontanarti_dalla_tua_posizione">Quanto puoi allontanarti dalla tua posizione?</string>
+    <string name="title_activity_pubblication_choice">PubblicationChoiceActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
 </resources>

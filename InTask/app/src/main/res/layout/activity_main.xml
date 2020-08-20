@@ -8,8 +8,8 @@
     tools:context=".MainActivity">
 
     <include
-        android:id="@+id/start_toolbar"
-        layout="@layout/layout_toolbar"/>
+        android:id="@+id/bottom_nav_view"
+        layout="@layout/layout_bottom_nav"/>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
