@@ -23,5 +23,38 @@
     <string name="btn_view_profile">Visualizza profilo</string>
     <string name="type_a_message">Scrivi un messaggio…</string>
 
+    <string name="bottom_nav_message_string">Chats</string>
+    <string name="bottom_nav_home_string">Cerca annunci</string>
+    <string name="bottom_nav_public_string">Pubblica</string>
+    <string name="bottom_nav_settings_string">Impostazioni</string>
+    <string name="bottom_nav_profile_string">Profilo</string>
+
+    <string name="button_publish_job_string">Voglio offrire un\'opportunità\nCerco qualcuno per un lavoro</string>
+    <string name="button_publish_title_string">COSA VUOI PUBBLICARE?</string>
+    <string name="button_pubilsh_time_string">Voglio offire tempo e competenze\nMi offro per un lavoro</string>
+    <string name="Giardinaggio">Giardinaggio</string>
+    <string name="Babysitting">Babysitting</string>
+    <string name="Pulizie">Pulizie</string>
+    <string name="Ripetizioni">Ripetizioni</string>
+    <string name="Cucinare">Cucinare</string>
+    <string name="Trasloco">Trasloco</string>
+    <string name="Riparazioni">Riparazioni</string>
+    <string name="Dogsitting">Dogsitting</string>
+    <string name="Personal_Training">Personal Training</string>
+    <string name="Supporto_informatico">Supporto Informatico</string>
+    <string name="Trasporto">Trasporto</string>
+    <string name="Spesa">Spesa</string>
+    <string name="Calcetto">Decimo al Calcetto</string>
+    <string name="altro">Altro</string>
+    <string name="working_category">"Scegli la Categoria"</string>
+    <string name="Price">Quanto sei disposto ad offrire per questo lavoro?</string>
+    <string name="descrizione">Descrizione</string>
+    <string name="foto_facoltativa">Foto (facoltativa)</string>
+    <string name="verificato">Verificato</string>
+    <string name="accetta_solo_se_verificato">Accetta solo se verificato</string>
+    <string name="titolo">Titolo</string>
+    <string name="dicci_qualcosa_sul_lavoro_per_cui_ti_vuoi_proporre">Dicci qualcosa sul lavoro per cui ti vuoi proporre</string>
+    <string name="quanto_puoi_allontanarti_dalla_tua_posizione">Quanto puoi allontanarti dalla tua posizione?</string>
+
 
 </resources>

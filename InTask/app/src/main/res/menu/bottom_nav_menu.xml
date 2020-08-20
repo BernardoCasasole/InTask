@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/bottom_nav_settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/bottom_nav_settings_string" />
+
+    <item
+        android:id="@+id/bottom_nav_message"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="@string/bottom_nav_message_string" />
+
+    <item
+        android:id="@+id/bottom_nav_home"
+        android:icon="@drawable/ic_baseline_home_work_24"
+        android:title="@string/bottom_nav_home_string" />
+    <item
+        android:id="@+id/bottom_nav_public"
+        android:icon="@drawable/ic_baseline_post_add_24"
+        android:title="@string/bottom_nav_public_string" />
+
+    <item
+        android:id="@+id/bottom_nav_profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/bottom_nav_profile_string" />
+
+</menu>
