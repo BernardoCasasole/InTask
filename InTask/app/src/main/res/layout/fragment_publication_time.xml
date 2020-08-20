@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
@@ -10,30 +11,33 @@
         android:orientation="vertical"
         android:padding="22dp">
 
+        <Space android:layout_width="match_parent"
+        android:layout_height="20dp" />
         <TextView
+            android:textColor="#FF014F59"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-medium"
             android:shadowColor="#807B7B"
             android:text="@string/dicci_qualcosa_sul_lavoro_per_cui_ti_vuoi_proporre"
             android:textAlignment="center"
-            android:textColor="#000000"
             android:textSize="17dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="40dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_create_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/titolo"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
 
         <EditText
+
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
@@ -43,18 +47,19 @@
             android:textSize="12dp" />
 
         <Space
+
             android:layout_width="match_parent"
             android:layout_height="20dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_create_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/descrizione"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
 
         <EditText
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
@@ -71,84 +76,83 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_check_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/working_category"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_local_florist_24"
                 android:text="@string/Giardinaggio" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_outline_child_friendly_24"
                 android:text="@string/Babysitting" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_local_pizza_24"
                 android:text="@string/Cucinare" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_outline_local_laundry_service_24"
                 android:text="@string/Pulizie" />
 
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_menu_book_24"
                 android:text="@string/Ripetizioni" />
 
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_local_shipping_24"
                 android:text="@string/Trasloco" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_build_24"
                 android:text="@string/Riparazioni" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_dog"
                 android:text="@string/Dogsitting" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_fitness_center_24"
                 android:text="@string/Personal_Training" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_computer_24"
                 android:text="@string/Supporto_informatico" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_directions_car_24"
                 android:text="@string/Trasporto" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_local_grocery_store_24"
                 android:text="@string/Spesa" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_sports_soccer_24"
                 android:text="@string/Calcetto" />
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_more_horiz_24"
@@ -159,30 +163,34 @@
         </RadioGroup>
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="25dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_add_location_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="Posizione"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
 
         <EditText
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
             android:hint="Città, Nazione, CAP..."
             android:minHeight="25dp"
             android:textSize="12dp" />
-
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
+                android:padding="10dp"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
@@ -191,6 +199,7 @@
                 android:textSize="12dp" />
 
             <EditText
+                android:padding="10dp"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -207,36 +216,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
 
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="@string/foto_facoltativa"
-                android:layout_marginRight="40dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
 
-            <ImageView
-                android:src="@drawable/ic_baseline_landscape_24"
-                android:layout_width="130dp"
-                android:layout_height="155dp">
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:text="@string/foto_facoltativa"
 
-            </ImageView>
+                    android:textColor="#FF014F59"
+                    android:textSize="16sp" />
+
+
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="155dp"
+
+                    android:background="@drawable/edit_text_background"
+                    android:src="@drawable/ic_baseline_landscape_24" />
+
+
+
         </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_access_time_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="Quando?"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
@@ -244,8 +262,11 @@
                 android:hint="Data.."
                 android:minHeight="25dp"
                 android:textSize="12dp" />
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
             <EditText
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
@@ -265,13 +286,15 @@
             android:drawableRight="@drawable/ic_baseline_gps_not_fixed_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/quanto_puoi_allontanarti_dalla_tua_posizione"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
 
         <EditText
+            android:padding="10dp"
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:hint="0,00 km"
+            android:textSize="13sp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:background="@drawable/edit_text_background"
@@ -285,14 +308,14 @@
             android:drawableEnd="@drawable/ic_baseline_check_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/verificato"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RadioButton
+            <RadioButton android:textColor="#FF424343"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/accetta_solo_se_verificato" />
@@ -305,7 +328,10 @@
             android:layout_width="120dp"
             android:layout_height="55dp"
             android:text="Pubblica"
-            android:background="@drawable/custom_button">
+            android:background="@drawable/custom_button"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#FF014F59">
 
         </Button>
     </LinearLayout>

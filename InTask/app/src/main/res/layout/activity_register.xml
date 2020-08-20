@@ -6,51 +6,77 @@
     android:layout_height="match_parent"
     android:gravity="center"
     tools:context=".start.RegisterActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <LinearLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/in_task_logo" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
 
         <TextView
             android:id="@+id/create_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_new"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            android:textSize="25sp"
+            android:textColor="#FF014F59"
+            />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
         <EditText
+            android:padding="10dp"
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/username" />
+            android:hint="@string/username"
+            android:background="@drawable/edit_text_background"/>
 
         <EditText
+            android:padding="10dp"
             android:id="@+id/mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/mail"
-            android:inputType="textWebEmailAddress" />
+            android:inputType="textWebEmailAddress"
+            android:background="@drawable/edit_text_background"/>
 
         <EditText
+            android:padding="10dp"
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="@drawable/edit_text_background"/>
 
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/register" />
+            android:text="@string/register"
+            android:fontFamily="sans-serif-light"
+            android:textSize="23sp"
+            android:textColor="#FF014F59"
+            android:background="@drawable/custom_button"/>
 
     </LinearLayout>
-
+    </ScrollView>
 </RelativeLayout>

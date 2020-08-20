@@ -11,7 +11,7 @@
     <string name="mail">Mail</string>
     <string name="password">Password</string>
     <string name="register">Registrati</string>
-    <string name="login">Login</string>
+    <string name="login">login</string>
 
     <string name="btn_change_image">Cambia immagine profilo</string>
     <string name="num_of_ratings">Numero recensioni</string>
@@ -53,7 +53,7 @@
     <string name="verificato">Verificato</string>
     <string name="accetta_solo_se_verificato">Accetta solo se verificato</string>
     <string name="titolo">Titolo</string>
-    <string name="dicci_qualcosa_sul_lavoro_per_cui_ti_vuoi_proporre">Dicci qualcosa sul lavoro per cui ti vuoi proporre</string>
+    <string name="dicci_qualcosa_sul_lavoro_per_cui_ti_vuoi_proporre">Per che lavoro ti vuoi proporre?</string>
     <string name="quanto_puoi_allontanarti_dalla_tua_posizione">Quanto puoi allontanarti dalla tua posizione?</string>
     <string name="title_activity_pubblication_choice">PubblicationChoiceActivity</string>
     <!-- Strings used for fragments for navigation -->
@@ -66,6 +66,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="che_lavoro_vuoi_proporre">Che lavoro vuoi proporre?</string>
 
 
 </resources>

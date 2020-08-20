@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.bottom_nav_publish:
 
-                        if(firebaseUser ==null) {
+                        if(firebaseUser != null) {
                             selectedFragment = new PublicationChoiceFragment();
                         }else{
                             startActivity(new Intent( MainActivity.this, StartActivity.class));

@@ -6,44 +6,69 @@
     android:layout_height="match_parent"
     android:gravity="center"
     tools:context=".start.LoginActivity">
-
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp">
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/in_task_logo" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
         <TextView
             android:id="@+id/create_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_account"
-            android:textStyle="bold" />
+            android:fontFamily="sans-serif-light"
+            android:textSize="27sp"
+            android:textColor="#FF014F59"
+            android:textStyle="bold"/>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="30dp">
 
+        </Space>
         <EditText
+            android:padding="10dp"
             android:id="@+id/mail"
+            android:background="@drawable/edit_text_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:hint="@string/mail"
             android:inputType="textWebEmailAddress" />
 
         <EditText
             android:id="@+id/password"
+            android:background="@drawable/edit_text_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:hint="@string/password"
-            android:inputType="textPassword" />
-
+            android:inputType="textPassword"
+            android:padding="10dp"/>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"/>
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
+            android:background="@drawable/custom_button"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/login" />
+            android:text="@string/login"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="25sp"
+            android:textColor="#FF014F59"/>
 
     </LinearLayout>
-
+    </ScrollView>
 </RelativeLayout>
