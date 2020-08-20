@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
@@ -15,14 +16,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-medium"
             android:shadowColor="#807B7B"
-            android:text="@string/dicci_qualcosa_sul_lavoro_per_cui_ti_vuoi_proporre"
+            android:text="Dicci qualcosa sul lavoro che vuoi proporre"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="17dp" />
+            android:textSize="20dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="70dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Vorrei lavorare come..."
+            android:hint="Cerco qualcuno per..."
             android:minHeight="25dp"
             android:textSize="12dp" />
 
@@ -59,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Il lavoro può consisitere in..."
+            android:hint="Il lavoro consisterà in..."
             android:minHeight="65dp"
             android:textSize="12dp" />
 
@@ -67,7 +68,26 @@
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_baseline_euro_24"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="@string/Price"
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:hint="0,00 eur"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:background="@drawable/edit_text_background"
+            />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -157,9 +177,6 @@
 
 
         </RadioGroup>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -254,28 +271,16 @@
                 android:minHeight="25dp"
                 android:textSize="12dp" />
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Numero di ore approssivamente necessarie..."
+                android:minHeight="25dp"
+                android:textSize="12dp" />
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_gps_not_fixed_24"
-            android:fontFamily="sans-serif-condensed-light"
-            android:text="@string/quanto_puoi_allontanarti_dalla_tua_posizione"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:hint="0,00 km"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:background="@drawable/edit_text_background"
-            />
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />

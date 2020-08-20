@@ -6,11 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FriendActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/app_bar_layout"
-        android:theme="@style/AppTheme.AppBarOverlay">
     <include
         android:id="@+id/bottom_nav_view"
         layout="@layout/layout_bottom_nav"/>
@@ -26,13 +21,11 @@
         app:tabSelectedTextColor="#fff"
         app:tabTextColor="#fff" />
 
-    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/app_bar_layout"
         app:layout_behavior="@string/username" />
 
 
