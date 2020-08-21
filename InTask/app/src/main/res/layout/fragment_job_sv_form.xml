@@ -10,33 +10,32 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="22dp">
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-medium"
             android:shadowColor="#807B7B"
-            android:text="@string/che_lavoro_vuoi_proporre"
+            android:text="Dicci qualcosa sul lavoro che vuoi proporre"
             android:textAlignment="center"
-            android:textColor="#FF014F59"
-            android:textSize="22sp" />
+            android:textColor="#000000"
+            android:textSize="20dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="70dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_baseline_create_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/titolo"
-            android:textColor="#FF014F59"
+            android:textColor="#000000"
             android:textSize="16sp" />
 
         <EditText
-            android:padding="10dp"
+            android:id="@+id/proposal_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
@@ -51,20 +50,21 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_baseline_create_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/descrizione"
-            android:textColor="#FF014F59"
+            android:textColor="#000000"
             android:textSize="16sp" />
 
         <EditText
-            android:padding="10dp"
+            android:id="@+id/proposal_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:background="@drawable/edit_text_background"
             android:hint="Il lavoro consisterà in..."
             android:minHeight="65dp"
-            android:textSize="12sp" />
+            android:textSize="12dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -73,17 +73,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_baseline_euro_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/Price"
-            android:textColor="#FF014F59"
+            android:textColor="#000000"
             android:textSize="16sp" />
 
         <EditText
-            android:padding="10dp"
-            android:id="@+id/editText"
+            android:id="@+id/proposal_reward"
             android:layout_width="match_parent"
-            android:hint="0,00 €"
-            android:textSize="13sp"
+            android:hint="0,00 eur"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:background="@drawable/edit_text_background"
@@ -94,83 +93,85 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_baseline_check_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/working_category"
-            android:textColor="#FF014F59"
+            android:textColor="#000000"
             android:textSize="16sp" />
         <RadioGroup
+            android:id="@+id/proposal_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_local_florist_24"
                 android:text="@string/Giardinaggio" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_outline_child_friendly_24"
                 android:text="@string/Babysitting" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_local_pizza_24"
                 android:text="@string/Cucinare" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_outline_local_laundry_service_24"
                 android:text="@string/Pulizie" />
 
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_menu_book_24"
                 android:text="@string/Ripetizioni" />
 
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_local_shipping_24"
                 android:text="@string/Trasloco" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_build_24"
                 android:text="@string/Riparazioni" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_dog"
                 android:text="@string/Dogsitting" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_fitness_center_24"
                 android:text="@string/Personal_Training" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_computer_24"
                 android:text="@string/Supporto_informatico" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_directions_car_24"
                 android:text="@string/Trasporto" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_local_grocery_store_24"
                 android:text="@string/Spesa" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_sports_soccer_24"
                 android:text="@string/Calcetto" />
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_more_horiz_24"
@@ -179,38 +180,32 @@
 
 
         </RadioGroup>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="25dp" />
-
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_add_location_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="Posizione"
-            android:textColor="#FF014F59"
+            android:textColor="#000000"
             android:textSize="16sp" />
 
         <EditText
-            android:padding="10dp"
+            android:id="@+id/proposal_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
             android:hint="Città, Nazione, CAP..."
             android:minHeight="25dp"
             android:textSize="12dp" />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="5dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
-                android:padding="10dp"
+                android:id="@+id/proposal_house_number"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
@@ -219,7 +214,7 @@
                 android:textSize="12dp" />
 
             <EditText
-                android:padding="10dp"
+                android:id="@+id/proposal_street"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -231,7 +226,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="25dp" />
+            android:layout_height="20dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -242,34 +237,31 @@
 
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/foto_facoltativa"
-                android:textColor="#FF014F59"
+                android:layout_marginRight="40dp"
+                android:textColor="#000000"
                 android:textSize="16sp" />
 
             <ImageView
                 android:src="@drawable/ic_baseline_landscape_24"
                 android:layout_width="130dp"
-                android:layout_height="155dp"
-                android:background="@drawable/edit_text_background">
+                android:layout_height="155dp">
 
             </ImageView>
         </LinearLayout>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_access_time_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="Quando?"
-            android:textColor="#FF014F59"
+            android:textColor="#000000"
             android:textSize="16sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
-                android:padding="10dp"
+                android:id="@+id/proposal_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
@@ -277,11 +269,9 @@
                 android:hint="Data.."
                 android:minHeight="25dp"
                 android:textSize="12dp" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="5dp" />
+
             <EditText
-                android:padding="10dp"
+                android:id="@+id/proposal_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
@@ -289,11 +279,9 @@
                 android:hint="Ora.."
                 android:minHeight="25dp"
                 android:textSize="12dp" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="5dp" />
+
             <EditText
-                android:padding="10dp"
+                android:id="@+id/proposal_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
@@ -312,14 +300,15 @@
             android:drawableEnd="@drawable/ic_baseline_check_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/verificato"
-            android:textColor="#FF014F59"
+            android:textColor="#000000"
             android:textSize="16sp" />
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RadioButton android:textColor="#FF424343"
+            <RadioButton
+                android:id="@+id/proposal_verified"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/accetta_solo_se_verificato" />
@@ -329,13 +318,11 @@
             android:layout_width="match_parent"
             android:layout_height="20dp" />
         <Button
+            android:id="@+id/proposal_btn_publish"
             android:layout_width="120dp"
             android:layout_height="55dp"
             android:text="Pubblica"
-            android:background="@drawable/custom_button"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="18sp"
-            android:textColor="#FF014F59">
+            android:background="@drawable/custom_button">
 
         </Button>
     </LinearLayout>

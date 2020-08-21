@@ -36,7 +36,7 @@
             android:textSize="16sp" />
 
         <EditText
-
+            android:id="@+id/title"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,6 +59,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:id="@+id/description"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,6 +82,7 @@
             android:textColor="#FF014F59"
             android:textSize="16sp" />
         <RadioGroup
+            android:id="@+id/type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -165,6 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="25dp" />
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_add_location_24"
@@ -174,6 +177,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:id="@+id/location"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -190,6 +194,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/house_number"
                 android:padding="10dp"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -199,6 +204,7 @@
                 android:textSize="12dp" />
 
             <EditText
+                android:id="@+id/street"
                 android:padding="10dp"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
@@ -254,6 +260,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
+                android:id="@+id/day"
                 android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -266,6 +273,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp" />
             <EditText
+                android:id="@+id/time"
                 android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -290,8 +298,9 @@
             android:textSize="16sp" />
 
         <EditText
+
             android:padding="10dp"
-            android:id="@+id/editText"
+            android:id="@+id/distance"
             android:layout_width="match_parent"
             android:hint="0,00 km"
             android:textSize="13sp"
@@ -311,11 +320,13 @@
             android:textColor="#FF014F59"
             android:textSize="16sp" />
         <RadioGroup
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <RadioButton android:textColor="#FF424343"
+                android:id="@+id/verified"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/accetta_solo_se_verificato" />
@@ -325,6 +336,7 @@
             android:layout_width="match_parent"
             android:layout_height="20dp" />
         <Button
+            android:id="@+id/btn_publish"
             android:layout_width="120dp"
             android:layout_height="55dp"
             android:text="Pubblica"
