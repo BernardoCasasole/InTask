@@ -242,6 +242,7 @@
                 android:textSize="16sp" />
 
             <ImageView
+                android:id="@+id/image"
                 android:src="@drawable/ic_baseline_landscape_24"
                 android:layout_width="130dp"
                 android:layout_height="155dp">
