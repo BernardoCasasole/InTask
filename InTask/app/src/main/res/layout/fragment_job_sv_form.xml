@@ -27,6 +27,7 @@
             android:layout_height="70dp" />
 
         <TextView
+            android:id="@+id/get_maps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_create_24"

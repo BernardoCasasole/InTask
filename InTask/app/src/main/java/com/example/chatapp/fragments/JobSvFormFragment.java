@@ -29,6 +29,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.chatapp.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +50,7 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class JobSvFormFragment extends Fragment {
 
-    EditText title, description, day, time, duration,location, houseNumber, street;
+    EditText title, description, day, time, duration, location, houseNumber, street;
     RadioGroup type;
     ImageView imageView;
     RadioButton radioButton, verified;
@@ -65,15 +68,18 @@ public class JobSvFormFragment extends Fragment {
     private static final int GALLERY = 1;
 
     double latitude, longitude;
-    TextView getPosition;
+    TextView getPosition, getMaps;
     LocationManager locationManager;
     LocationListener locationListener;
+    GoogleMap googleMap;
+    int requestCode;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         rootView = inflater.inflate(R.layout.fragment_job_sv_form, container, false);
+
 
         locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -110,6 +116,8 @@ public class JobSvFormFragment extends Fragment {
         time = rootView.findViewById(R.id.proposal_time);
         duration = rootView.findViewById(R.id.proposal_duration);
         type = rootView.findViewById(R.id.proposal_type);
+
+
         imageView = rootView.findViewById(R.id.image);
         imageView.setClickable(true);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -144,13 +152,29 @@ public class JobSvFormFragment extends Fragment {
                     addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
 
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-                    String[] parts = address.split(",");
-                    street.setText(parts[0]);
-                    houseNumber.setText(parts[1]);
-                    location.setText(parts[2]);
+                    location.setText(address);
                 } catch (IOException | IndexOutOfBoundsException e) {
                     Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
                 }
+
+
+            }
+        });
+
+        getMaps = rootView.findViewById(R.id.get_maps);
+        getMaps.setClickable(true);
+        getMaps.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                setTargetFragment( new MapFragment(), requestCode);
+                getTargetFragment();
+
+
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MapFragment(),
+
+                        "JOB_FRAGMENT").addToBackStack("JOB_FRAGMENT").commit();
 
 
             }
@@ -174,9 +198,9 @@ public class JobSvFormFragment extends Fragment {
                 street_text = street.getText().toString();
                 day_text = day.getText().toString();
                 time_text = time.getText().toString();
-                duration_text =  duration.getText().toString();
+                duration_text = duration.getText().toString();
 
-                if( !title_text.equals("")  &&
+                if (!title_text.equals("") &&
                         !description_text.equals("") &&
                         !location_text.equals("") &&
                         !houseNumber_text.equals("") &&
@@ -184,33 +208,32 @@ public class JobSvFormFragment extends Fragment {
                         !day_text.equals("") &&
                         !time_text.equals("") &&
                         !duration_text.equals("") &&
-                        radioButton !=null) {
-                Map<String, Object> map = new HashMap<>();
-                map.put("author", firebaseUser.getUid());
-                map.put("title", title_text);
-                map.put("description", description_text);
-                map.put("location", location_text);
-                map.put("houseNumber", houseNumber_text);
-                map.put("street", street_text);
-                map.put("day", day_text);
-                map.put("time", time_text);
-                map.put("duration", duration_text);
-                map.put("type", radioButton.getText().toString());
-                map.put("verified", verified.isChecked());
-                map.put("setted_image",uploaded);
-                    Toast.makeText(getContext(),"Annuncio pubblicato con successo",Toast.LENGTH_SHORT).show();
-                    if(uploaded){
+                        radioButton != null) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("author", firebaseUser.getUid());
+                    map.put("title", title_text);
+                    map.put("description", description_text);
+                    map.put("location", location_text);
+                    map.put("houseNumber", houseNumber_text);
+                    map.put("street", street_text);
+                    map.put("day", day_text);
+                    map.put("time", time_text);
+                    map.put("duration", duration_text);
+                    map.put("type", radioButton.getText().toString());
+                    map.put("verified", verified.isChecked());
+                    map.put("setted_image", uploaded);
+                    Toast.makeText(getContext(), "Annuncio pubblicato con successo", Toast.LENGTH_SHORT).show();
+                    if (uploaded) {
 
-                        StorageReference childRef = storageReference.child("/job_images/"+databaseReference.push().getKey()+".jpg");
+                        StorageReference childRef = storageReference.child("/job_images/" + databaseReference.push().getKey() + ".jpg");
                         childRef.putFile(mImageUri);
                     }
                     databaseReference.push().setValue(map);
 
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PublicationChoiceFragment()).commit();
 
-                }else
-                    Toast.makeText(getContext(),"Devi riempire tutti i campi",Toast.LENGTH_SHORT).show();
-
+                } else
+                    Toast.makeText(getContext(), "Devi riempire tutti i campi", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -220,10 +243,10 @@ public class JobSvFormFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode,  Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == GALLERY && resultCode != 0 ) {
+        if (requestCode == GALLERY && resultCode != 0) {
             mImageUri = data.getData();
 
             try {
@@ -232,6 +255,28 @@ public class JobSvFormFragment extends Fragment {
                 uploaded = true;
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+   @Override
+    public void onStart() {
+        super.onStart();
+        Bundle b = getActivity().getIntent().getExtras();
+
+        if (b != null) {
+            Geocoder geocoder;
+            List<Address> addresses;
+            geocoder = new Geocoder(getContext(), Locale.getDefault());
+
+
+            try {
+                addresses = geocoder.getFromLocation(Double.parseDouble(b.getString("Lat")), Double.parseDouble(b.getString("Long")), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                location.setText(address);
+            } catch (IOException | IndexOutOfBoundsException e) {
+                Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
             }
         }
     }

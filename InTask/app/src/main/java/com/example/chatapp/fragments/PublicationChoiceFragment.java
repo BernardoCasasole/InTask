@@ -26,14 +26,14 @@ public class PublicationChoiceFragment extends Fragment {
         btnPublishJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new JobSvFormFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new JobSvFormFragment(), "JOB_FRAGMENT").commit();
             }
         });
 
         btnPublishTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PublicationTimeFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PublicationTimeFragment(),"TIME_FRAGMENT").commit();
             }
         });
         return view;
