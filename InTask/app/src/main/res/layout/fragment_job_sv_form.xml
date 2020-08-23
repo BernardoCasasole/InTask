@@ -278,6 +278,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
                 android:background="@drawable/edit_text_background"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="date"
                 android:hint="Data.."
                 android:minHeight="25dp"
                 android:textSize="12dp" />
@@ -291,6 +294,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
                 android:background="@drawable/edit_text_background"
+                android:inputType="time"
                 android:hint="Ora.."
                 android:minHeight="25dp"
                 android:textSize="12dp" />

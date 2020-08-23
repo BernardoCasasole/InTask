@@ -1,6 +1,7 @@
 package com.example.chatapp.fragments;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -40,6 +42,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -56,6 +60,8 @@ public class JobSvFormFragment extends Fragment {
     RadioButton radioButton, verified;
     Button btn_publish;
     View rootView;
+
+    Calendar myCalendar;
 
     Uri mImageUri;
     Boolean uploaded;
@@ -116,6 +122,33 @@ public class JobSvFormFragment extends Fragment {
         time = rootView.findViewById(R.id.proposal_time);
         duration = rootView.findViewById(R.id.proposal_duration);
         type = rootView.findViewById(R.id.proposal_type);
+
+        myCalendar = Calendar.getInstance();
+
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        day.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(getContext(),date , myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
 
         imageView = rootView.findViewById(R.id.image);
@@ -279,5 +312,12 @@ public class JobSvFormFragment extends Fragment {
                 Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALIAN);
+
+        day.setText(sdf.format(myCalendar.getTime()));
     }
 }
