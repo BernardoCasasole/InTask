@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     tools:context=".start.RegisterActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,7 +16,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="5dp">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,13 +40,21 @@
             android:layout_height="10dp"/>
         <EditText
             android:padding="10dp"
-            android:id="@+id/username"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/username"
+            android:hint="@string/name"
             android:background="@drawable/edit_text_background"/>
 
+            <EditText
+                android:padding="10dp"
+                android:id="@+id/surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/surname"
+                android:background="@drawable/edit_text_background"/>
         <EditText
             android:padding="10dp"
             android:id="@+id/mail"

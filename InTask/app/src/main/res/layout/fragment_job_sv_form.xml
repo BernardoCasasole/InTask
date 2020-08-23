@@ -12,6 +12,7 @@
         android:padding="22dp">
 
         <TextView
+            android:textColor="#FF014F59"
             android:id="@+id/get_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,24 +20,23 @@
             android:shadowColor="#807B7B"
             android:text="Dicci qualcosa sul lavoro che vuoi proporre"
             android:textAlignment="center"
-            android:textColor="#000000"
             android:textSize="20dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="70dp" />
+            android:layout_height="40dp" />
 
         <TextView
             android:id="@+id/get_maps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_create_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/titolo"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
 
         <EditText
+            android:padding="10dp"
             android:id="@+id/proposal_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,13 +52,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_create_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/descrizione"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
 
         <EditText
+            android:padding="10dp"
             android:id="@+id/proposal_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,13 +75,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_euro_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/Price"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
 
         <EditText
+            android:padding="10dp"
             android:id="@+id/proposal_reward"
             android:layout_width="match_parent"
             android:hint="0,00 eur"
@@ -98,7 +98,7 @@
             android:drawableRight="@drawable/ic_baseline_check_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/working_category"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
         <RadioGroup
             android:id="@+id/proposal_type"
@@ -180,6 +180,9 @@
                 android:text="@string/altro" />
 
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp"/>
 
         </RadioGroup>
         <TextView
@@ -189,10 +192,11 @@
             android:drawableRight="@drawable/ic_baseline_add_location_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="Posizione"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textColor="#FF014F59"
+            android:textSize="16sp"/>
 
         <EditText
+            android:padding="10dp"
             android:id="@+id/proposal_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -200,13 +204,16 @@
             android:hint="Città, Nazione, CAP..."
             android:minHeight="25dp"
             android:textSize="12dp" />
-
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
+                android:padding="10dp"
                 android:id="@+id/proposal_house_number"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -216,6 +223,7 @@
                 android:textSize="12dp" />
 
             <EditText
+                android:padding="10dp"
                 android:id="@+id/proposal_street"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
@@ -240,8 +248,8 @@
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/foto_facoltativa"
                 android:layout_marginRight="40dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FF014F59"
+                android:textSize="16sp"/>
 
             <ImageView
                 android:id="@+id/image"
@@ -256,14 +264,15 @@
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_access_time_24"
             android:fontFamily="sans-serif-condensed-light"
-            android:text="Quando?"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:text="@string/quando"
+            android:textColor="#FF014F59"
+            android:textSize="16sp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
+                android:padding="10dp"
                 android:id="@+id/proposal_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -272,8 +281,11 @@
                 android:hint="Data.."
                 android:minHeight="25dp"
                 android:textSize="12dp" />
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
             <EditText
+                android:padding="10dp"
                 android:id="@+id/proposal_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -283,7 +295,12 @@
                 android:minHeight="25dp"
                 android:textSize="12dp" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+
             <EditText
+                android:padding="10dp"
                 android:id="@+id/proposal_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -303,7 +320,7 @@
             android:drawableEnd="@drawable/ic_baseline_check_24"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/verificato"
-            android:textColor="#000000"
+            android:textColor="#FF014F59"
             android:textSize="16sp" />
         <RadioGroup
             android:layout_width="match_parent"

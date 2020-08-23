@@ -68,6 +68,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="che_lavoro_vuoi_proporre">Che lavoro vuoi proporre?</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="quando">Quando?</string>
 
 
 </resources>
