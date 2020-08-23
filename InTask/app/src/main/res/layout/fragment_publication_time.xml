@@ -203,7 +203,7 @@
                 android:hint="Via, n°, Città, Nazione, CAP..."
                 android:minHeight="25dp"
                 android:textSize="12dp" />
-            
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="25dp" />
