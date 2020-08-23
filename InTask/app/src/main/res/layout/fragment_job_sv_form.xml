@@ -185,58 +185,46 @@
             android:layout_height="25dp"/>
 
         </RadioGroup>
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_add_location_24"
-            android:fontFamily="sans-serif-condensed-light"
-            android:text="Posizione"
-            android:textColor="#FF014F59"
-            android:textSize="16sp"/>
-
-        <EditText
-            android:padding="10dp"
-            android:id="@+id/proposal_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:hint="Città, Nazione, CAP..."
-            android:minHeight="25dp"
-            android:textSize="12dp" />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="5dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:padding="10dp"
-                android:id="@+id/proposal_house_number"
-                android:layout_width="50dp"
+            android:orientation="horizontal"
+            android:layout_gravity="left">
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_background"
-                android:hint="n°"
-                android:minHeight="25dp"
-                android:textSize="12dp" />
-
-            <EditText
-                android:padding="10dp"
-                android:id="@+id/proposal_street"
-                android:layout_width="260dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="@string/posizione"
+                android:textColor="#FF014F59"
+                android:textSize="16sp"
+                android:layout_marginRight="50dp"/>
+            <Button
+                android:id="@+id/position_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="Via..."
-                android:minHeight="25dp"
-                android:textSize="12dp" />
+                android:text="@string/inserisci_posizione_attuale"
+                android:textColor="#FF014F59"
+                android:fontFamily="sans-serif-condensed-light"
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:background="@drawable/custom_button"
+                android:drawableRight="@drawable/ic_baseline_add_location_24"
+                >
+            </Button>
         </LinearLayout>
+        <EditText
+            android:id="@+id/location"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="Via, n°, Città, Nazione, CAP..."
+            android:minHeight="25dp"
+            android:textSize="12dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="25dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

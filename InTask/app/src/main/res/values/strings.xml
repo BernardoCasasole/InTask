@@ -71,6 +71,9 @@
     <string name="name">Name</string>
     <string name="surname">Surname</string>
     <string name="quando">Quando?</string>
+    <string name="facebook_sign_in">Sign In</string>
+    <string name="inserisci_posizione_attuale">inserisci posizione attuale</string>
+    <string name="posizione">Posizione</string>
 
 
 </resources>
