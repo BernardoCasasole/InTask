@@ -1,30 +1,28 @@
 package com.example.chatapp.model;
 
-public class Job {
+public class Time {
     private String author;
     private String day;
     private String description;
-    private String duration;
+    private String distance;
     private String key;
     private String location;
-    private String reward;
     private Boolean setted_image;
     private String time;
     private String title;
     private String type;
     private Boolean verified;
 
-    public Job(){}
 
+    public Time(){}
 
-    public Job(String author, String day, String description, String duration, String key, String location, String reward, Boolean setted_image, String time, String title, String type, Boolean verified) {
+    public Time(String author, String day, String description, String distance, String key, String location, Boolean setted_image, String time, String title, String type, Boolean verified) {
         this.author = author;
         this.day = day;
         this.description = description;
-        this.duration = duration;
+        this.distance = distance;
         this.key = key;
         this.location = location;
-        this.reward = reward;
         this.setted_image = setted_image;
         this.time = time;
         this.title = title;
@@ -44,8 +42,12 @@ public class Job {
         return description;
     }
 
-    public String getDuration() {
-        return duration;
+    public String getDistance() {
+        return distance;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public String getLocation() {
@@ -71,12 +73,7 @@ public class Job {
     public Boolean getVerified() {
         return verified;
     }
-
-    public String getKey() {
-        return key;
-    }
-
-    public String getReward() {
-        return reward;
-    }
 }
+
+
+

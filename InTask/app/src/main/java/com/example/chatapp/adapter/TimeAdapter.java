@@ -1,28 +1,21 @@
 package com.example.chatapp.adapter;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapp.R;
 import com.example.chatapp.model.Job;
-import com.example.chatapp.model.User;
+import com.example.chatapp.model.Time;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,44 +27,40 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
+public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<Job> mAds;
+    private List<Time> mAds;
 
-    public JobAdapter(Context mContext, List<Job> mAds) {
+    public TimeAdapter(Context mContext, List<Time> mAds) {
         this.mContext = mContext;
         this.mAds = mAds;
     }
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.job_published_item,parent,false);
-        return new JobAdapter.ViewHolder(view);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.time_published_item,parent,false);
+        return new TimeAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        final Job job = mAds.get(position);
+        final Time time = mAds.get(position);
 
 
-        holder.title.setText(job.getTitle());
-        holder.day.setText(job.getDay());
-        holder.time.setText(job.getTime());
-        holder.reward.setText(job.getReward());
-        holder.location.setText(job.getLocation());
-        if(!job.getVerified())
+        holder.title.setText(time.getTitle());
+        holder.day.setText(time.getDay());
+        holder.time.setText(time.getTime());
+        if(!time.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                holder.author.setText(snapshot.child(job.getAuthor()).child("username").getValue().toString());
+                holder.author.setText(snapshot.child(time.getAuthor()).child("username").getValue().toString());
             }
 
             @Override
@@ -80,7 +69,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             }
         });
 
-        if(job.getSetted_image()){
+        if(time.getSetted_image()){
 
             File localFile = null;
             try {
@@ -88,7 +77,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
                 final File finalLocalFile = localFile;
-                storageReference.child("job_images/"+job.getKey()+".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                storageReference.child("time_images/"+time.getKey()+".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                         Glide.with(mContext).load(finalLocalFile).into(holder.image);
@@ -105,7 +94,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
         }
 
-        switch (job.getType()) {
+        switch (time.getType()) {
             case "Giardinaggio":
                 holder.type.setImageResource(R.drawable.ic_baseline_local_florist_24);
                 break;
@@ -160,7 +149,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         public class ViewHolder extends RecyclerView.ViewHolder{
 
             public ImageView image,type;
-            public TextView author, title, day, time, reward, location, verified;
+            public TextView author, title, day, time, verified;
 
             public ViewHolder(View itemView){
 
@@ -169,8 +158,6 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 author = itemView.findViewById(R.id.job_publisher);
                 day = itemView.findViewById(R.id.job_date);
                 time = itemView.findViewById(R.id.job_hour);
-                reward = itemView.findViewById(R.id.job_proposed_price);
-                location = itemView.findViewById(R.id.job_distance);
                 verified  = itemView.findViewById(R.id.job_verified);
 
                 image = itemView.findViewById(R.id.job_image);

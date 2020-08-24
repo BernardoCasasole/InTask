@@ -14,8 +14,10 @@ import android.view.ViewGroup;
 
 import com.example.chatapp.R;
 import com.example.chatapp.adapter.JobAdapter;
+import com.example.chatapp.adapter.TimeAdapter;
 import com.example.chatapp.adapter.users.UserAdapter;
 import com.example.chatapp.model.Job;
+import com.example.chatapp.model.Time;
 import com.example.chatapp.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -52,9 +54,43 @@ public class HomeAdsFragment extends Fragment {
         if(typeAds.equals("job"))
             readAdsJob();
         else
-            Log.wtf("CIAOOO","lol");
+            readAdsTime();
 
         return view;
+    }
+
+    private void readAdsTime() {
+
+        final List<Time> mAds = new ArrayList<>();
+
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Time");
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mAds.clear();
+
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    Time time = snapshot.getValue(Time.class);
+
+                    // if(firebaseUser==null ||( !job.getAuthor().equals(firebaseUser.getUid()) )){
+                    mAds.add(time);
+
+                    //}
+
+                }
+
+                recyclerView.setAdapter(new TimeAdapter(recyclerView.getContext(),mAds));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void readAdsJob(){
