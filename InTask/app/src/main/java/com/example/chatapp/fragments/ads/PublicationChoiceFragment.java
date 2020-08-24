@@ -1,4 +1,4 @@
-package com.example.chatapp.fragments;
+package com.example.chatapp.fragments.ads;
 
 import android.os.Bundle;
 

@@ -8,29 +8,21 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
-import com.example.chatapp.fragments.FriendsFragment;
-import com.example.chatapp.fragments.PublicationChoiceFragment;
-import com.example.chatapp.fragments.RequestsFragment;
-import com.example.chatapp.fragments.UsersFragment;
+import com.example.chatapp.fragments.HomeFragment;
+import com.example.chatapp.fragments.ads.PublicationChoiceFragment;
 import com.example.chatapp.start.StartActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
+    Fragment homeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
+        homeFragment = new HomeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
                 switch (item.getItemId()){
+                    case R.id.bottom_nav_home:
+                        selectedFragment = homeFragment;
+                        break;
 
                     case R.id.bottom_nav_publish:
 

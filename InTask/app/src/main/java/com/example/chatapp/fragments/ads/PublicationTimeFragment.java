@@ -1,8 +1,7 @@
-package com.example.chatapp.fragments;
+package com.example.chatapp.fragments.ads;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,16 +10,15 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.Image;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -34,17 +32,17 @@ import androidx.fragment.app.Fragment;
 
 //import com.example.chatapp.ProfileActivity;
 import com.example.chatapp.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.chatapp.fragments.ads.PublicationChoiceFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -54,13 +52,15 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class PublicationTimeFragment extends Fragment {
 
-    EditText title, description, day, time, distance, location, houseNumber, street;
+    EditText title, description, day, time, distance, location;
     ImageView imageView;
     RadioGroup type;
-    RadioButton radioButton, verified;
+    RadioButton radioButton;
+    CheckBox verified;
     Button btn_publish;
     Uri mImageUri;
     Boolean uploaded;
+    Calendar myCalendar;
 
     View rootView;
 
@@ -72,7 +72,7 @@ public class PublicationTimeFragment extends Fragment {
     private static final int GALLERY = 1;
 
     double latitude, longitude;
-    TextView getPosition;
+    Button getPosition;
     LocationManager locationManager;
     LocationListener locationListener;
 
@@ -108,34 +108,24 @@ public class PublicationTimeFragment extends Fragment {
         title = rootView.findViewById(R.id.title);
         description = rootView.findViewById(R.id.description);
         location = rootView.findViewById(R.id.location);
-        //houseNumber = rootView.findViewById(R.id.house_number);
-        //street = rootView.findViewById(R.id.street);
-        day = rootView.findViewById(R.id.day);
         time = rootView.findViewById(R.id.time);
+        day = rootView.findViewById(R.id.day);
         distance = rootView.findViewById(R.id.distance);
         type = rootView.findViewById(R.id.type);
-        getPosition = rootView.findViewById(R.id.get_position);
-        getPosition.setClickable(true);
-
+        getPosition = rootView.findViewById(R.id.position_button);
         getPosition.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-
                 Geocoder geocoder;
                 List<Address> addresses;
                 geocoder = new Geocoder(getContext(), Locale.getDefault());
 
-
                 try {
                     addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-                    String[] parts = address.split(",");
-                    street.setText(parts[0]);
-                    houseNumber.setText(parts[1]);
-                    location.setText(parts[2]);
+                    location.setText(address);
                 } catch (IOException | IndexOutOfBoundsException e) {
                     Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
                 }
@@ -143,7 +133,31 @@ public class PublicationTimeFragment extends Fragment {
 
             }
         });
+        myCalendar = Calendar.getInstance();
 
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        day.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getContext(),date , myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
         imageView = rootView.findViewById(R.id.image);
         imageView.setClickable(true);
@@ -171,14 +185,12 @@ public class PublicationTimeFragment extends Fragment {
                 radioButton = rootView.findViewById(type.getCheckedRadioButtonId());
                 verified = rootView.findViewById(R.id.verified);
 
-                String title_text, description_text, day_text, time_text, distance_text, location_text, houseNumber_text, street_text;
+                String title_text, description_text, day_text, time_text, distance_text, location_text, key;
 
 
                 title_text = title.getText().toString();
                 description_text = description.getText().toString();
                 location_text = location.getText().toString();
-                houseNumber_text = houseNumber.getText().toString();
-                street_text = street.getText().toString();
                 day_text = day.getText().toString();
                 time_text = time.getText().toString();
                 distance_text = distance.getText().toString();
@@ -186,19 +198,17 @@ public class PublicationTimeFragment extends Fragment {
                 if (!title_text.equals("") &&
                         !description_text.equals("") &&
                         !location_text.equals("") &&
-                        !houseNumber_text.equals("") &&
-                        !street_text.equals("") &&
                         !day_text.equals("") &&
                         !time_text.equals("") &&
                         !distance_text.equals("") &&
                         radioButton != null) {
+                    key = databaseReference.push().getKey();
                     Map<String, Object> map = new HashMap<>();
+                    map.put("key", key);
                     map.put("author", firebaseUser.getUid());
                     map.put("title", title_text);
                     map.put("description", description_text);
                     map.put("location", location_text);
-                    map.put("houseNumber", houseNumber_text);
-                    map.put("street", street_text);
                     map.put("day", day_text);
                     map.put("time", time_text);
                     map.put("distance", distance_text);
@@ -208,7 +218,7 @@ public class PublicationTimeFragment extends Fragment {
                     Toast.makeText(getContext(), "Annuncio pubblicato con successo", Toast.LENGTH_SHORT).show();
                     if (uploaded) {
 
-                        StorageReference childRef = storageReference.child("/time_images/" + databaseReference.push().getKey() + ".jpg");
+                        StorageReference childRef = storageReference.child("/time_images/" + key + ".jpg");
                         childRef.putFile(mImageUri);
                     }
                     databaseReference.push().setValue(map);
@@ -241,5 +251,10 @@ public class PublicationTimeFragment extends Fragment {
             }
         }
     }
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALIAN);
 
+        day.setText(sdf.format(myCalendar.getTime()));
+    }
 }
