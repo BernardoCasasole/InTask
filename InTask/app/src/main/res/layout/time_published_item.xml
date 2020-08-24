@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_height="220dp"
+    android:background="@drawable/edit_text_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/job_image"
+                android:layout_width="110dp"
+                android:layout_height="135dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/edit_text_background"
+                android:src="@drawable/ic_baseline_landscape_24" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+                <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/job_title"
+                        style="@style/InTaskTheme_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="10dp"
+                        android:layout_toRightOf="@+id/job_image"
+                        android:text="Titolo del job" />
+
+                <TextView
+                    android:id="@+id/job_publisher"
+                    style="@style/InTaskTheme_ordinary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="10dp"
+                    android:layout_toRightOf="@+id/job_title"
+                    android:text="Publisher Job" />
+
+
+            </LinearLayout>
+                <LinearLayout
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+
+
+            <TextView
+                android:id="@+id/job_date"
+                style="@style/InTaskTheme_ordinary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/job_image"
+                android:text="11/09/01"
+                />
+
+            <TextView
+                android:id="@+id/job_hour"
+                style="@style/InTaskTheme_ordinary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/job_title"
+                android:text="11.45" />
+
+        </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/job_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edit_text_background"
+                android:src="@drawable/ic_baseline_local_florist_big" />
+
+
+            <TextView
+
+                android:id="@+id/job_verified"
+                style="@style/InTaskTheme_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="50dp"
+                android:drawableStart="@drawable/ic_baseline_check_24"
+                android:text="verificato"
+                android:gravity="center"
+                android:layout_gravity="center"/>
+
+
+            <Button
+                android:id="@+id/contatta_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginLeft="70dp"
+                android:background="@drawable/custom_button"
+                style="@style/InTaskTheme_ordinary"
+                android:text="@string/contatta_button"
+                >
+
+            </Button>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

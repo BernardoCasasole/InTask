@@ -51,7 +51,7 @@
     <string name="Price">Quanto sei disposto ad offrire per questo lavoro?</string>
     <string name="descrizione">Descrizione</string>
     <string name="foto_facoltativa">Foto (facoltativa)</string>
-    <string name="verificato">Verificato</string>
+    <string name="verificato">Accetta solo se verificato</string>
     <string name="accetta_solo_se_verificato">Accetta solo se verificato</string>
     <string name="titolo">Titolo</string>
     <string name="dicci_qualcosa_sul_lavoro_per_cui_ti_vuoi_proporre">Per che lavoro ti vuoi proporre?</string>
@@ -74,6 +74,8 @@
     <string name="facebook_sign_in">Sign In</string>
     <string name="inserisci_posizione_attuale">inserisci posizione attuale</string>
     <string name="posizione">Posizione</string>
+    <string name="My_pubblications">Pubblicati</string>
+    <string name="contatta_button">contatta</string>
 
 
 </resources>

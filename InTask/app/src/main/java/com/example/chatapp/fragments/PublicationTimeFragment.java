@@ -32,7 +32,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.chatapp.ProfileActivity;
+//import com.example.chatapp.ProfileActivity;
 import com.example.chatapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -108,8 +108,8 @@ public class PublicationTimeFragment extends Fragment {
         title = rootView.findViewById(R.id.title);
         description = rootView.findViewById(R.id.description);
         location = rootView.findViewById(R.id.location);
-        houseNumber = rootView.findViewById(R.id.house_number);
-        street = rootView.findViewById(R.id.street);
+        //houseNumber = rootView.findViewById(R.id.house_number);
+        //street = rootView.findViewById(R.id.street);
         day = rootView.findViewById(R.id.day);
         time = rootView.findViewById(R.id.time);
         distance = rootView.findViewById(R.id.distance);

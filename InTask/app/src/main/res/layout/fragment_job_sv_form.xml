@@ -85,6 +85,7 @@
             android:id="@+id/proposal_reward"
             android:layout_width="match_parent"
             android:hint="0,00 eur"
+            android:textSize="14dp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:background="@drawable/edit_text_background"
@@ -179,17 +180,16 @@
                 android:drawableEnd="@drawable/ic_baseline_more_horiz_24"
                 android:text="@string/altro" />
 
-
+        </RadioGroup>
         <Space
             android:layout_width="match_parent"
             android:layout_height="25dp"/>
 
-        </RadioGroup>
-        <LinearLayout
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="left">
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -197,23 +197,33 @@
                 android:text="@string/posizione"
                 android:textColor="#FF014F59"
                 android:textSize="16sp"
-                android:layout_marginRight="50dp"/>
+                android:layout_alignParentLeft="true" />
             <Button
                 android:id="@+id/position_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:text="@string/inserisci_posizione_attuale"
                 android:textColor="#FF014F59"
                 android:fontFamily="sans-serif-condensed-light"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
                 android:textSize="10sp"
                 android:background="@drawable/custom_button"
                 android:drawableRight="@drawable/ic_baseline_add_location_24"
+                android:layout_alignParentRight="true"
                 >
             </Button>
-        </LinearLayout>
+        </RelativeLayout>
+
+
+
+
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
         <EditText
-            android:id="@+id/location"
+            android:id="@+id/proposal_location"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -225,7 +235,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="25dp" />
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -235,7 +245,6 @@
 
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/foto_facoltativa"
-                android:layout_marginRight="40dp"
                 android:textColor="#FF014F59"
                 android:textSize="16sp"/>
 
@@ -243,10 +252,15 @@
                 android:id="@+id/image"
                 android:src="@drawable/ic_baseline_landscape_24"
                 android:layout_width="130dp"
-                android:layout_height="155dp">
+                android:layout_height="155dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_alignParentEnd="true">
 
             </ImageView>
-        </LinearLayout>
+        </RelativeLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -306,26 +320,15 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />
-        <TextView
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/proposal_verified"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_baseline_check_24"
-            android:fontFamily="sans-serif-condensed-light"
             android:text="@string/verificato"
-            android:textColor="#FF014F59"
-            android:textSize="16sp" />
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/proposal_verified"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/accetta_solo_se_verificato" />
-
-        </RadioGroup>
+            android:layout_gravity="left"
+            android:fontFamily="sans-serif-light"
+            android:textSize="14sp"
+            android:textColor="#FF014F59"/>
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />
@@ -334,7 +337,9 @@
             android:layout_width="120dp"
             android:layout_height="55dp"
             android:text="Pubblica"
-            android:background="@drawable/custom_button">
+            android:background="@drawable/custom_button"
+            android:textStyle="bold"
+            style="@style/InTaskTheme_ordinary">
 
         </Button>
     </LinearLayout>

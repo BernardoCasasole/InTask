@@ -116,8 +116,8 @@ public class JobSvFormFragment extends Fragment {
         title = rootView.findViewById(R.id.proposal_title);
         description = rootView.findViewById(R.id.proposal_description);
         location = rootView.findViewById(R.id.proposal_location);
-        houseNumber = rootView.findViewById(R.id.proposal_house_number);
-        street = rootView.findViewById(R.id.proposal_street);
+        //houseNumber = rootView.findViewById(R.id.proposal_house_number);
+        //street = rootView.findViewById(R.id.proposal_street);
         day = rootView.findViewById(R.id.proposal_day);
         time = rootView.findViewById(R.id.proposal_time);
         duration = rootView.findViewById(R.id.proposal_duration);

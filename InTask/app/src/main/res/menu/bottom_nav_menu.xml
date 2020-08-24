@@ -3,19 +3,21 @@
 
 
     <item
-        android:id="@+id/bottom_nav_settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/bottom_nav_settings_string" />
-
-    <item
         android:id="@+id/bottom_nav_message"
         android:icon="@drawable/ic_baseline_chat_24"
         android:title="@string/bottom_nav_message_string" />
 
     <item
+        android:id="@+id/bottom_nav_settings"
+        android:icon="@drawable/ic_baseline_library_books_24"
+        android:title="@string/My_pubblications" />
+
+
+    <item
         android:id="@+id/bottom_nav_home"
         android:icon="@drawable/ic_baseline_home_work_24"
-        android:title="@string/bottom_nav_home_string" />
+        android:title="@string/bottom_nav_home_string"
+        />
     <item
         android:id="@+id/bottom_nav_publish"
         android:icon="@drawable/ic_baseline_post_add_24"
