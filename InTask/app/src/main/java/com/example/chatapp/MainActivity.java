@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        FirebaseAuth.getInstance().signOut();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
@@ -61,13 +61,15 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new PublicationChoiceFragment();
                         }else{
                             startActivity(new Intent( MainActivity.this, StartActivity.class));
+                            return true;
                         }
                         break;
 
                     case R.id.bottom_nav_profile:
 
-                        if(firebaseUser!=null) {
+                        if(firebaseUser==null) {
                             startActivity(new Intent(MainActivity.this, StartActivity.class));
+                            return true;
                         }else {
                             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                            /* Bundle b = new Bundle();
@@ -75,8 +77,9 @@ public class MainActivity extends AppCompatActivity {
                             b.putString("userID", firebaseUser.getUid());
                             intent.putExtras(b);*/
                             startActivity(intent);
-                            break;
+
                         }
+                        break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;
