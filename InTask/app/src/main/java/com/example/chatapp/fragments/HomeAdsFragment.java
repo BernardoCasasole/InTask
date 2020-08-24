@@ -76,10 +76,10 @@ public class HomeAdsFragment extends Fragment {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Time time = snapshot.getValue(Time.class);
 
-                    // if(firebaseUser==null ||( !job.getAuthor().equals(firebaseUser.getUid()) )){
-                    mAds.add(time);
+                    if(firebaseUser==null ||( !time.getAuthor().equals(firebaseUser.getUid()) )){
+                        mAds.add(time);
 
-                    //}
+                    }
 
                 }
 
@@ -110,10 +110,10 @@ public class HomeAdsFragment extends Fragment {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Job job = snapshot.getValue(Job.class);
 
-                   // if(firebaseUser==null ||( !job.getAuthor().equals(firebaseUser.getUid()) )){
+                   if(firebaseUser==null ||( !job.getAuthor().equals(firebaseUser.getUid()) )){
                         mAds.add(job);
 
-                    //}
+                    }
 
                 }
 
