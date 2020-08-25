@@ -80,6 +80,8 @@ public class ProfileFragment extends Fragment {
         ratingBar = rootView.findViewById(R.id.rating_user);
         verifiedUser = rootView.findViewById(R.id.verified_user);
         verifiedUSerImage = rootView.findViewById(R.id.verified_user_image);
+
+        btn_uploadDocument = rootView.findViewById(R.id.user_document_update);
         btn_logout = rootView.findViewById(R.id.logout_id);
 
 
@@ -112,7 +114,10 @@ public class ProfileFragment extends Fragment {
                 if(!user.getVerified()){
                     verifiedUser.setText("Utente non verificato");
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
+                    btn_uploadDocument.setVisibility(View.GONE);
+
                 }
+
                 if(user.getSetted_image())
                     uploadImage();
 
