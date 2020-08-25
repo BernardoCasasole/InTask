@@ -123,7 +123,7 @@ public class MessagingActivity extends BaseActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                sendNotifications(receiver,sender,user.getUsername(),message);
+                sendNotifications(receiver,sender,user.getName(),message);
             }
 
             @Override

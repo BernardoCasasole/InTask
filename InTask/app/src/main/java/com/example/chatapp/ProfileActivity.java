@@ -93,10 +93,10 @@ public class ProfileActivity extends BaseActivity {
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
 
                 User user = dataSnapshot.child(userID).getValue(User.class);
-                username.setText(user.getUsername());
+                username.setText(user.getName());
                 mail.setText(user.getMail());
                 ratings.setText(user.getRatings());
-                average_ratings.setRating(Float.parseFloat(user.getAverage_ratings()));
+                average_ratings.setRating(user.getAverage_ratings());
                 uploadImage(user.getSetted_image());
 
 

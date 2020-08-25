@@ -2,17 +2,21 @@ package com.example.chatapp.model;
 
 public class User {
 
-    private String username;
+    private String name;
+    private String surname;
     private String id;
-    private String setted_image;
+    private Boolean setted_image;
+    private Boolean verified;
     private String mail;
-    private String ratings;
-    private String average_ratings;
+    private int ratings;
+    private float average_ratings;
 
-    public User(String username, String id, String setted_image, String mail, String ratings, String average_ratings) {
-        this.username = username;
+    public User(String name, String surname, String id, Boolean setted_image, Boolean verified, String mail, int ratings, float average_ratings) {
+        this.name = name;
+        this.surname = surname;
         this.id = id;
         this.setted_image = setted_image;
+        this.verified = verified;
         this.mail = mail;
         this.ratings = ratings;
         this.average_ratings = average_ratings;
@@ -23,52 +27,35 @@ public class User {
 
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getSurname() {
+        return surname;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Boolean getSetted_image() {
-        return Boolean.parseBoolean(setted_image);
+        return setted_image;
     }
 
-    public void setSetted_image(String setted_image) {
-        this.setted_image = setted_image;
+    public Boolean getVerified() {
+        return verified;
     }
 
     public String getMail() {
         return mail;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-
-    public String getRatings() {
+    public int getRatings() {
         return ratings;
     }
 
-    public void setRatings(String ratings) {
-        this.ratings = ratings;
-    }
-
-    public String getAverage_ratings() {
+    public float getAverage_ratings() {
         return average_ratings;
-    }
-
-    public void setAverage_ratings(String average_ratings) {
-        this.average_ratings = average_ratings;
     }
 }

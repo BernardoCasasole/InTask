@@ -74,13 +74,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         final User user = mUsers.get(position);
 
-        holder.username.setText(user.getUsername());
+        holder.username.setText(user.getName());
 
         holder.btn_add_friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 notify = true;
-                Toast.makeText(mContext,"Richiesta d'amicizia a "+user.getUsername()+" inviata!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"Richiesta d'amicizia a "+user.getName()+" inviata!",Toast.LENGTH_SHORT).show();
 
                 final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("friend_requests_received");

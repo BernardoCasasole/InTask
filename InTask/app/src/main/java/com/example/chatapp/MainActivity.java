@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.chatapp.fragments.HomeAdsFragment;
 import com.example.chatapp.fragments.HomeFragment;
+import com.example.chatapp.fragments.ProfileFragment;
 import com.example.chatapp.fragments.ads.PublicationChoiceFragment;
 import com.example.chatapp.start.StartActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
+                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 Bundle bundle;
                 switch (item.getItemId()){
                     case R.id.bottom_nav_my_ads:
@@ -92,19 +94,15 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this, StartActivity.class));
                             return true;
                         }else {
-                            //Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                           /* Bundle b = new Bundle();
-                            b.putString("userMail", firebaseUser.getEmail());
-                            b.putString("userID", firebaseUser.getUid());
-                            intent.putExtras(b);*/
-                            //startActivity(intent);
-                            FirebaseAuth.getInstance().signOut();
-                            Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-                            return true;
+                            bundle = new Bundle();
+                            bundle.putString("id", firebaseUser.getUid());
+                            selectedFragment = new ProfileFragment();
+                            selectedFragment.setArguments(bundle);
+                            break;
 
 
                         }
-                        //break;
+
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;

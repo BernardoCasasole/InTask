@@ -57,7 +57,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
         final User user = mUsers.get(position);
 
-        holder.username.setText(user.getUsername());
+        holder.username.setText(user.getName());
 
 
         holder.btn_x.setOnClickListener(new View.OnClickListener() {

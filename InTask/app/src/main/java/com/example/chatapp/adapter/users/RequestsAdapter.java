@@ -72,14 +72,14 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         final User user = mUsers.get(position);
-        holder.username.setText(user.getUsername());
+        holder.username.setText(user.getName());
 
         holder.btn_add_friends.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 notify = true;
-                Toast.makeText(mContext,"Richiesta d'amicizia da "+user.getUsername()+" accettata!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"Richiesta d'amicizia da "+user.getName()+" accettata!",Toast.LENGTH_SHORT).show();
 
                 final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("friends");
@@ -122,7 +122,7 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
 
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext,"Richiesta d'amicizia da "+user.getUsername()+" rifiutata!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"Richiesta d'amicizia da "+user.getName()+" rifiutata!",Toast.LENGTH_SHORT).show();
 
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("friend_requests_received").child(user.getId());

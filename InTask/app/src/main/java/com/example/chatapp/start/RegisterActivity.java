@@ -107,17 +107,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
 
         google_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +119,6 @@ public class RegisterActivity extends AppCompatActivity {
                 signIn();
             }
         });
-
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,14 +196,15 @@ public class RegisterActivity extends AppCompatActivity {
 
                     reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
-                    HashMap<String, String> hashMap = new HashMap<>();
+                    HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put("id", userId);
                     hashMap.put("name", name);
                     hashMap.put("surname", surname);
                     hashMap.put("mail", mail);
-                    hashMap.put("setted_image", "false");
-                    hashMap.put("ratings", "0");
-                    hashMap.put("average_ratings", "0");
+                    hashMap.put("setted_image", false);
+                    hashMap.put("verified",false);
+                    hashMap.put("ratings", 0);
+                    hashMap.put("average_ratings", 0);
 
 
                     reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -273,14 +267,15 @@ public class RegisterActivity extends AppCompatActivity {
                             String userId = firebaseUser.getUid();
                             reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
-                            HashMap<String, String> hashMap = new HashMap<>();
+                            HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("id", userId);
                             hashMap.put("name", account.getGivenName());
                             hashMap.put("surname", account.getFamilyName());
                             hashMap.put("mail", account.getEmail());
-                            hashMap.put("setted_image", "false");
-                            hashMap.put("ratings", "0");
-                            hashMap.put("average_ratings", "0");
+                            hashMap.put("setted_image", false);
+                            hashMap.put("verified",false);
+                            hashMap.put("ratings", 0);
+                            hashMap.put("average_ratings", 0);
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -323,14 +318,15 @@ public class RegisterActivity extends AppCompatActivity {
                             reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
                             String[] split = firebaseUser.getDisplayName().split(" ");
 
-                            HashMap<String, String> hashMap = new HashMap<>();
+                            HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("id", userId);
                             hashMap.put("name", split[0]);
                             hashMap.put("surname", split[1]);
                             hashMap.put("mail", firebaseUser.getEmail());
-                            hashMap.put("setted_image", "false");
-                            hashMap.put("ratings", "0");
-                            hashMap.put("average_ratings", "0");
+                            hashMap.put("setted_image", false);
+                            hashMap.put("verified",false);
+                            hashMap.put("ratings", 0);
+                            hashMap.put("average_ratings", 0);
 
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
