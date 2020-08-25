@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -91,15 +92,19 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this, StartActivity.class));
                             return true;
                         }else {
-                            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                            //Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                            /* Bundle b = new Bundle();
                             b.putString("userMail", firebaseUser.getEmail());
                             b.putString("userID", firebaseUser.getUid());
                             intent.putExtras(b);*/
-                            startActivity(intent);
+                            //startActivity(intent);
+                            FirebaseAuth.getInstance().signOut();
+                            Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                            return true;
+
 
                         }
-                        break;
+                        //break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;

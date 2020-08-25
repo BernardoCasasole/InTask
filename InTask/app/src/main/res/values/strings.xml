@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">InTask</string>
     <string name="map_key" translatable="false">AIzaSyB_qsP8AOP_P0MdlPz-48TDaJYjTP3vbjo</string>
+    <string name="facebook_app_id">912976482543539</string> <string name="fb_login_protocol_scheme">fb912976482543539</string>
+
     <string name="profile">Profilo</string>
     <string name="restaurants">Ristoranti</string>
     <string name="logout">Disconnetti</string>
