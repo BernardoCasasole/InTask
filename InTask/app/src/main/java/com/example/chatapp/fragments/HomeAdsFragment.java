@@ -90,9 +90,9 @@ public class HomeAdsFragment extends Fragment {
                 }
 
                 if(Boolean.parseBoolean(myAds))
-                    recyclerView.setAdapter(new TimeAdapter(recyclerView.getContext(),mAds));
+                    recyclerView.setAdapter(new TimeAdapter(recyclerView.getContext(),mAds,Boolean.parseBoolean(myAds)));
                 else
-                    recyclerView.setAdapter(new TimeAdapter(recyclerView.getContext(),allAds));
+                    recyclerView.setAdapter(new TimeAdapter(recyclerView.getContext(),allAds,Boolean.parseBoolean(myAds)));
             }
 
             @Override
@@ -131,9 +131,9 @@ public class HomeAdsFragment extends Fragment {
                 }
 
                 if(Boolean.parseBoolean(myAds))
-                    recyclerView.setAdapter(new JobAdapter(recyclerView.getContext(),mAds));
+                    recyclerView.setAdapter(new JobAdapter(recyclerView.getContext(),mAds,Boolean.parseBoolean(myAds)));
                 else
-                    recyclerView.setAdapter(new JobAdapter(recyclerView.getContext(),allAds));
+                    recyclerView.setAdapter(new JobAdapter(recyclerView.getContext(),allAds,Boolean.parseBoolean(myAds)));
             }
 
             @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,10 +34,12 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
     private Context mContext;
     private List<Time> mAds;
+    private Boolean myAds;
 
-    public TimeAdapter(Context mContext, List<Time> mAds) {
+    public TimeAdapter(Context mContext, List<Time> mAds, Boolean myAds) {
         this.mContext = mContext;
         this.mAds = mAds;
+        this.myAds = myAds;
     }
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,6 +56,11 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
         holder.title.setText(time.getTitle());
         holder.day.setText(time.getDay());
         holder.time.setText(time.getTime());
+        if(myAds) {
+            holder.button.setText("Elimina");
+        }else{
+            holder.button.setText("Contatta");
+        }
         if(!time.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);
 
@@ -151,6 +159,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
         public class ViewHolder extends RecyclerView.ViewHolder{
 
             public ImageView image,type;
+            public Button button;
             public TextView author, title, day, time, verified;
 
             public ViewHolder(View itemView){
@@ -161,6 +170,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 day = itemView.findViewById(R.id.job_date);
                 time = itemView.findViewById(R.id.job_hour);
                 verified  = itemView.findViewById(R.id.job_verified);
+                button = itemView.findViewById(R.id.button);
 
                 image = itemView.findViewById(R.id.job_image);
                 type = itemView.findViewById(R.id.job_symbol);

@@ -42,10 +42,12 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
     private Context mContext;
     private List<Job> mAds;
+    private Boolean myAds;
 
-    public JobAdapter(Context mContext, List<Job> mAds) {
+    public JobAdapter(Context mContext, List<Job> mAds, Boolean myAds) {
         this.mContext = mContext;
         this.mAds = mAds;
+        this.myAds = myAds;
     }
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -64,6 +66,11 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.time.setText(job.getTime());
         holder.reward.setText(job.getReward());
         holder.location.setText(job.getLocation());
+        if(myAds) {
+            holder.button.setText("Elimina");
+        }else{
+                holder.button.setText("Contatta");
+            }
         if(!job.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);
 
@@ -163,6 +170,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
             public ImageView image,type;
             public TextView author, title, day, time, reward, location, verified;
+            public Button button;
 
             public ViewHolder(View itemView){
 
@@ -174,6 +182,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 reward = itemView.findViewById(R.id.job_proposed_price);
                 location = itemView.findViewById(R.id.job_distance);
                 verified  = itemView.findViewById(R.id.job_verified);
+                button = itemView.findViewById(R.id.button);
 
                 image = itemView.findViewById(R.id.job_image);
                 type = itemView.findViewById(R.id.job_symbol);

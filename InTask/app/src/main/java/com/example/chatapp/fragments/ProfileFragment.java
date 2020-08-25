@@ -78,6 +78,8 @@ public class ProfileFragment extends Fragment {
         name = rootView.findViewById(R.id.name_user);
         surname = rootView.findViewById(R.id.surname_user);
         ratingBar = rootView.findViewById(R.id.rating_user);
+        verifiedUser = rootView.findViewById(R.id.verified_user);
+        verifiedUSerImage = rootView.findViewById(R.id.verified_user_image);
         btn_logout = rootView.findViewById(R.id.logout_id);
 
 
@@ -107,6 +109,10 @@ public class ProfileFragment extends Fragment {
                 name.setText(user.getName());
                 surname.setText(user.getSurname());
                 ratingBar.setRating(user.getAverage_ratings());
+                if(!user.getVerified()){
+                    verifiedUser.setText("Utente non verificato");
+                    verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
+                }
                 if(user.getSetted_image())
                     uploadImage();
 
