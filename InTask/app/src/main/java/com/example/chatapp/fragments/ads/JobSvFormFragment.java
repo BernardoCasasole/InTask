@@ -62,7 +62,7 @@ public class JobSvFormFragment extends Fragment {
     Calendar myCalendar;
 
     Uri mImageUri;
-    Boolean uploaded;
+    Boolean uploaded = false;
 
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;

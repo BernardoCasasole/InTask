@@ -59,7 +59,7 @@ public class PublicationTimeFragment extends Fragment {
     CheckBox verified;
     Button btn_publish;
     Uri mImageUri;
-    Boolean uploaded;
+    Boolean uploaded = false;
     Calendar myCalendar;
 
     View rootView;

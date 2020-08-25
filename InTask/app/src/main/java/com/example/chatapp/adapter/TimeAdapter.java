@@ -60,7 +60,9 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                holder.author.setText(snapshot.child(time.getAuthor()).child("username").getValue().toString());
+                String name = snapshot.child(time.getAuthor()).child("surname").getValue().toString().concat(" ")
+                    .concat(snapshot.child(time.getAuthor()).child("name").getValue().toString());
+                holder.author.setText(name);
             }
 
             @Override
@@ -122,7 +124,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
             case "Personal Training":
                 holder.type.setImageResource(R.drawable.ic_baseline_fitness_center_24);
                 break;
-            case "Supporto informatico":
+            case "Supporto Informatico":
                 holder.type.setImageResource(R.drawable.ic_baseline_computer_24);
                 break;
             case "Trasporto":
