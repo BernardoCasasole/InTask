@@ -5,12 +5,14 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.chatapp.fragments.HomeAdsFragment;
 import com.example.chatapp.fragments.HomeFragment;
 import com.example.chatapp.fragments.ads.PublicationChoiceFragment;
 import com.example.chatapp.start.StartActivity;
@@ -37,12 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseAuth.getInstance().signOut();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
+        Bundle bundle = new Bundle();
+        bundle.putString("myAds", "false");
         homeFragment = new HomeFragment();
+        homeFragment.setArguments(bundle);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
 
 
@@ -50,9 +55,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
+                Bundle bundle;
                 switch (item.getItemId()){
+                    case R.id.bottom_nav_my_ads:
+                        if(firebaseUser==null) {
+                        startActivity(new Intent(MainActivity.this, StartActivity.class));
+                        return true;
+                    }else {
+                        bundle = new Bundle();
+                        bundle.putString("myAds", "true");
+                        selectedFragment = new HomeFragment();
+                        selectedFragment.setArguments(bundle);
+                        }
+                        break;
                     case R.id.bottom_nav_home:
-                        selectedFragment = homeFragment;
+                        bundle = new Bundle();
+                        bundle.putString("myAds", "false");
+                        selectedFragment = new HomeFragment();
+                        selectedFragment.setArguments(bundle);
                         break;
 
                     case R.id.bottom_nav_publish:

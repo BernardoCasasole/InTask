@@ -33,15 +33,22 @@ public class HomeFragment extends Fragment {
         TabLayout tabLayout = view.findViewById(R.id.tabs);
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         HomeFragment.ViewPageAdapter viewPageAdapter = new HomeFragment.ViewPageAdapter(getChildFragmentManager());
-
+        Bundle b = getArguments();
+        String myAds = "true";
+        if(b != null) {
+            myAds = b.getString("myAds");
+        }
         bundle = new Bundle();
         bundle.putString("type", "time");
+        bundle.putString("myAds", myAds);
         Fragment fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
         viewPageAdapter.addFragments(fragment,"Time");
 
+
         bundle = new Bundle();
         bundle.putString("type", "job");
+        bundle.putString("myAds", myAds);
         fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
         viewPageAdapter.addFragments(fragment,"Job");

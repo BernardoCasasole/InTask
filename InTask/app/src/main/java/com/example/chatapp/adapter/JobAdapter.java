@@ -71,7 +71,9 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                holder.author.setText(snapshot.child(job.getAuthor()).child("username").getValue().toString());
+                String name = snapshot.child(job.getAuthor()).child("surname").getValue().toString().concat(" ")
+                        .concat(snapshot.child(job.getAuthor()).child("name").getValue().toString());
+                holder.author.setText(name);
             }
 
             @Override

@@ -8,7 +8,7 @@
         android:title="@string/bottom_nav_message_string" />
 
     <item
-        android:id="@+id/bottom_nav_settings"
+        android:id="@+id/bottom_nav_my_ads"
         android:icon="@drawable/ic_baseline_library_books_24"
         android:title="@string/My_pubblications" />
 

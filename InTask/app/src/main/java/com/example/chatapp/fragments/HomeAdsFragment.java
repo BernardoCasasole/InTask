@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class HomeAdsFragment extends Fragment {
 
-    String typeAds;
+    String typeAds, myAds;
     private RecyclerView recyclerView;
 
     @Override
@@ -45,11 +45,14 @@ public class HomeAdsFragment extends Fragment {
         Bundle b = getArguments();
         if(b != null) {
             typeAds = b.getString("type");
+            myAds = b.getString("myAds");
         }
 
+        Log.wtf("sSS", b.toString());
         recyclerView = view.findViewById(R.id.recycler_view_ads);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+
 
         if(typeAds.equals("job"))
             readAdsJob();
@@ -62,6 +65,7 @@ public class HomeAdsFragment extends Fragment {
     private void readAdsTime() {
 
         final List<Time> mAds = new ArrayList<>();
+        final List<Time> allAds = new ArrayList<>();
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Time");
@@ -72,18 +76,23 @@ public class HomeAdsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mAds.clear();
+                allAds.clear();
 
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Time time = snapshot.getValue(Time.class);
 
                     if(firebaseUser==null ||( !time.getAuthor().equals(firebaseUser.getUid()) )){
-                        mAds.add(time);
+                        allAds.add(time);
 
-                    }
+                    }else
+                        mAds.add(time);
 
                 }
 
-                recyclerView.setAdapter(new TimeAdapter(recyclerView.getContext(),mAds));
+                if(Boolean.parseBoolean(myAds))
+                    recyclerView.setAdapter(new TimeAdapter(recyclerView.getContext(),mAds));
+                else
+                    recyclerView.setAdapter(new TimeAdapter(recyclerView.getContext(),allAds));
             }
 
             @Override
@@ -96,6 +105,7 @@ public class HomeAdsFragment extends Fragment {
     private void readAdsJob(){
 
         final List<Job> mAds = new ArrayList<>();
+        final List<Job> allAds = new ArrayList<>();
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Job");
@@ -106,18 +116,24 @@ public class HomeAdsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mAds.clear();
+                allAds.clear();
 
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Job job = snapshot.getValue(Job.class);
 
                    if(firebaseUser==null ||( !job.getAuthor().equals(firebaseUser.getUid()) )){
-                        mAds.add(job);
+                        allAds.add(job);
 
                     }
+                   else
+                       mAds.add(job);
 
                 }
 
-                recyclerView.setAdapter(new JobAdapter(recyclerView.getContext(),mAds));
+                if(Boolean.parseBoolean(myAds))
+                    recyclerView.setAdapter(new JobAdapter(recyclerView.getContext(),mAds));
+                else
+                    recyclerView.setAdapter(new JobAdapter(recyclerView.getContext(),allAds));
             }
 
             @Override
