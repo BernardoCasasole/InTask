@@ -5,7 +5,7 @@
 
     <string name="profile">Profilo</string>
     <string name="restaurants">Ristoranti</string>
-    <string name="logout">Disconnetti</string>
+    <string name="logout">Logout</string>
     <string name="friends">Amici</string>
 
     <string name="create_new">Crea un nuovo account</string>
@@ -29,7 +29,7 @@
     <string name="bottom_nav_message_string">Chats</string>
     <string name="bottom_nav_home_string">Cerca annunci</string>
     <string name="bottom_nav_publish_string">Pubblica</string>
-    <string name="bottom_nav_settings_string">Impostazioni</string>
+    <string name="bottom_nav_published_string">Pubblicati</string>
     <string name="bottom_nav_profile_string">Profilo</string>
 
     <string name="button_publish_job_string">Voglio offrire un\'opportunità\nCerco qualcuno per un lavoro</string>
