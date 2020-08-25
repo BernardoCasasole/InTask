@@ -84,16 +84,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true">
                 <TextView
-
                     style="@style/InTaskTheme_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="E-Mail" />
-
+                </LinearLayout>
                 <EditText
+                    android:layout_centerVertical="true"
                     android:id="@+id/mail_user"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -107,10 +110,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true">
                 <TextView
 
                     style="@style/InTaskTheme_subtitle"
@@ -118,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Password" />
-
+                </LinearLayout>
                 <EditText
                     android:id="@+id/pwd_user"
                     android:layout_width="fill_parent"
@@ -137,7 +144,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true">
                 <TextView
 
                     style="@style/InTaskTheme_subtitle"
@@ -145,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Indirizzo" />
-
+                </LinearLayout>
                 <EditText
                     android:id="@+id/address_user"
                     android:layout_width="fill_parent"
@@ -170,7 +180,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/custom_button"
                 android:padding="10dp"
-                android:text="@string/salva_modifiche"></Button>
+                android:text="@string/salva_modifiche" />
         </LinearLayout>
         <Space
             android:layout_width="match_parent"
@@ -223,15 +233,114 @@
                     android:padding="5dp"
                     android:text="@string/modifica_documento" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+                <TextView
+                    android:id="@+id/became_verified_user"
+                    style="@style/InTaskTheme_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    android:text="@string/diventa_un_utente_verificato"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/became_verified_expl_user"
+                    style="@style/InTaskTheme_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/expl_photo"
+                    />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/verified_photo_text_user"
+                        style="@style/InTaskTheme_ordinary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/immagine_documento_string" />
+
+                    <ImageView
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/document_image"
+                        android:layout_width="80dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="55dp"
+                        android:background="@drawable/edit_text_background"
+                        android:src="@drawable/ic_passport_svgrepo_com" />
+                </RelativeLayout>
+                <Button
+                    android:id="@+id/user_document_upload"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_button"
+                    android:text="@string/carica_documento"
+                    style="@style/InTaskTheme_ordinary">
+                </Button>
+            </LinearLayout>
         </LinearLayout>
         <Space
         android:layout_width="match_parent"
         android:layout_height="20dp">
     </Space>
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/job_public_fragment"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+            <TextView
+                style="@style/InTaskTheme_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:text="@string/le_tue_offerte_di_lavoro"
+                android:layout_gravity="center"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager_job_off"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+        </Space>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+            <TextView
+                style="@style/InTaskTheme_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:text="@string/le_tue_disponibilit_a_lavorare"
+                android:layout_gravity="center"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager_time_off"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </LinearLayout>
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp">
@@ -240,25 +349,33 @@
             android:id="@+id/time_public_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="right"
-            android:gravity="right">
+            android:layout_marginBottom="20dp"
+            >
 
+            <TextView
+                style="@style/InTaskTheme_ordinary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Esci dal tuo profilo"
+                android:layout_centerVertical="true"/>
             <Button
+                android:layout_centerVertical="true"
                 android:id="@+id/logout_id"
                 style="@style/InTaskTheme_ordinary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/custom_button"
                 android:padding="5dp"
                 android:text="@string/logout" />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     </ScrollView>
