@@ -76,8 +76,15 @@
     <string name="facebook_sign_in">Sign In</string>
     <string name="inserisci_posizione_attuale">inserisci posizione attuale</string>
     <string name="posizione">Posizione</string>
-    <string name="My_pubblications">Pubblicati</string>
+    <string name="salva_modifiche">Salva modifiche</string>
+    <string name="carica_documento">carica documento</string>
+    <string name="diventa_un_utente_verificato">Diventa un utente verificato!</string>
+    <string name="expl_photo">Carica la foto di un documento in corso di validità ed attendi pochi giorni per la verifica di un nostro operatore</string>
+    <string name="immagine_documento_string">Immagine documento:</string>
+    <string name="utente_verificato">Utente verificato</string>
+    <string name="modifica_documento">modifica documento</string>
+    <string name="le_tue_offerte_di_lavoro">Le tue offerte di lavoro</string>
+    <string name="le_tue_disponibilit_a_lavorare">Le tue disponibilità a lavorare</string>
     <string name="contatta_button">contatta</string>
-
 
 </resources>

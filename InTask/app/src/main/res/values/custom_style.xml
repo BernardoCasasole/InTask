@@ -26,6 +26,6 @@
         <!-- Change default text colour from dark grey to black -->
         <item name="android:textColor">#014F59</item>
         <item name="android:fontFamily">sans-serif-condensed-light</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">15sp</item>
     </style>
 </resources>

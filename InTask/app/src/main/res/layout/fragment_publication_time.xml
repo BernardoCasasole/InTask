@@ -275,7 +275,8 @@
                 android:background="@drawable/edit_text_background"
                 android:hint="Ora.."
                 android:minHeight="25dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:inputType="time"/>
 
         </LinearLayout>
 

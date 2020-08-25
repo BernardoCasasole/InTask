@@ -10,7 +10,7 @@
     <item
         android:id="@+id/bottom_nav_my_ads"
         android:icon="@drawable/ic_baseline_library_books_24"
-        android:title="@string/My_pubblications" />
+        android:title="@string/bottom_nav_publish_string" />
 
 
     <item

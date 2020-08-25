@@ -310,6 +310,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
+                android:inputType="time"
                 android:background="@drawable/edit_text_background"
                 android:hint="Numero di ore approssivamente necessarie..."
                 android:minHeight="25dp"

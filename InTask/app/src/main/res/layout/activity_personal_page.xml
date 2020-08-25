@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/job_image"
+            android:layout_width="110dp"
+            android:layout_height="135dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/edit_text_background"
+            android:src="@drawable/ic_baseline_landscape_24" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minWidth="150dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/name_user"
+                    style="@style/InTaskTheme_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Nome" />
+
+                <TextView
+                    android:id="@+id/surname_user"
+                    style="@style/InTaskTheme_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Cognome" />
+
+                <RatingBar
+                    android:id="@+id/rating_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    android:isIndicator="true"
+                    android:layout_margin="10dp"/>
+                    <!--in code: mRatingBar.setRating(int)-->
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+        </Space>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/update_user_data_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+        </Space>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/verified_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+    </Space>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/job_public_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+        </Space>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/time_public_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
