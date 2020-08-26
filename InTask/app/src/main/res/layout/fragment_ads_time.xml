@@ -188,15 +188,15 @@
 
 
                 <TextView
+                    android:id="@+id/verified"
                     style="@style/InTaskTheme_ordinary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Accetta solo se verificato:"
-                    android:padding="8dp"
-                    android:textStyle="italic"
                     android:drawableEnd="@drawable/ic_baseline_check_35"
-                    />
+                    android:padding="8dp"
+                    android:text="Accetta solo se verificato:"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <Button
