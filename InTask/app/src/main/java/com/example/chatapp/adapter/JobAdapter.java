@@ -75,6 +75,18 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.location.setText(job.getLocation());
         if(myAds) {
             holder.button.setText("Elimina");
+            holder.button.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    FirebaseDatabase.getInstance().getReference("Job").child(job.getKey()).removeValue();
+                    if(job.getSetted_image())
+                        FirebaseStorage.getInstance().getReference().child("/time_images/"+job.getKey()+".jpg").delete();
+
+
+                }
+            });
         }else{
                 holder.button.setText("Contatta");
             }

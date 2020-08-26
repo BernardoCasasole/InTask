@@ -236,6 +236,7 @@ public class JobSvFormFragment extends Fragment {
                         !time_text.equals("") &&
                         !duration_text.equals("") &&
                         radioButton != null) {
+                    databaseReference.push();
                     key = databaseReference.push().getKey();
                     Map<String, Object> map = new HashMap<>();
                     map.put("key", key);
@@ -256,7 +257,7 @@ public class JobSvFormFragment extends Fragment {
                         StorageReference childRef = storageReference.child("/job_images/" + key + ".jpg");
                         childRef.putFile(mImageUri);
                     }
-                    databaseReference.push().setValue(map);
+                    databaseReference.child(key).setValue(map);
 
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PublicationChoiceFragment()).commit();
 

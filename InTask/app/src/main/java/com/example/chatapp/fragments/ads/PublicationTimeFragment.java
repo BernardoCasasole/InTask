@@ -202,6 +202,7 @@ public class PublicationTimeFragment extends Fragment {
                         !time_text.equals("") &&
                         !distance_text.equals("") &&
                         radioButton != null) {
+                    databaseReference.push();
                     key = databaseReference.push().getKey();
                     Map<String, Object> map = new HashMap<>();
                     map.put("key", key);
@@ -216,13 +217,13 @@ public class PublicationTimeFragment extends Fragment {
                     map.put("verified", verified.isChecked());
                     map.put("setted_image", uploaded);
                     Toast.makeText(getContext(), "Annuncio pubblicato con successo", Toast.LENGTH_SHORT).show();
+
+                    databaseReference.child(key).setValue(map);
                     if (uploaded) {
 
                         StorageReference childRef = storageReference.child("/time_images/" + key + ".jpg");
                         childRef.putFile(mImageUri);
                     }
-                    databaseReference.push().setValue(map);
-
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PublicationChoiceFragment()).commit();
 
                 } else

@@ -2,6 +2,7 @@ package com.example.chatapp.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,6 +26,8 @@ import com.example.chatapp.model.Job;
 import com.example.chatapp.model.Time;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,6 +69,18 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
         holder.time.setText(time.getTime());
         if(myAds) {
             holder.button.setText("Elimina");
+            holder.button.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    FirebaseDatabase.getInstance().getReference("Time").child(time.getKey()).removeValue();
+                    if(time.getSetted_image())
+                    FirebaseStorage.getInstance().getReference().child("/time_images/"+time.getKey()+".jpg").delete();
+
+
+                }
+            });
         }else{
             holder.button.setText("Contatta");
         }
