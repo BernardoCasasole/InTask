@@ -86,43 +86,6 @@
             android:textSize="23sp"
             android:textColor="#FF014F59"
             android:background="@drawable/custom_button"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:text="oppure"
-        android:textColor="#FF014F59"
-        android:textSize="16sp"
-        android:gravity="center">
-    </TextView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/google_button"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            />
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/fb_button"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_fb_logo"
-            android:padding="10dp"
-            android:textSize="14sp"
-            android:text="@string/facebook_sign_in"
-            android:textColor="@color/com_facebook_blue"
-            android:background="@drawable/fb_button">
-
-        </com.facebook.login.widget.LoginButton>
-
-
-    </LinearLayout>
     </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -3,7 +3,7 @@
         <stroke android:color="@color/com_facebook_blue"
             android:width="1dp">
         </stroke>
-        <corners android:radius="10dp">
+        <corners android:radius="2dp">
 
         </corners>
         <solid android:color="#FFFFFF"/>
