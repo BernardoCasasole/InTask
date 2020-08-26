@@ -212,9 +212,9 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         public class ViewHolder extends RecyclerView.ViewHolder{
 
             public ImageView image,type;
-            public TextView author, title, day, time, reward, location, verified;
+            public TextView author, title, day, time, reward, location;
             public Button button;
-            public LinearLayout linearLayoutAds;
+            public LinearLayout linearLayoutAds, verified;
 
             public ViewHolder(View itemView){
 

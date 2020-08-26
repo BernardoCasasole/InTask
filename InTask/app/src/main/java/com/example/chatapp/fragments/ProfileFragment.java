@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -54,13 +56,14 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
     View rootView;
-    ImageView imageView,verifiedUSerImage;
+    ImageView imageView,verifiedUSerImage, documentImage;
     TextView name,surname, verifiedUser;
-    Button btn_logout,btn_uploadDocument;
+    Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument;
     RatingBar ratingBar;
-    LinearLayout uploadDocument1;
+    LinearLayout uploadDocument1, loginLayout;
     RelativeLayout uploadDocument2;
     RecyclerView recyclerViewJob, recyclerViewTime;
+    EditText address;
     String userID;
 
     FirebaseUser firebaseUser;
@@ -69,6 +72,7 @@ public class ProfileFragment extends Fragment {
 
     private static Bitmap Image = null;
     private static final int GALLERY = 1;
+    private static final int GALLERY2 = 2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,6 +91,7 @@ public class ProfileFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         imageView = rootView.findViewById(R.id.user_image);
+        documentImage = rootView.findViewById(R.id.document_image);
         name = rootView.findViewById(R.id.name_user);
         surname = rootView.findViewById(R.id.surname_user);
         ratingBar = rootView.findViewById(R.id.rating_user);
@@ -94,9 +99,26 @@ public class ProfileFragment extends Fragment {
         uploadDocument2 = rootView.findViewById(R.id.layout_document_2);
         verifiedUser = rootView.findViewById(R.id.verified_user);
         verifiedUSerImage = rootView.findViewById(R.id.verified_user_image);
+        loginLayout = rootView.findViewById(R.id.login_layout);
+        address = rootView.findViewById(R.id.address_user);
+        loginLayout.setVisibility(View.GONE);
 
-        btn_uploadDocument = rootView.findViewById(R.id.user_document_update);
+        btn_uploadDocument = rootView.findViewById(R.id.user_document_upload);
+        btn_updateDocument = rootView.findViewById(R.id.user_document_update);
         btn_logout = rootView.findViewById(R.id.logout_id);
+        btn_updateAddress = rootView.findViewById(R.id.user_address_update_button);
+
+        btn_updateAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(address.getText().toString().equals("")){
+                    Toast.makeText(getContext(),"Riempi il campo!",Toast.LENGTH_SHORT).show();
+                }else{
+                    databaseReference.child("location").setValue(address.getText().toString());
+                    Toast.makeText(getContext(),"Indirizzo modificato!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
 
@@ -111,11 +133,6 @@ public class ProfileFragment extends Fragment {
         });
         if(userID.equals(firebaseUser.getUid())) {
             setImageProfile();
-           // setSettingLayout();
-
-
-
-
         }
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -128,15 +145,42 @@ public class ProfileFragment extends Fragment {
                 if(!user.getVerified()){
                     verifiedUser.setText("Utente non verificato");
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
-                    btn_uploadDocument.setVisibility(View.GONE);
+                    btn_updateDocument.setVisibility(View.GONE);
+                    btn_uploadDocument.setVisibility(View.VISIBLE);
                     uploadDocument1.setVisibility(View.VISIBLE);
                     uploadDocument2.setVisibility(View.VISIBLE);
+                    documentImage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setImageDocument();
+                        }
+                    });
+                    btn_uploadDocument.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            databaseReference.child("verified").setValue(true);
+                        }
+                    });
 
                 }else{
 
                     verifiedUser.setText("Utente verificato");
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
-                    btn_uploadDocument.setVisibility(View.VISIBLE);
+                    btn_uploadDocument.setVisibility(View.GONE);
+                    btn_updateDocument.setVisibility(View.VISIBLE);
+                    btn_updateDocument.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            if (Image != null)
+                                Image.recycle();
+                            Intent intent = new Intent();
+                            intent.setType("image/*");
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY2);
+                        }
+                    });
                     uploadDocument1.setVisibility(View.GONE);
                     uploadDocument2.setVisibility(View.GONE);
 
@@ -144,7 +188,7 @@ public class ProfileFragment extends Fragment {
                 }
 
                 if(user.getSetted_image())
-                    uploadImage();
+                    uploadImage("profile_images/"+userID+".jpg", imageView);
 
 
             }
@@ -162,36 +206,12 @@ public class ProfileFragment extends Fragment {
         recyclerViewJob.setHasFixedSize(true);
         recyclerViewJob.setLayoutManager(new LinearLayoutManager(recyclerViewJob.getContext()));
 
-        //readAdsJob();
+        readAdsJob();
         readAdsTime();
 
 
         return rootView;
     }
-
-    /*private void setSettingLayout() {
-
-        TextView mail,password,location;
-        Button button;
-        String mail_text,password_text, location_text;
-
-        settings = rootView.findViewById(R.id.update_user_data);
-        settingView = getLayoutInflater().inflate(R.layout.layout_user_data_update, null);
-        settings.addView(settingView);
-
-        mail = settingView.findViewById(R.id.mail_user);
-        password = settingView.findViewById(R.id.pwd_user);
-        location = settingView.findViewById(R.id.address_user);
-        button = settingView.findViewById(R.id.user_data_update_button);
-
-        mail_text = mail.getText().toString();
-        password_text = password.getText().toString();
-
-
-
-
-
-    }*/
 
     private void setImageProfile() {
 
@@ -211,6 +231,24 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    private void setImageDocument() {
+
+        documentImage.setClickable(true);
+        documentImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                documentImage.setImageBitmap(null);
+                if (Image != null)
+                    Image.recycle();
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY2);
+            }
+        });
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -226,7 +264,7 @@ public class ProfileFragment extends Fragment {
                 uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        uploadImage();
+                        uploadImage("/profile_images/"+userID+".jpg",imageView);
                         Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -241,10 +279,31 @@ public class ProfileFragment extends Fragment {
             }
 
 
-        }
+        } else if (requestCode == GALLERY2) {
+            Uri mImageUri = data.getData();
+            if(mImageUri != null) {
+
+                StorageReference childRef = storageReference.child("/document_images/"+userID+".jpg");
+
+                //uploading the image
+                UploadTask uploadTask = childRef.putFile(mImageUri);
+                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        uploadImage("/document_images/"+userID+".jpg", documentImage);
+                        Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+    }
     }
 
-    protected void uploadImage(){
+    protected void uploadImage(String path, final ImageView image){
 
 
 
@@ -254,11 +313,11 @@ public class ProfileFragment extends Fragment {
 
 
                 final File finalLocalFile = localFile;
-                storageReference.child("profile_images/"+userID+".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                storageReference.child(path).getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 
-                        Glide.with(getContext()).load(finalLocalFile).into(imageView);
+                        Glide.with(getContext()).load(finalLocalFile).into(image);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

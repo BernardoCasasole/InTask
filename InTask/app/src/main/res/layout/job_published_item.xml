@@ -112,6 +112,7 @@
                         android:backgroundTint="@android:color/transparent"
                         >
                         <LinearLayout
+                            android:id="@+id/job_verified"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -125,7 +126,7 @@
 
                         </ImageView>
                         <TextView
-                            android:id="@+id/job_verified"
+
                             style="@style/InTaskTheme_small"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
