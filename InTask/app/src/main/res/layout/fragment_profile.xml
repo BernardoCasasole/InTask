@@ -140,6 +140,28 @@
                     android:padding="10dp" />
             </LinearLayout>
 
+            <Button
+                android:id="@+id/user_data_update_button"
+                style="@style/InTaskTheme_ordinary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/custom_button"
+                android:padding="10dp"
+                android:text="@string/salva_modifiche" />
+        </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+        </Space>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -148,13 +170,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true">
-                <TextView
+                    <TextView
 
-                    style="@style/InTaskTheme_subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Indirizzo" />
+                        style="@style/InTaskTheme_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Indirizzo" />
                 </LinearLayout>
                 <EditText
                     android:id="@+id/address_user"
@@ -171,7 +193,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/user_data_update_button"
+                android:id="@+id/user_address_update_button"
                 style="@style/InTaskTheme_ordinary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -180,7 +202,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/custom_button"
                 android:padding="10dp"
-                android:text="@string/salva_modifiche" />
+                android:text="@string/modifica_indirizzo" />
         </LinearLayout>
         <Space
             android:layout_width="match_parent"

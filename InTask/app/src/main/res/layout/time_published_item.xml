@@ -145,16 +145,21 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_check_15"
+                    android:layout_marginLeft="60dp"
+                    android:layout_gravity="center">
+                </ImageView>
                 <TextView
 
                     android:id="@+id/job_verified"
                     style="@style/InTaskTheme_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_marginRight="10dp"
-                    android:drawableStart="@drawable/ic_baseline_check_15"
                     android:text="verificato" />
             </LinearLayout>
 
