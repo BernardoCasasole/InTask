@@ -10,8 +10,18 @@ public class User {
     private String mail;
     private int ratings;
     private float average_ratings;
+    private String location;
+    private String typeReg;
 
-    public User(String name, String surname, String id, Boolean setted_image, Boolean verified, String mail, int ratings, float average_ratings) {
+    public String getLocation() {
+        return location;
+    }
+
+    public String getTypeReg() {
+        return typeReg;
+    }
+
+    public User(String name, String surname, String id, Boolean setted_image, Boolean verified, String mail, int ratings, float average_ratings, String location, String typeReg) {
         this.name = name;
         this.surname = surname;
         this.id = id;
@@ -20,6 +30,8 @@ public class User {
         this.mail = mail;
         this.ratings = ratings;
         this.average_ratings = average_ratings;
+        this.location = location;
+        this.typeReg = typeReg;
     }
 
     public User(){

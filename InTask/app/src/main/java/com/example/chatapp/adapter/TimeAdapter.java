@@ -1,18 +1,25 @@
 package com.example.chatapp.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapp.R;
+import com.example.chatapp.fragments.AdsJobFragment;
+import com.example.chatapp.fragments.AdsTimeFragment;
+import com.example.chatapp.fragments.ProfileFragment;
 import com.example.chatapp.model.Job;
 import com.example.chatapp.model.Time;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -64,6 +71,19 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
         if(!time.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);
 
+        holder.linearLayoutAds.setClickable(true);
+        holder.linearLayoutAds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id", time.getKey());
+                Fragment selectedFragment = new AdsTimeFragment();
+                selectedFragment.setArguments(bundle);
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+            }
+        });
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -71,6 +91,16 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 String name = snapshot.child(time.getAuthor()).child("surname").getValue().toString().concat(" ")
                     .concat(snapshot.child(time.getAuthor()).child("name").getValue().toString());
                 holder.author.setText(name);
+                holder.author.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", time.getAuthor());
+                        Fragment selectedFragment = new ProfileFragment();
+                        selectedFragment.setArguments(bundle);
+                        ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    }
+                });
             }
 
             @Override
@@ -161,6 +191,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
             public ImageView image,type;
             public Button button;
             public TextView author, title, day, time, verified;
+            public LinearLayout linearLayoutAds;
 
             public ViewHolder(View itemView){
 
@@ -171,6 +202,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 time = itemView.findViewById(R.id.job_hour);
                 verified  = itemView.findViewById(R.id.job_verified);
                 button = itemView.findViewById(R.id.button);
+                linearLayoutAds = itemView.findViewById(R.id.layout_ads);
 
                 image = itemView.findViewById(R.id.job_image);
                 type = itemView.findViewById(R.id.job_symbol);

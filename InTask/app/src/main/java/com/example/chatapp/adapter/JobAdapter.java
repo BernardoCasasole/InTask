@@ -2,9 +2,13 @@ package com.example.chatapp.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +16,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapp.R;
+import com.example.chatapp.fragments.AdsJobFragment;
+import com.example.chatapp.fragments.ProfileFragment;
 import com.example.chatapp.model.Job;
 import com.example.chatapp.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -74,6 +81,19 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         if(!job.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);
 
+        holder.linearLayoutAds.setClickable(true);
+        holder.linearLayoutAds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id", job.getKey());
+                Fragment selectedFragment = new AdsJobFragment();
+                selectedFragment.setArguments(bundle);
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+            }
+        });
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -81,6 +101,17 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 String name = snapshot.child(job.getAuthor()).child("surname").getValue().toString().concat(" ")
                         .concat(snapshot.child(job.getAuthor()).child("name").getValue().toString());
                 holder.author.setText(name);
+                holder.author.setClickable(true);
+                holder.author.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", job.getAuthor());
+                        Fragment selectedFragment = new ProfileFragment();
+                        selectedFragment.setArguments(bundle);
+                        ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    }
+                });
             }
 
             @Override
@@ -142,7 +173,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             case "Personal Training":
                 holder.type.setImageResource(R.drawable.ic_baseline_fitness_center_24);
                 break;
-            case "Supporto informatico":
+            case "Supporto Informatico":
                 holder.type.setImageResource(R.drawable.ic_baseline_computer_24);
                 break;
             case "Trasporto":
@@ -171,6 +202,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             public ImageView image,type;
             public TextView author, title, day, time, reward, location, verified;
             public Button button;
+            public LinearLayout linearLayoutAds;
 
             public ViewHolder(View itemView){
 
@@ -183,6 +215,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 location = itemView.findViewById(R.id.job_distance);
                 verified  = itemView.findViewById(R.id.job_verified);
                 button = itemView.findViewById(R.id.button);
+                linearLayoutAds = itemView.findViewById(R.id.layout_ads);
 
                 image = itemView.findViewById(R.id.job_image);
                 type = itemView.findViewById(R.id.job_symbol);

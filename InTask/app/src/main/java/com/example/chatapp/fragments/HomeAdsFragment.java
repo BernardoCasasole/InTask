@@ -48,7 +48,6 @@ public class HomeAdsFragment extends Fragment {
             myAds = b.getString("myAds");
         }
 
-        Log.wtf("sSS", b.toString());
         recyclerView = view.findViewById(R.id.recycler_view_ads);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));

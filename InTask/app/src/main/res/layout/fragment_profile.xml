@@ -202,8 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_margin="10dp"
-                    android:text="@string/utente_verificato" />
+                    android:layout_margin="10dp" />
 
                 <ImageView
                     android:id="@+id/verified_user_image"
@@ -211,8 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_baseline_check_35" />
+                    android:layout_marginRight="10dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -235,6 +233,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_document_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -258,6 +257,7 @@
                     android:text="@string/expl_photo"
                     />
                 <RelativeLayout
+                    android:id="@+id/layout_document_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -312,7 +312,7 @@
                 android:text="@string/le_tue_offerte_di_lavoro"
                 android:layout_gravity="center"/>
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/view_pager_job_off"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -335,7 +335,7 @@
                 android:text="@string/le_tue_disponibilit_a_lavorare"
                 android:layout_gravity="center"/>
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/view_pager_time_off"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

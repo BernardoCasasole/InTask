@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +17,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapp.R;
+import com.example.chatapp.adapter.JobAdapter;
+import com.example.chatapp.adapter.TimeAdapter;
+import com.example.chatapp.model.Job;
+import com.example.chatapp.model.Time;
 import com.example.chatapp.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,6 +48,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
@@ -49,6 +58,9 @@ public class ProfileFragment extends Fragment {
     TextView name,surname, verifiedUser;
     Button btn_logout,btn_uploadDocument;
     RatingBar ratingBar;
+    LinearLayout uploadDocument1;
+    RelativeLayout uploadDocument2;
+    RecyclerView recyclerViewJob, recyclerViewTime;
     String userID;
 
     FirebaseUser firebaseUser;
@@ -78,6 +90,8 @@ public class ProfileFragment extends Fragment {
         name = rootView.findViewById(R.id.name_user);
         surname = rootView.findViewById(R.id.surname_user);
         ratingBar = rootView.findViewById(R.id.rating_user);
+        uploadDocument1 = rootView.findViewById(R.id.layout_document_1);
+        uploadDocument2 = rootView.findViewById(R.id.layout_document_2);
         verifiedUser = rootView.findViewById(R.id.verified_user);
         verifiedUSerImage = rootView.findViewById(R.id.verified_user_image);
 
@@ -115,6 +129,17 @@ public class ProfileFragment extends Fragment {
                     verifiedUser.setText("Utente non verificato");
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
                     btn_uploadDocument.setVisibility(View.GONE);
+                    uploadDocument1.setVisibility(View.VISIBLE);
+                    uploadDocument2.setVisibility(View.VISIBLE);
+
+                }else{
+
+                    verifiedUser.setText("Utente verificato");
+                    verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
+                    btn_uploadDocument.setVisibility(View.VISIBLE);
+                    uploadDocument1.setVisibility(View.GONE);
+                    uploadDocument2.setVisibility(View.GONE);
+
 
                 }
 
@@ -130,9 +155,15 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        recyclerViewTime = rootView.findViewById(R.id.view_pager_time_off);
+        recyclerViewTime.setHasFixedSize(true);
+        recyclerViewTime.setLayoutManager(new LinearLayoutManager(recyclerViewTime.getContext()));
+        recyclerViewJob = rootView.findViewById(R.id.view_pager_job_off);
+        recyclerViewJob.setHasFixedSize(true);
+        recyclerViewJob.setLayoutManager(new LinearLayoutManager(recyclerViewJob.getContext()));
 
-
-
+        //readAdsJob();
+        readAdsTime();
 
 
         return rootView;
@@ -240,4 +271,72 @@ public class ProfileFragment extends Fragment {
             }
 
         }
+    private void readAdsTime() {
+
+        final List<Time> mAds = new ArrayList<>();
+
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Time");
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mAds.clear();
+
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    Time time = snapshot.getValue(Time.class);
+
+                    if(firebaseUser!=null &&(time.getAuthor().equals(firebaseUser.getUid()) ))
+
+                        mAds.add(time);
+                    }
+
+                recyclerViewTime.setAdapter(new TimeAdapter(recyclerViewTime.getContext(),mAds,true));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void readAdsJob(){
+
+        final List<Job> mAds = new ArrayList<>();
+
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Job");
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mAds.clear();
+
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    Job job = snapshot.getValue(Job.class);
+
+                    if(firebaseUser!=null &&(job.getAuthor().equals(firebaseUser.getUid()) ))
+                        mAds.add(job);
+
+                }
+
+
+                recyclerViewJob.setAdapter(new JobAdapter(recyclerViewJob.getContext(),mAds,true));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+
 }
