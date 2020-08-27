@@ -19,12 +19,14 @@ import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chatapp.R;
 import com.example.chatapp.adapter.JobAdapter;
 import com.example.chatapp.adapter.TimeAdapter;
 import com.example.chatapp.model.Job;
 import com.example.chatapp.model.Time;
+import com.example.chatapp.start.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -154,12 +156,16 @@ public class FilterFragment extends Fragment {
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAds();
-                if(searchJob.isChecked())
-                    getJobs();
-                if(searchTime.isChecked())
-                    getTimes();
 
+                if(!searchTime.isChecked() && !searchJob.isChecked())
+                    Toast.makeText(getContext(), "Scegli quali annunci cercare!", Toast.LENGTH_SHORT).show();
+                else {
+                    showAds();
+                    if (searchJob.isChecked())
+                        getJobs();
+                    if (searchTime.isChecked())
+                        getTimes();
+                }
             }
         });
         return view;
@@ -291,66 +297,18 @@ public class FilterFragment extends Fragment {
     }
 
     private boolean timeHasToBeShown(Time time, float average_ratings){
+        return checkVerified(time.getVerified()) && checkType(time.getType())
+                && checkDate(time.getDay()) && checkHour(time.getTime()) && chechRating(average_ratings);
 
-        if(verified.isChecked() && time.getVerified())
-            return true;
-        if(buttonFlorist.isChecked() && time.getType().equals("Giardinaggio"))
-            return true;
-        if(buttonChild.isChecked() && time.getType().equals("Babysitting"))
-            return true;
-        if(buttonPizza.isChecked() && time.getType().equals("Cucinare"))
-            return true;
-        if(buttonLocal.isChecked() && time.getType().equals("Pulizie"))
-            return true;
-        if(buttonMenuBook.isChecked() && time.getType().equals("Ripetizioni"))
-            return true;
-        if(buttonShipping.isChecked() && time.getType().equals("Trasloco"))
-            return true;
-        if(buttonBuild.isChecked() && time.getType().equals("Riparazioni"))
-            return true;
-        if(buttonDog.isChecked() && time.getType().equals("Dogsitting"))
-            return true;
-        if(buttonFitness.isChecked() && time.getType().equals("Personal Training"))
-            return true;
-        if(buttonComputer.isChecked() && time.getType().equals("Supporto Informatico"))
-            return true;
-        if(buttonCar.isChecked() && time.getType().equals("Trasporto"))
-            return true;
-        if(buttonStore.isChecked() && time.getType().equals("Spesa"))
-            return true;
-        if(buttonSoccer.isChecked() && time.getType().equals("Decimo al Calcetto"))
-            return true;
-        if(buttonMore.isChecked() && time.getType().equals("Altro"))
-            return true;
-        if(ratingBar.getRating() > 0.0 && ratingBar.getRating() <= average_ratings)
-            return true;
-        String input_date=time.getDay();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
-        Date myDate = null;
-        try {
-            myDate = sdf.parse(input_date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        sdf.applyPattern("EEEE");
-        String finalDay = sdf.format(myDate);
-        if(wednesday.isChecked() && finalDay.equals("lunedì"))
-           return true;
-        if(thursday.isChecked() && finalDay.equals("martedì"))
-            return true;
-        if(friday.isChecked() && finalDay.equals("mercoledì"))
-            return true;
-        if(saturday.isChecked() && finalDay.equals("giovedì"))
-            return true;
-        if(sunday.isChecked() && finalDay.equals("venerdì"))
-            return true;
-        if(monday.isChecked() && finalDay.equals("sabato"))
-            return true;
-        if(tuesday.isChecked() && finalDay.equals("domenica"))
-            return true;
+    }
 
-        int a = ((int) time.getTime().charAt(0)) - 48;
-        int b = ((int) time.getTime().charAt(1)) - 48;
+    private boolean chechRating(float average_ratings) {
+        return  ratingBar.getRating() == 0.0 || ratingBar.getRating() <= average_ratings;
+    }
+
+    private boolean checkHour(String time) {
+        int a = ((int) time.charAt(0)) - 48;
+        int b = ((int) time.charAt(1)) - 48;
 
         if(sixTen.isChecked() && a < 1)
             return true;
@@ -363,47 +321,18 @@ public class FilterFragment extends Fragment {
         if(sixteenTwenty.isChecked() && a == 1 && b >= 6)
             return true;
         if(twentyMidnight.isChecked() && a == 2)
+            return true;
+        if(!sixTen.isChecked() && !tenTwelve.isChecked() &&
+                !twelveFourteen.isChecked() && !fourteenSixteen.isChecked() &&
+                !sixteenTwenty.isChecked() && !twentyMidnight.isChecked())
             return true;
 
         return false;
     }
 
-    private boolean jobHasToBeShown(Job job, float average_ratings){
-        if(verified.isChecked() && job.getVerified())
-            return true;
-        if(buttonFlorist.isChecked() && job.getType().equals("Giardinaggio"))
-            return true;
-        if(buttonChild.isChecked() && job.getType().equals("Babysitting"))
-            return true;
-        if(buttonPizza.isChecked() && job.getType().equals("Cucinare"))
-            return true;
-        if(buttonLocal.isChecked() && job.getType().equals("Pulizie"))
-            return true;
-        if(buttonMenuBook.isChecked() && job.getType().equals("Ripetizioni"))
-            return true;
-        if(buttonShipping.isChecked() && job.getType().equals("Trasloco"))
-            return true;
-        if(buttonBuild.isChecked() && job.getType().equals("Riparazioni"))
-            return true;
-        if(buttonDog.isChecked() && job.getType().equals("Dogsitting"))
-            return true;
-        if(buttonFitness.isChecked() && job.getType().equals("Personal Training"))
-            return true;
-        if(buttonComputer.isChecked() && job.getType().equals("Supporto Informatico"))
-            return true;
-        if(buttonCar.isChecked() && job.getType().equals("Trasporto"))
-            return true;
-        if(buttonStore.isChecked() && job.getType().equals("Spesa"))
-            return true;
-        if(buttonSoccer.isChecked() && job.getType().equals("Decimo al Calcetto"))
-            return true;
-        if(buttonMore.isChecked() && job.getType().equals("Altro"))
-            return true;
-        if(ratingBar.getRating() > 0.0 && ratingBar.getRating() <= average_ratings) {
-            return true;
-        }
+    private boolean checkDate(String day) {
 
-        String input_date=job.getDay();
+        String input_date=day;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
         Date myDate = null;
         try {
@@ -427,27 +356,68 @@ public class FilterFragment extends Fragment {
             return true;
         if(tuesday.isChecked() && finalDay.equals("domenica"))
             return true;
-        int a = ((int) job.getTime().charAt(0)) - 48;
-        int b = ((int) job.getTime().charAt(1)) - 48;
-
-        if(sixTen.isChecked() && a < 1)
+        if(!monday.isChecked() && !tuesday.isChecked() &&
+                !wednesday.isChecked() && !thursday.isChecked() &&
+                !friday.isChecked() && !saturday.isChecked() &&
+                !sunday.isChecked())
             return true;
-        if(tenTwelve.isChecked() && a == 1 && b < 2)
-            return true;
-        if(twelveFourteen.isChecked() && a == 1 && b >= 2 && b < 4)
-            return true;
-        if(fourteenSixteen.isChecked() && a == 1 && b >= 4 && b < 6)
-            return true;
-        if(sixteenTwenty.isChecked() && a == 1 && b >= 6)
-            return true;
-        if(twentyMidnight.isChecked() && a == 2)
-            return true;
-        if(job.getReward() >= minReward.getProgress())
-            return true;
-        if(job.getReward()<= maxReward.getProgress())
-            return true;
-
         return false;
+    }
+
+    private boolean checkType(String type) {
+        if(buttonFlorist.isChecked() && type.equals("Giardinaggio"))
+            return true;
+        if(buttonChild.isChecked() && type.equals("Babysitting"))
+            return true;
+        if(buttonPizza.isChecked() && type.equals("Cucinare"))
+            return true;
+        if(buttonLocal.isChecked() && type.equals("Pulizie"))
+            return true;
+        if(buttonMenuBook.isChecked() && type.equals("Ripetizioni"))
+            return true;
+        if(buttonShipping.isChecked() && type.equals("Trasloco"))
+            return true;
+        if(buttonBuild.isChecked() && type.equals("Riparazioni"))
+            return true;
+        if(buttonDog.isChecked() && type.equals("Dogsitting"))
+            return true;
+        if(buttonFitness.isChecked() && type.equals("Personal Training"))
+            return true;
+        if(buttonComputer.isChecked() && type.equals("Supporto Informatico"))
+            return true;
+        if(buttonCar.isChecked() && type.equals("Trasporto"))
+            return true;
+        if(buttonStore.isChecked() && type.equals("Spesa"))
+            return true;
+        if(buttonSoccer.isChecked() && type.equals("Decimo al Calcetto"))
+            return true;
+        if(buttonMore.isChecked() && type.equals("Altro"))
+            return true;
+        if(!buttonFlorist.isChecked() && !buttonChild.isChecked() &&
+                !buttonPizza.isChecked() && !buttonLocal.isChecked() &&
+                !buttonMenuBook.isChecked() && !buttonShipping.isChecked() &&
+                !buttonBuild.isChecked() && !buttonDog.isChecked() &&
+                !buttonFitness.isChecked() && !buttonComputer.isChecked() &&
+                !buttonCar.isChecked() && !buttonStore.isChecked() &&
+                !buttonSoccer.isChecked() && !buttonMore.isChecked())
+            return true;
+        return false;
+    }
+
+    private boolean checkVerified(Boolean bool) {
+        return !verified.isChecked() || bool;
+    }
+
+    private boolean jobHasToBeShown(Job job, float average_ratings){
+
+        return checkVerified(job.getVerified()) && checkType(job.getType())
+                && checkDate(job.getDay()) && checkHour(job.getTime()) && chechRating(average_ratings) &&
+                checkReward(job.getReward());
+    }
+
+    private boolean checkReward(Float reward) {
+
+        return reward >= minReward.getProgress() && reward <= maxReward.getProgress();
     }
 
 }
