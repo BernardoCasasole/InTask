@@ -219,6 +219,10 @@ public class StartActivity extends AppCompatActivity {
                                             }
                                         });
                                     }
+                                     Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                    finish();
 
 
                                 }
@@ -274,7 +278,6 @@ public class StartActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Intent intent = new Intent(StartActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                     startActivity(intent);
                     finish();
                 }
@@ -283,6 +286,10 @@ public class StartActivity extends AppCompatActivity {
         });
 
     }
+                Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
 
             @Override

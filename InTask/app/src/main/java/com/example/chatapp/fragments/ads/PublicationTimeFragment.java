@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,11 @@ public class PublicationTimeFragment extends Fragment {
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
 
+            }
+
+            @Override
+            public void onProviderDisabled(@NonNull String provider) {
+                Log.wtf("Boh","accendiGPS");
             }
         };
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -258,4 +264,5 @@ public class PublicationTimeFragment extends Fragment {
 
         day.setText(sdf.format(myCalendar.getTime()));
     }
+
 }

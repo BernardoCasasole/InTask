@@ -206,8 +206,8 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
             public ImageView image,type;
             public Button button;
-            public TextView author, title, day, time, verified;
-            public LinearLayout linearLayoutAds;
+            public TextView author, title, day, time;
+            public LinearLayout linearLayoutAds, verified;
 
             public ViewHolder(View itemView){
 

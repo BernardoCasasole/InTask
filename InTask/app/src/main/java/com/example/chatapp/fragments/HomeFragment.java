@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.chatapp.FriendActivity;
 import com.example.chatapp.R;
+import com.example.chatapp.fragments.ads.JobSvFormFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class HomeFragment extends Fragment {
 
     View view;
     Bundle bundle;
+    Button filterButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,12 +35,23 @@ public class HomeFragment extends Fragment {
 
         TabLayout tabLayout = view.findViewById(R.id.tabs);
         ViewPager viewPager = view.findViewById(R.id.view_pager);
+        filterButton = view.findViewById(R.id.filter_button);
         HomeFragment.ViewPageAdapter viewPageAdapter = new HomeFragment.ViewPageAdapter(getChildFragmentManager());
-        Bundle b = getArguments();
+        final Bundle b = getArguments();
         String myAds = "true";
         if(b != null) {
             myAds = b.getString("myAds");
         }
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Fragment fragment = new FilterFragment();
+                fragment.setArguments(b);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
+            }
+        });
         bundle = new Bundle();
         bundle.putString("type", "time");
         bundle.putString("myAds", myAds);

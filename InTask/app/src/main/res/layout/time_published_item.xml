@@ -143,6 +143,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/job_verified"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -157,7 +158,7 @@
                 </ImageView>
                 <TextView
 
-                    android:id="@+id/job_verified"
+
                     style="@style/InTaskTheme_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
