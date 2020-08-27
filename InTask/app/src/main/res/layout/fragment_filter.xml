@@ -731,17 +731,87 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_job"
+    <LinearLayout
+        android:id="@+id/results_list_size_not_zero"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_time"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            style="@style/InTaskTheme_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:text="@string/risultati_ricerca" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="4dp"
+            android:background="#014F59" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_job"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/results_list_size_zero"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            style="@style/InTaskTheme_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:text="@string/risultati_ricerca" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="4dp"
+            android:background="#014F59" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            style="@style/InTaskTheme_ordinary"
+            android:textColor="#616161"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:text="@string/la_tua_ricerca_non_ha_prodotto_risultati" />
+    </LinearLayout>
 
 
-    </androidx.recyclerview.widget.RecyclerView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

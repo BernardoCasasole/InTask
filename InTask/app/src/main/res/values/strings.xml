@@ -103,5 +103,7 @@
     <string name="fascia_oraria">Fascia oraria</string>
     <string name="rating_minimo">Rating minimo</string>
     <string name="retribuzione_massima">Retribuzione massima</string>
+    <string name="risultati_ricerca">Risultati ricerca</string>
+    <string name="la_tua_ricerca_non_ha_prodotto_risultati">La tua ricerca non ha prodotto risultati.</string>
 
 </resources>
