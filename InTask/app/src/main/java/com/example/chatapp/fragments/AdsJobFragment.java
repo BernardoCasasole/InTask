@@ -1,5 +1,7 @@
 package com.example.chatapp.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -101,6 +103,14 @@ public class AdsJobFragment extends Fragment {
                 when.setText(job.getDay().concat(", ").concat(job.getTime()));
                 reward.setText(job.getReward());
                 location.setText(job.getLocation());
+                location.setClickable(true);
+                location.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String map = "http://maps.google.co.in/maps?q=" + job.getLocation();
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(map)));
+                    }
+                });
                 duration.setText(job.getDuration());
                 description.setText(job.getDescription());
                 type.setText(job.getType());
