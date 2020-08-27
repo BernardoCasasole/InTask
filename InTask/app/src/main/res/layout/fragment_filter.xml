@@ -688,7 +688,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/TenAm-TwelvePm"
+                                android:id="@+id/TenAm_TwelvePm"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -718,7 +718,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/TwoPm-FourPm"
+                                android:id="@+id/TwoPm_FourPm"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -733,7 +733,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/FourPm-EightPm"
+                                android:id="@+id/FourPm_EightPm"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

@@ -7,7 +7,7 @@ public class Job {
     private String duration;
     private String key;
     private String location;
-    private String reward;
+    private Float reward;
     private Boolean setted_image;
     private String time;
     private String title;
@@ -17,7 +17,7 @@ public class Job {
     public Job(){}
 
 
-    public Job(String author, String day, String description, String duration, String key, String location, String reward, Boolean setted_image, String time, String title, String type, Boolean verified) {
+    public Job(String author, String day, String description, String duration, String key, String location, Float reward, Boolean setted_image, String time, String title, String type, Boolean verified) {
         this.author = author;
         this.day = day;
         this.description = description;
@@ -76,7 +76,7 @@ public class Job {
         return key;
     }
 
-    public String getReward() {
+    public Float getReward() {
         return reward;
     }
 }

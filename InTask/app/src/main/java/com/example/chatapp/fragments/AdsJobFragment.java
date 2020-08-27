@@ -101,7 +101,7 @@ public class AdsJobFragment extends Fragment {
                 author.setText(job.getAuthor());
                 title.setText(job.getTitle());
                 when.setText(job.getDay().concat(", ").concat(job.getTime()));
-                reward.setText(job.getReward());
+                reward.setText(String.valueOf(job.getReward()));
                 location.setText(job.getLocation());
                 location.setClickable(true);
                 location.setOnClickListener(new View.OnClickListener() {

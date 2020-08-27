@@ -1,11 +1,19 @@
 package com.example.chatapp.fragments;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,19 +60,26 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import static android.content.Context.LOCATION_SERVICE;
 
 public class ProfileFragment extends Fragment {
 
     View rootView;
     ImageView imageView,verifiedUSerImage, documentImage;
-    TextView name,surname, verifiedUser;
-    Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument;
+    TextView name,surname, verifiedUser,titleJob,titleTime;
+    Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition;
     RatingBar ratingBar;
-    LinearLayout uploadDocument1, loginLayout;
+    LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout;
     RelativeLayout uploadDocument2;
     RecyclerView recyclerViewJob, recyclerViewTime;
-    EditText address;
+    EditText addressUser;
     String userID;
+    boolean myProfile;
+    double latitude, longitude;
+    LocationManager locationManager;
+    LocationListener locationListener;
 
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
@@ -85,10 +100,33 @@ public class ProfileFragment extends Fragment {
         if(b != null) {
             userID = b.getString("id");
         }
+        locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(@NonNull Location location) {
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+
+            }
+
+            @Override
+            public void onProviderDisabled(@NonNull String provider) {
+                Log.wtf("Boh","accendiGPS");
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.INTERNET}, 10);
+
+        }
+        locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
         storageReference = FirebaseStorage.getInstance().getReference();
+        myProfile = firebaseUser != null&& userID.equals(firebaseUser.getUid());
 
         imageView = rootView.findViewById(R.id.user_image);
         documentImage = rootView.findViewById(R.id.document_image);
@@ -100,21 +138,57 @@ public class ProfileFragment extends Fragment {
         verifiedUser = rootView.findViewById(R.id.verified_user);
         verifiedUSerImage = rootView.findViewById(R.id.verified_user_image);
         loginLayout = rootView.findViewById(R.id.login_layout);
-        address = rootView.findViewById(R.id.address_user);
+        addressUser = rootView.findViewById(R.id.address_user);
+        addressLayout = rootView.findViewById(R.id.address_input);
+        titleJob = rootView.findViewById(R.id.title_job);
+        titleTime = rootView.findViewById(R.id.title_time);
+        jobLayout = rootView.findViewById(R.id.layout_job);
+        timeLayout = rootView.findViewById(R.id.layout_time);
         loginLayout.setVisibility(View.GONE);
+        getPosition = rootView.findViewById(R.id.position_button);
+        getPosition.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Geocoder geocoder;
+                List<Address> addresses;
+                geocoder = new Geocoder(getContext(), Locale.getDefault());
+
+                try {
+                    addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                    String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                    addressUser.setText(address);
+                } catch (IOException | IndexOutOfBoundsException e) {
+                    Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
 
         btn_uploadDocument = rootView.findViewById(R.id.user_document_upload);
         btn_updateDocument = rootView.findViewById(R.id.user_document_update);
         btn_logout = rootView.findViewById(R.id.logout_id);
         btn_updateAddress = rootView.findViewById(R.id.user_address_update_button);
+        btn_updateDocument.setVisibility(View.GONE);
+        if(!myProfile){
+            uploadDocument1.setVisibility(View.GONE);
+            btn_uploadDocument.setVisibility(View.GONE);
+            uploadDocument2.setVisibility(View.GONE);
+            addressLayout.setVisibility((View.GONE));
+            btn_logout.setVisibility(View.GONE);
+
+        }
 
         btn_updateAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(address.getText().toString().equals("")){
+                if(addressUser.getText().toString().equals("")){
                     Toast.makeText(getContext(),"Riempi il campo!",Toast.LENGTH_SHORT).show();
                 }else{
-                    databaseReference.child("location").setValue(address.getText().toString());
+                    databaseReference.child("location").setValue(addressUser.getText().toString());
+                    addressUser.setText("");
                     Toast.makeText(getContext(),"Indirizzo modificato!",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -143,47 +217,50 @@ public class ProfileFragment extends Fragment {
                 surname.setText(user.getSurname());
                 ratingBar.setRating(user.getAverage_ratings());
                 if(!user.getVerified()){
-                    verifiedUser.setText("Utente non verificato");
-                    verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
-                    btn_updateDocument.setVisibility(View.GONE);
-                    btn_uploadDocument.setVisibility(View.VISIBLE);
-                    uploadDocument1.setVisibility(View.VISIBLE);
-                    uploadDocument2.setVisibility(View.VISIBLE);
-                    documentImage.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            setImageDocument();
-                        }
-                    });
-                    btn_uploadDocument.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                    if(!myProfile) {
+                        verifiedUser.setText("Utente non verificato");
+                        verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
+                    }else{
+                        btn_uploadDocument.setVisibility(View.VISIBLE);
+                        uploadDocument1.setVisibility(View.VISIBLE);
+                        uploadDocument2.setVisibility(View.VISIBLE);
+                        documentImage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                setImageDocument();
+                            }
+                        });
+                        btn_uploadDocument.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
 
-                            databaseReference.child("verified").setValue(true);
-                        }
-                    });
-
+                                databaseReference.child("verified").setValue(true);
+                            }
+                        });
+                    }
                 }else{
 
                     verifiedUser.setText("Utente verificato");
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
-                    btn_uploadDocument.setVisibility(View.GONE);
-                    btn_updateDocument.setVisibility(View.VISIBLE);
-                    btn_updateDocument.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                    if (myProfile) {
+                        btn_uploadDocument.setVisibility(View.GONE);
+                        btn_updateDocument.setVisibility(View.VISIBLE);
+                        btn_updateDocument.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
 
-                            if (Image != null)
-                                Image.recycle();
-                            Intent intent = new Intent();
-                            intent.setType("image/*");
-                            intent.setAction(Intent.ACTION_GET_CONTENT);
-                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY2);
-                        }
-                    });
-                    uploadDocument1.setVisibility(View.GONE);
-                    uploadDocument2.setVisibility(View.GONE);
+                                if (Image != null)
+                                    Image.recycle();
+                                Intent intent = new Intent();
+                                intent.setType("image/*");
+                                intent.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY2);
+                            }
+                        });
+                        uploadDocument1.setVisibility(View.GONE);
+                        uploadDocument2.setVisibility(View.GONE);
 
+                    }
 
                 }
 
@@ -344,15 +421,20 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mAds.clear();
 
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Time time = snapshot.getValue(Time.class);
-
-                    if(firebaseUser!=null &&(time.getAuthor().equals(firebaseUser.getUid()) ))
-
+                    if (time.getAuthor().equals(userID))
                         mAds.add(time);
-                    }
-
-                recyclerViewTime.setAdapter(new TimeAdapter(recyclerViewTime.getContext(),mAds,true));
+                }
+                if(mAds.isEmpty())
+                    timeLayout.setVisibility(View.GONE);
+                if (myProfile)
+                    recyclerViewTime.setAdapter(new TimeAdapter(recyclerViewTime.getContext(), mAds, true));
+                else {
+                    titleTime.setText("Disponibilità a lavorare");
+                    recyclerViewTime.setAdapter(new TimeAdapter(recyclerViewTime.getContext(), mAds, false));
+                }
             }
 
             @Override
@@ -375,17 +457,21 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mAds.clear();
-
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    Job job = snapshot.getValue(Job.class);
 
-                    if(firebaseUser!=null &&(job.getAuthor().equals(firebaseUser.getUid()) ))
+                    Job job = snapshot.getValue(Job.class);
+                    if (job.getAuthor().equals(userID))
                         mAds.add(job);
 
                 }
-
-
-                recyclerViewJob.setAdapter(new JobAdapter(recyclerViewJob.getContext(),mAds,true));
+                if(mAds.isEmpty())
+                    jobLayout.setVisibility(View.GONE);
+                if (myProfile)
+                    recyclerViewJob.setAdapter(new JobAdapter(recyclerViewJob.getContext(), mAds, true));
+                else{
+                    titleJob.setText("Offerte di lavoro");
+                    recyclerViewJob.setAdapter(new JobAdapter(recyclerViewJob.getContext(), mAds, false));
+            }
             }
 
             @Override

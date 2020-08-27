@@ -250,7 +250,7 @@ public class JobSvFormFragment extends Fragment {
                     map.put("author", firebaseUser.getUid());
                     map.put("title", title_text);
                     map.put("description", description_text);
-                    map.put("reward",reward_text);
+                    map.put("reward",Float.parseFloat(reward_text));
                     map.put("location", location_text);
                     map.put("day", day_text);
                     map.put("time", time_text);

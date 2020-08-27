@@ -13,9 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.chatapp.R;
 import com.example.chatapp.adapter.JobAdapter;
@@ -48,9 +51,13 @@ public class FilterFragment extends Fragment {
     Button filterButton;
     View view;
     RatingBar ratingBar;
-    RadioButton buttonFlorist, buttonChild, buttonPizza, buttonLocal, buttonMenuBook, buttonShipping,
+    CheckBox buttonFlorist, buttonChild, buttonPizza, buttonLocal, buttonMenuBook, buttonShipping,
             buttonBuild, buttonDog, buttonFitness, buttonComputer, buttonCar, buttonStore, buttonSoccer, buttonMore;
     RecyclerView recyclerViewJob, recyclerViewTime;
+    LinearLayout resultZero, resultNotZero;
+    SeekBar minReward, maxReward;
+    TextView min, max;
+    Boolean found;
     ScrollView scrollView;
     String myAds;
 
@@ -65,6 +72,7 @@ public class FilterFragment extends Fragment {
         if(b != null) {
             myAds = b.getString("myAds");
         }
+        found = false;
         verified = view.findViewById(R.id.verified);
         filterButton = view.findViewById(R.id.filter_btn);
         scrollView = view.findViewById(R.id.scrollView);
@@ -96,6 +104,49 @@ public class FilterFragment extends Fragment {
         fourteenSixteen= view.findViewById(R.id.TwoPm_FourPm);
         sixteenTwenty= view.findViewById(R.id.FourPm_EightPm);
         twentyMidnight= view.findViewById(R.id.EightPm_TwelveAm);
+        resultZero = view.findViewById(R.id.results_list_size_zero);
+        resultNotZero = view.findViewById(R.id.results_list_size_not_zero);
+        minReward = view.findViewById(R.id.minimum_retribution);
+        maxReward = view.findViewById(R.id.maximum_retribution);
+        min = view.findViewById(R.id.min_curentValue);
+        max = view.findViewById(R.id.max_curentValue);
+        min.setText(String.valueOf(minReward.getProgress()));
+        minReward.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                min.setText(String.valueOf(minReward.getProgress()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                min.setText(String.valueOf(minReward.getProgress()));
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                min.setText(String.valueOf(minReward.getProgress()));
+            }
+        });
+        max.setText(String.valueOf(maxReward.getProgress()));
+        maxReward.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                max.setText(String.valueOf(maxReward.getProgress()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                max.setText(String.valueOf(maxReward.getProgress()));
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                max.setText(String.valueOf(maxReward.getProgress()));
+            }
+        });
+
+        resultZero.setVisibility(View.GONE);
+        resultNotZero.setVisibility(View.GONE);
 
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +195,8 @@ public class FilterFragment extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             if (timeHasToBeShown(time,Float.parseFloat(snapshot.child("average_ratings").getValue().toString()))){
-
+                                found = true;
+                                resultNotZero.setVisibility(View.VISIBLE);
                                 if (firebaseUser == null || (!time.getAuthor().equals(firebaseUser.getUid()))) {
                                     timeAds.add(time);
                                 } else
@@ -188,7 +240,8 @@ public class FilterFragment extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             if (jobHasToBeShown(job,Float.parseFloat(snapshot.child("average_ratings").getValue().toString()))){
-
+                                found = true;
+                                resultNotZero.setVisibility(View.VISIBLE);
                                 if (firebaseUser == null || (!job.getAuthor().equals(firebaseUser.getUid()))) {
                                     jobAds.add(job);
                                 } else
@@ -371,6 +424,10 @@ public class FilterFragment extends Fragment {
         if(sixteenTwenty.isChecked() && a == 1 && b >= 6)
             return true;
         if(twentyMidnight.isChecked() && a == 2)
+            return true;
+        if(job.getReward() >= minReward.getProgress())
+            return true;
+        if(job.getReward()<= maxReward.getProgress())
             return true;
 
         return false;

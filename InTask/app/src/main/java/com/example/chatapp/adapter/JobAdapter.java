@@ -71,7 +71,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.title.setText(job.getTitle());
         holder.day.setText(job.getDay());
         holder.time.setText(job.getTime());
-        holder.reward.setText(job.getReward());
+        holder.reward.setText(String.valueOf(job.getReward()));
         holder.location.setText(job.getLocation());
         if(myAds) {
             holder.button.setText("Elimina");
