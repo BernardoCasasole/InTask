@@ -47,7 +47,8 @@ import java.util.Set;
 public class FilterFragment extends Fragment {
 
     CheckBox verified, monday, tuesday, wednesday, thursday, friday, saturday, sunday,
-            sixTen,tenTwelve, twelveFourteen, fourteenSixteen, sixteenTwenty, twentyMidnight;
+            sixTen,tenTwelve, twelveFourteen, fourteenSixteen, sixteenTwenty, twentyMidnight,
+            searchJob, searchTime;
     Button filterButton;
     View view;
     RatingBar ratingBar;
@@ -110,6 +111,8 @@ public class FilterFragment extends Fragment {
         maxReward = view.findViewById(R.id.maximum_retribution);
         min = view.findViewById(R.id.min_curentValue);
         max = view.findViewById(R.id.max_curentValue);
+        searchJob = view.findViewById(R.id.job);
+        searchTime = view.findViewById(R.id.time);
         min.setText(String.valueOf(minReward.getProgress()));
         minReward.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -152,29 +155,20 @@ public class FilterFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 showAds();
-                getAds();
+                if(searchJob.isChecked())
+                    getJobs();
+                if(searchTime.isChecked())
+                    getTimes();
+
             }
         });
         return view;
     }
 
-    private void showAds() {
+    private void getTimes() {
 
-        scrollView.setVisibility(View.GONE);
-        recyclerViewJob = view.findViewById(R.id.recycler_view_job);
-        recyclerViewJob.setHasFixedSize(true);
-        recyclerViewJob.setLayoutManager(new LinearLayoutManager(recyclerViewJob.getContext()));
-        recyclerViewTime = view.findViewById(R.id.recycler_view_time);
-        recyclerViewTime.setHasFixedSize(true);
-        recyclerViewTime.setLayoutManager(new LinearLayoutManager(recyclerViewTime.getContext()));
-
-    }
-
-    private void getAds() {
         final List<Time> timeMyAds = new ArrayList<>();
-        final List<Job> jobMyAds = new ArrayList<>();
         final List<Time> timeAds = new ArrayList<>();
-        final List<Job> jobAds = new ArrayList<>();
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Time");
@@ -215,7 +209,7 @@ public class FilterFragment extends Fragment {
                         }
                     });
 
-            }
+                }
             }
 
             @Override
@@ -223,6 +217,28 @@ public class FilterFragment extends Fragment {
 
             }
         });
+
+
+    }
+
+    private void showAds() {
+
+        scrollView.setVisibility(View.GONE);
+        recyclerViewJob = view.findViewById(R.id.recycler_view_job);
+        recyclerViewJob.setHasFixedSize(true);
+        recyclerViewJob.setLayoutManager(new LinearLayoutManager(recyclerViewJob.getContext()));
+        recyclerViewTime = view.findViewById(R.id.recycler_view_time);
+        recyclerViewTime.setHasFixedSize(true);
+        recyclerViewTime.setLayoutManager(new LinearLayoutManager(recyclerViewTime.getContext()));
+
+    }
+
+    private void getJobs() {
+
+        final List<Job> jobMyAds = new ArrayList<>();
+        final List<Job> jobAds = new ArrayList<>();
+
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         final DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Job");
         reference1.addValueEventListener(new ValueEventListener() {
