@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:padding="4dp">
 <EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/InTaskTheme_ordinary"
+    android:textColor="#FFFFFF"
     android:id="@+id/show_message"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -14,8 +16,9 @@
     android:focusableInTouchMode="false"
     android:maxWidth="300dp"
     android:padding="8dp"
-    android:textColor="#FFF"
-    android:textSize="18sp" />
+    android:textSize="18sp"
+    />
+
 
 </RelativeLayout>
 

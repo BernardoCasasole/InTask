@@ -44,8 +44,9 @@
                         android:layout_height="wrap_content"
                         app:cardElevation="0dp"
                         android:backgroundTint="@android:color/transparent"
-                    >
+                        >
                         <TextView
+                            android:maxWidth="150dp"
                             android:id="@+id/job_title"
                             style="@style/InTaskTheme_ordinary"
                             android:layout_width="wrap_content"
@@ -54,22 +55,6 @@
                             android:layout_margin="5dp"
                             android:layout_toRightOf="@+id/job_image"
                             android:text="Titolo del job" />
-                </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardElevation="0dp"
-                        android:backgroundTint="@android:color/transparent"
-                        >
-                        <TextView
-                        android:id="@+id/job_date"
-                        style="@style/InTaskTheme_ordinary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_margin="5dp"
-                        android:layout_toRightOf="@+id/job_image"
-                        android:text="11/09/01" />
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
@@ -78,6 +63,23 @@
                         android:backgroundTint="@android:color/transparent"
                         >
                         <TextView
+                            android:id="@+id/job_date"
+                            style="@style/InTaskTheme_ordinary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_margin="5dp"
+                            android:layout_toRightOf="@+id/job_image"
+                            android:text="11/09/01" />
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="0dp"
+                        android:backgroundTint="@android:color/transparent"
+                        >
+                        <TextView
+                            android:maxWidth="150dp"
                             android:id="@+id/job_publisher"
                             style="@style/InTaskTheme_ordinary"
                             android:layout_width="wrap_content"
@@ -118,26 +120,26 @@
                             android:orientation="horizontal"
                             android:layout_gravity="left"
                             android:minHeight="20dp">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_baseline_check_15"
-                            android:layout_gravity="center">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_baseline_check_15"
+                                android:layout_gravity="center">
 
-                        </ImageView>
-                        <TextView
-
-                            style="@style/InTaskTheme_small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="verificato" />
+                            </ImageView>
+                            <TextView
+                                android:maxWidth="150dp"
+                                style="@style/InTaskTheme_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="verificato" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>/>
                 </GridLayout>
 
 
 
-                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -206,13 +208,13 @@
 
                 <Button
                     android:id="@+id/button"
-                    style="@style/InTaskTheme_ordinary"
+                    style="@style/InTaskTheme_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/custom_button"
-                    android:text="@string/contatta_button"></Button>
+                    android:text="@string/contatta_button" />
             </LinearLayout>
 
         </LinearLayout>

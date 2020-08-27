@@ -26,8 +26,8 @@
                     android:layout_height="135dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="35dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/edit_text_background"
                     android:src="@drawable/ic_baseline_landscape_24" />
                 <LinearLayout
@@ -79,10 +79,11 @@
 
                 </LinearLayout>
             </LinearLayout>
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="4dp"
+                android:background="#014F59" />
             <TextView
                 android:id="@+id/description_time_pubb"
                 style="@style/InTaskTheme_small"
@@ -90,12 +91,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
-                android:padding="8dp"
-                />
-            <Space
+                android:padding="8dp"/>
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="4dp"
+                android:background="#014F59" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,10 +123,11 @@
                 android:drawableEnd="@drawable/ic_baseline_local_florist_24"
                 />
             </LinearLayout>
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="4dp"
+                android:background="#014F59" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,10 +152,11 @@
                 android:padding="8dp"
                 />
             </LinearLayout>
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="4dp"
+                android:background="#014F59" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -177,10 +181,11 @@
                 android:padding="8dp"
                 />
             </LinearLayout>
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="4dp"
+                android:background="#014F59" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -211,6 +216,9 @@
                 android:text="@string/contatta_button">
 
             </Button>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
         </LinearLayout>
 
     </ScrollView>

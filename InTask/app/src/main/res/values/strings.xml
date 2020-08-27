@@ -88,5 +88,20 @@
     <string name="le_tue_disponibilit_a_lavorare">Le tue disponibilità a lavorare</string>
     <string name="contatta_button">contatta</string>
     <string name="modifica_indirizzo">modifica indirizzo</string>
+    <string name="filtra_la_tua_ricerca_per">Filtra la tua ricerca per:</string>
+    <string name="pers_training">Pers. Training</string>
+    <string name="informatica">Informatica</string>
+    <string name="calcetto">Calcetto</string>
+    <string name="retribuzione_minima">Retribuzione minima</string>
+    <string name="filter">Filtra</string>
+    <string name="_20_00_24_00">20.00-24.00</string>
+    <string name="_16_00_20_00">16.00-20.00</string>
+    <string name="_14_00_16_00">14.00-16.00</string>
+    <string name="_12_00_14_00">12.00-14.00</string>
+    <string name="_10_00_12_00">10.00-12.00</string>
+    <string name="_06_00_10_00">06.00-10.00</string>
+    <string name="fascia_oraria">Fascia oraria</string>
+    <string name="rating_minimo">Rating minimo</string>
+    <string name="retribuzione_massima">Retribuzione massima</string>
 
 </resources>

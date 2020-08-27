@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+        <LinearLayout
+            android:id="@+id/layout_document_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/became_verified_user"
+                style="@style/InTaskTheme_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:text="@string/filtra_la_tua_ricerca_per"
+                android:layout_gravity="center"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="4dp"
+                android:background="#014F59" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/utente_verificato"
+                android:gravity="left"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                style="@style/InTaskTheme_ordinary"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/proposal_verified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accetta_solo_se_verificato"
+                    android:layout_gravity="left"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="14sp"
+                    android:textColor="#FF014F59"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/working_category"
+                android:gravity="left"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                style="@style/InTaskTheme_ordinary"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <GridLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:columnCount="2"
+                    android:rowCount="5">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_local_florist_24"
+                            android:text="@string/Giardinaggio" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_outline_child_friendly_24"
+                            android:text="@string/Babysitting" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_local_pizza_24"
+                            android:text="@string/Cucinare" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_outline_local_laundry_service_24"
+                            android:text="@string/Pulizie" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_menu_book_24"
+                            android:text="@string/Ripetizioni" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_local_shipping_24"
+                            android:text="@string/Trasloco" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_build_24"
+                            android:text="@string/Riparazioni" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_dog"
+                            android:text="@string/Dogsitting" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_fitness_center_24"
+                            android:text="@string/pers_training" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_computer_24"
+                            android:text="@string/informatica" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_directions_car_24"
+                            android:text="@string/Trasporto" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_local_grocery_store_24"
+                            android:text="@string/Spesa" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_sports_soccer_24"
+                            android:text="@string/calcetto" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <RadioButton
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_more_horiz_24"
+                            android:text="@string/altro" />
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/InTaskTheme_ordinary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:padding="5dp"
+                android:text="@string/retribuzione_minima" />
+
+
+                <SeekBar
+                    android:id="@+id/minimum_retribution"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:max="200"
+                    android:progress="0"
+                    android:outlineSpotShadowColor="#FF014F59"
+                    />
+
+            <TextView
+                android:id="@+id/min_curentValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/minimum_retribution"
+                android:gravity="center"
+                android:layout_gravity="center"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/retribuzione_massima"
+                android:gravity="left"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                style="@style/InTaskTheme_ordinary"/>
+
+                <SeekBar
+                    android:id="@+id/maximum_retribution"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:max="200"
+                    android:progress="200"
+                    android:outlineSpotShadowColor="#FF014F59"
+                    />
+            <TextView
+                android:id="@+id/max_curentValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/maximum_retribution"
+                android:gravity="center"
+                android:layout_gravity="center"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rating_minimo"
+                android:gravity="left"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                style="@style/InTaskTheme_ordinary"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <RatingBar
+                    android:id="@+id/rating_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    android:isIndicator="true"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giorno della settimana"
+                android:gravity="left"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                style="@style/InTaskTheme_ordinary"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <GridLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:columnCount="3"
+                    android:rowCount="3">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/lunedì"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lun"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/martedì"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mar"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/mercoledì"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mer"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/giovedì"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gio"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/venerdì"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ven"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/Sabato"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sab"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/Domenica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dom"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fascia_oraria"
+                android:gravity="left"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                style="@style/InTaskTheme_ordinary"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <GridLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:columnCount="3"
+                    android:rowCount="3">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/SixAm_TenAm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_06_00_10_00"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/TenAm-TwelvePm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_10_00_12_00"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/TwelvePm_TwoPm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_12_00_14_00"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/TwoPm-FourPm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_14_00_16_00"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/FourPm-EightPm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_16_00_20_00"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardElevation="0dp">
+
+                        <CheckBox
+                            android:id="@+id/EightPm_TwelveAm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_20_00_24_00"
+                            style="@style/InTaskTheme_small"
+                            android:layout_gravity="left"/>
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+        </LinearLayout>
+        <Button
+            style="@style/InTaskTheme_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="@string/filter"
+            android:background="@drawable/custom_button"/>
+
+
+    </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
