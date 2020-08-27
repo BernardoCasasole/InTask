@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.chatapp.MessagingActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.fragments.AdsJobFragment;
 import com.example.chatapp.fragments.ProfileFragment;
@@ -101,6 +103,16 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             });
         }else{
                 holder.button.setText("Contatta");
+                holder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(mContext, MessagingActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("sent",job.getAuthor());
+                        intent.putExtras(b);
+                        mContext.startActivity(intent);
+                    }
+                });
             }
         if(!job.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);

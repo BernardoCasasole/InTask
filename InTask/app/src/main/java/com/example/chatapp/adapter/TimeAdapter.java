@@ -1,6 +1,7 @@
 package com.example.chatapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.chatapp.MessagingActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.fragments.AdsJobFragment;
 import com.example.chatapp.fragments.AdsTimeFragment;
@@ -96,6 +98,16 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
             });
         }else{
             holder.button.setText("Contatta");
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, MessagingActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("sent",time.getAuthor());
+                    intent.putExtras(b);
+                    mContext.startActivity(intent);
+                }
+            });
         }
         if(!time.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);

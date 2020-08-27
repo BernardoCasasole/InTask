@@ -291,6 +291,7 @@ public class FilterFragment extends Fragment {
     }
 
     private boolean timeHasToBeShown(Time time, float average_ratings){
+
         if(verified.isChecked() && time.getVerified())
             return true;
         if(buttonFlorist.isChecked() && time.getType().equals("Giardinaggio"))
