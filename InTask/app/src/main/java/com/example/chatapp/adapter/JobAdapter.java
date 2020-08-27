@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,6 +74,17 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.time.setText(job.getTime());
         holder.reward.setText(String.valueOf(job.getReward()));
         holder.location.setText(job.getLocation());
+        FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.ratingBar.setRating( Float.parseFloat(snapshot.child(job.getAuthor()).child("average_ratings").getValue().toString()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         if(myAds) {
             holder.button.setText("Elimina");
             holder.button.setOnClickListener(new View.OnClickListener() {
@@ -214,6 +226,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             public ImageView image,type;
             public TextView author, title, day, time, reward, location;
             public Button button;
+            public RatingBar ratingBar;
             public LinearLayout linearLayoutAds, verified;
 
             public ViewHolder(View itemView){
@@ -228,6 +241,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 verified  = itemView.findViewById(R.id.job_verified);
                 button = itemView.findViewById(R.id.button);
                 linearLayoutAds = itemView.findViewById(R.id.layout_ads);
+                ratingBar = itemView.findViewById(R.id.rating_user);
 
                 image = itemView.findViewById(R.id.job_image);
                 type = itemView.findViewById(R.id.job_symbol);

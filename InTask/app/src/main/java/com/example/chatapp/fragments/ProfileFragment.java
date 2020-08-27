@@ -71,7 +71,7 @@ public class ProfileFragment extends Fragment {
     TextView name,surname, verifiedUser,titleJob,titleTime;
     Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition;
     RatingBar ratingBar;
-    LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout;
+    LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout, verifiedLayout;
     RelativeLayout uploadDocument2;
     RecyclerView recyclerViewJob, recyclerViewTime;
     EditText addressUser;
@@ -138,6 +138,7 @@ public class ProfileFragment extends Fragment {
         verifiedUser = rootView.findViewById(R.id.verified_user);
         verifiedUSerImage = rootView.findViewById(R.id.verified_user_image);
         loginLayout = rootView.findViewById(R.id.login_layout);
+        verifiedLayout = rootView.findViewById(R.id.layout_verified);
         addressUser = rootView.findViewById(R.id.address_user);
         addressLayout = rootView.findViewById(R.id.address_input);
         titleJob = rootView.findViewById(R.id.title_job);
@@ -221,6 +222,7 @@ public class ProfileFragment extends Fragment {
                         verifiedUser.setText("Utente non verificato");
                         verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
                     }else{
+                        verifiedLayout.setVisibility(View.GONE);
                         btn_uploadDocument.setVisibility(View.VISIBLE);
                         uploadDocument1.setVisibility(View.VISIBLE);
                         uploadDocument2.setVisibility(View.VISIBLE);

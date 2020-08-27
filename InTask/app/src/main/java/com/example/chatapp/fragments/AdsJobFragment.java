@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -90,6 +91,17 @@ public class AdsJobFragment extends Fragment {
                         String name = snapshot.child(job.getAuthor()).child("surname").getValue().toString().concat(" ")
                                 .concat(snapshot.child(job.getAuthor()).child("name").getValue().toString());
                         author.setText(name);
+                        author.setClickable(true);
+                        author.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("id", job.getAuthor());
+                                Fragment selectedFragment = new ProfileFragment();
+                                selectedFragment.setArguments(bundle);
+                                ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                            }
+                        });
                     }
 
                     @Override
@@ -98,7 +110,7 @@ public class AdsJobFragment extends Fragment {
                     }
                 });
 
-                author.setText(job.getAuthor());
+
                 title.setText(job.getTitle());
                 when.setText(job.getDay().concat(", ").concat(job.getTime()));
                 reward.setText(String.valueOf(job.getReward()));

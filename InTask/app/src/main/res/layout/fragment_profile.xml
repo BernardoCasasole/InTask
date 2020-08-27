@@ -181,12 +181,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true">
-
                         <TextView
 
                             style="@style/InTaskTheme_ordinary"
@@ -195,43 +193,43 @@
                             android:layout_margin="10dp"
                             android:text="Indirizzo" />
                     </LinearLayout>
-
                     <EditText
+                        android:layout_gravity="center"
                         android:id="@+id/address_user"
+                        android:textSize="15sp"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/edit_text_background"
                         android:hint="Inserisci il tuo indirizzo"
                         android:minWidth="250dp"
-                        android:padding="10dp"
-                        android:textSize="15sp" />
+                        android:padding="10dp" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="right"
-                    android:orientation="horizontal">
+                    android:gravity="right">
 
                     <Button
                         android:id="@+id/position_button"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/custom_button"
-                        android:drawableRight="@drawable/ic_baseline_add_location_24"
-                        android:fontFamily="sans-serif-condensed-light"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="10dp"
                         android:text="@string/inserisci_posizione_attuale"
                         android:textColor="#FF014F59"
-                        android:textSize="10sp"></Button>
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:paddingLeft="10dp"
+                        android:textSize="10sp"
+                        android:background="@drawable/custom_button"
+                        android:drawableRight="@drawable/ic_baseline_add_location_24"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        >
+                    </Button>
 
                     <Button
                         android:id="@+id/user_address_update_button"
@@ -239,13 +237,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
                         android:background="@drawable/custom_button"
                         android:gravity="center"
                         android:padding="5dp"
+                        android:layout_marginRight="10dp"
                         android:text="@string/modifica_indirizzo" />
                 </LinearLayout>
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
@@ -258,6 +255,7 @@
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints">
                 <LinearLayout
+                    android:id="@+id/layout_verified"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -388,6 +386,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#014F59" />
             </LinearLayout>
 
             <LinearLayout
@@ -410,7 +413,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#014F59" />
             </LinearLayout>
 
             <androidx.viewpager.widget.ViewPager
