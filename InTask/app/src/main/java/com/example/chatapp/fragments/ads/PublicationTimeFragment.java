@@ -207,6 +207,7 @@ public class PublicationTimeFragment extends Fragment {
                         !day_text.equals("") &&
                         !time_text.equals("") &&
                         !distance_text.equals("") &&
+                        checkHour(time_text) &&
                         radioButton != null) {
                     databaseReference.push();
                     key = databaseReference.push().getKey();
@@ -233,7 +234,7 @@ public class PublicationTimeFragment extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PublicationChoiceFragment()).commit();
 
                 } else
-                    Toast.makeText(getContext(), "Devi riempire tutti i campi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Devi riempire tutti i campi correttamente", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -263,6 +264,23 @@ public class PublicationTimeFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALIAN);
 
         day.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private boolean checkHour(String result){
+
+        int a = ((int) result.charAt(0)) - 48;
+        int b = ((int) result.charAt(1)) - 48;
+        int c = ((int) result.charAt(3)) - 48;
+        if(a < 0 || b < 0 || c < 0) {
+            Toast.makeText(getContext(), "Inserire orario corretto ", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if((a > 2 || (a == 2 && b > 3)) || c > 59) {
+            Toast.makeText(getContext(), "Inserire orario corretto", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return  true;
     }
 
 }

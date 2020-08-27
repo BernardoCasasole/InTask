@@ -30,14 +30,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class FilterFragment extends Fragment {
 
-    CheckBox verified;
+    CheckBox verified, monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+            sixTen,tenTwelve, twelveFourteen, fourteenSixteen, sixteenTwenty, twentyMidnight;
     Button filterButton;
     View view;
     RatingBar ratingBar;
@@ -76,9 +83,19 @@ public class FilterFragment extends Fragment {
         buttonSoccer = view.findViewById(R.id.button_soccer);
         buttonMore = view.findViewById(R.id.button_more);
         ratingBar = view.findViewById(R.id.rating_user);
-
-
-
+        monday = view.findViewById(R.id.monday);
+        tuesday = view.findViewById(R.id.tuesday);
+        wednesday = view.findViewById(R.id.wednesday);
+        thursday = view.findViewById(R.id.thursday);
+        friday = view.findViewById(R.id.friday);
+        saturday = view.findViewById(R.id.saturday);
+        sunday = view.findViewById(R.id.sunday);
+        sixTen= view.findViewById(R.id.SixAm_TenAm);
+        tenTwelve= view.findViewById(R.id.TenAm_TwelvePm);
+        twelveFourteen= view.findViewById(R.id.TwelvePm_TwoPm);
+        fourteenSixteen= view.findViewById(R.id.TwoPm_FourPm);
+        sixteenTwenty= view.findViewById(R.id.FourPm_EightPm);
+        twentyMidnight= view.findViewById(R.id.EightPm_TwelveAm);
 
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,9 +252,49 @@ public class FilterFragment extends Fragment {
             return true;
         if(buttonMore.isChecked() && time.getType().equals("Altro"))
             return true;
-        if(ratingBar.getRating() <= average_ratings) {
+        if(ratingBar.getRating() > 0.0 && ratingBar.getRating() <= average_ratings)
             return true;
+        String input_date=time.getDay();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
+        Date myDate = null;
+        try {
+            myDate = sdf.parse(input_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        sdf.applyPattern("EEEE");
+        String finalDay = sdf.format(myDate);
+        if(wednesday.isChecked() && finalDay.equals("lunedì"))
+           return true;
+        if(thursday.isChecked() && finalDay.equals("martedì"))
+            return true;
+        if(friday.isChecked() && finalDay.equals("mercoledì"))
+            return true;
+        if(saturday.isChecked() && finalDay.equals("giovedì"))
+            return true;
+        if(sunday.isChecked() && finalDay.equals("venerdì"))
+            return true;
+        if(monday.isChecked() && finalDay.equals("sabato"))
+            return true;
+        if(tuesday.isChecked() && finalDay.equals("domenica"))
+            return true;
+
+        int a = ((int) time.getTime().charAt(0)) - 48;
+        int b = ((int) time.getTime().charAt(1)) - 48;
+
+        if(sixTen.isChecked() && a < 1)
+            return true;
+        if(tenTwelve.isChecked() && a == 1 && b < 2)
+            return true;
+        if(twelveFourteen.isChecked() && a == 1 && b >= 2 && b < 4)
+            return true;
+        if(fourteenSixteen.isChecked() && a == 1 && b >= 4 && b < 6)
+            return true;
+        if(sixteenTwenty.isChecked() && a == 1 && b >= 6)
+            return true;
+        if(twentyMidnight.isChecked() && a == 2)
+            return true;
+
         return false;
     }
 
@@ -272,9 +329,50 @@ public class FilterFragment extends Fragment {
             return true;
         if(buttonMore.isChecked() && job.getType().equals("Altro"))
             return true;
-        if(ratingBar.getRating() <= average_ratings) {
+        if(ratingBar.getRating() > 0.0 && ratingBar.getRating() <= average_ratings) {
             return true;
         }
+
+        String input_date=job.getDay();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
+        Date myDate = null;
+        try {
+            myDate = sdf.parse(input_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        sdf.applyPattern("EEEE");
+        String finalDay = sdf.format(myDate);
+        if(wednesday.isChecked() && finalDay.equals("lunedì"))
+            return true;
+        if(thursday.isChecked() && finalDay.equals("martedì"))
+            return true;
+        if(friday.isChecked() && finalDay.equals("mercoledì"))
+            return true;
+        if(saturday.isChecked() && finalDay.equals("giovedì"))
+            return true;
+        if(sunday.isChecked() && finalDay.equals("venerdì"))
+            return true;
+        if(monday.isChecked() && finalDay.equals("sabato"))
+            return true;
+        if(tuesday.isChecked() && finalDay.equals("domenica"))
+            return true;
+        int a = ((int) job.getTime().charAt(0)) - 48;
+        int b = ((int) job.getTime().charAt(1)) - 48;
+
+        if(sixTen.isChecked() && a < 1)
+            return true;
+        if(tenTwelve.isChecked() && a == 1 && b < 2)
+            return true;
+        if(twelveFourteen.isChecked() && a == 1 && b >= 2 && b < 4)
+            return true;
+        if(fourteenSixteen.isChecked() && a == 1 && b >= 4 && b < 6)
+            return true;
+        if(sixteenTwenty.isChecked() && a == 1 && b >= 6)
+            return true;
+        if(twentyMidnight.isChecked() && a == 2)
+            return true;
+
         return false;
     }
 

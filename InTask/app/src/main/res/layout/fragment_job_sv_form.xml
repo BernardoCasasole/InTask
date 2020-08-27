@@ -296,7 +296,7 @@
                 android:layout_margin="0dp"
                 android:background="@drawable/edit_text_background"
                 android:inputType="time"
-                android:hint="Ora.."
+                android:hint="Ora.. (hh:mm)"
                 android:minHeight="25dp"
                 android:textSize="12dp" />
 

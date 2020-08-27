@@ -483,7 +483,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/lunedì"
+                                android:id="@+id/monday"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -498,7 +498,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/martedì"
+                                android:id="@+id/tuesday"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -513,7 +513,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/mercoledì"
+                                android:id="@+id/wednesday"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -528,7 +528,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/giovedì"
+                                android:id="@+id/thursday"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -543,7 +543,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/venerdì"
+                                android:id="@+id/friday"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -558,7 +558,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/Sabato"
+                                android:id="@+id/saturday"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -574,7 +574,7 @@
                             app:cardElevation="0dp">
 
                             <CheckBox
-                                android:id="@+id/Domenica"
+                                android:id="@+id/sunday"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
