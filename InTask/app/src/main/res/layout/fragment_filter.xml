@@ -57,6 +57,53 @@
                     android:layout_marginTop="5dp"
                     android:gravity="left"
                     android:padding="5dp"
+                    android:text="Mi interessa interessa cercare" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/job"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@string/cerca_tra_i_job"
+                        android:textColor="#FF014F59"
+                        android:textSize="14sp" />
+                    <CheckBox
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@string/cerca_tra_i_time"
+                        android:textColor="#FF014F59"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/InTaskTheme_ordinary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:padding="5dp"
                     android:text="@string/utente_verificato" />
 
                 <LinearLayout
@@ -118,8 +165,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
-                                android:id="@+id/button_florist"
+                            <CheckBox                                android:id="@+id/button_florist"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -133,7 +179,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_child"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -148,7 +194,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_pizza"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -163,7 +209,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_local"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -178,7 +224,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_menu_book"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -193,7 +239,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_shipping"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -208,7 +254,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_build"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -223,7 +269,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_dog"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -238,7 +284,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_fitness"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -253,7 +299,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_computer"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -268,7 +314,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_car"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -283,7 +329,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_store"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -298,7 +344,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_soccer"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"
@@ -313,7 +359,7 @@
                             android:backgroundTint="@android:color/transparent"
                             app:cardElevation="0dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/button_more"
                                 style="@style/InTaskTheme_small"
                                 android:layout_width="match_parent"

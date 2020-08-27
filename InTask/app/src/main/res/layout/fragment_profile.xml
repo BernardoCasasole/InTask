@@ -94,7 +94,7 @@
                         android:layout_gravity="center">
 
                         <TextView
-                            style="@style/InTaskTheme_subtitle"
+                            style="@style/InTaskTheme_ordinary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
@@ -131,7 +131,7 @@
 
                         <TextView
 
-                            style="@style/InTaskTheme_subtitle"
+                            style="@style/InTaskTheme_ordinary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
@@ -156,12 +156,12 @@
                     android:id="@+id/user_data_update_button"
                     style="@style/InTaskTheme_small"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_gravity="right"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custom_button"
-                    android:padding="3dp"
+                    android:padding="5dp"
                     android:text="@string/salva_modifiche" />
                 <View
                     android:layout_width="match_parent"
@@ -186,7 +186,7 @@
                         android:layout_centerVertical="true">
                         <TextView
 
-                            style="@style/InTaskTheme_subtitle"
+                            style="@style/InTaskTheme_ordinary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -234,7 +234,7 @@
                         android:id="@+id/user_address_update_button"
                         style="@style/InTaskTheme_small"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center_vertical"
                         android:background="@drawable/custom_button"
                         android:gravity="center"
@@ -285,12 +285,12 @@
                         android:id="@+id/user_document_update"
                         style="@style/InTaskTheme_small"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:layout_gravity="right"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/custom_button"
-                        android:padding="3dp"
+                        android:padding="5dp"
                         android:text="@string/modifica_documento" />
 
                 </LinearLayout>
@@ -347,9 +347,9 @@
                     </RelativeLayout>
                     <Button
                         android:id="@+id/user_document_upload"
-                        android:padding="3dp"
+                        android:padding="5dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:layout_gravity="right"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
@@ -425,13 +425,7 @@
                 android:layout_marginBottom="20dp"
                 >
 
-                <TextView
-                    style="@style/InTaskTheme_ordinary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Esci dal tuo profilo"
-                    android:layout_centerVertical="true"/>
+
                 <Button
                     android:layout_centerVertical="true"
                     android:id="@+id/logout_id"
