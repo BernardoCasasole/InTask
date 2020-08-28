@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.chatapp.fragments.ChatsFragment;
 import com.example.chatapp.fragments.HomeAdsFragment;
 import com.example.chatapp.fragments.HomeFragment;
 import com.example.chatapp.fragments.ProfileFragment;
@@ -72,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 Bundle bundle;
                 switch (item.getItemId()){
+                    case R.id.bottom_nav_message:
+
+                        if(firebaseUser != null) {
+                            selectedFragment = new ChatsFragment();
+                        }else{
+                            startActivity(new Intent( MainActivity.this, StartActivity.class));
+                            return true;
+                        }
+                        break;
                     case R.id.bottom_nav_my_ads:
                         if(firebaseUser==null) {
                         startActivity(new Intent(MainActivity.this, StartActivity.class));

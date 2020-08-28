@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,6 +46,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,7 +56,10 @@ public class MessagingActivity extends AppCompatActivity {
 
     String userID;
 
-    ImageButton btn_send;
+    ImageButton btn_send, btn_close;
+    CircleImageView image;
+    TextView name;
+    Button btn_organize;
     EditText text_send;
     FirebaseUser firebaseUser;
     DatabaseReference reference;
@@ -109,6 +115,16 @@ public class MessagingActivity extends AppCompatActivity {
 
         btn_send = findViewById(R.id.btn_send);
         text_send = findViewById(R.id.text_send);
+        image = findViewById(R.id.profile_image);
+        name = findViewById(R.id.name_surname);
+        btn_organize = findViewById(R.id.chat_with);
+        btn_close = findViewById(R.id.top_pane_back_button);
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override

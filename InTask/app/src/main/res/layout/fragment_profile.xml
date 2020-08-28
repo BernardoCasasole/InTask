@@ -384,8 +384,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/view_pager_job_off"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                    android:layout_height="wrap_content" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
@@ -411,8 +410,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/view_pager_time_off"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                    android:layout_height="wrap_content" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
