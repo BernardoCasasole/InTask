@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
         bundle.putString("myAds", myAds);
         Fragment fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
-        viewPageAdapter.addFragments(fragment,"Time");
+        viewPageAdapter.addFragments(fragment,"I nostri professionisti");
 
 
         bundle = new Bundle();
@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         bundle.putString("myAds", myAds);
         fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
-        viewPageAdapter.addFragments(fragment,"Job");
+        viewPageAdapter.addFragments(fragment,"Le Offerte Di Lavoro");
 
         viewPager.setAdapter(viewPageAdapter);
         tabLayout.setupWithViewPager(viewPager);

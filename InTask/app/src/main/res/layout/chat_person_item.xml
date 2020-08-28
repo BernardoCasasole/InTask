@@ -3,69 +3,88 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
-        android:src="@drawable/lucagiurato"
-        android:layout_alignParentLeft="true"/>
-    <TextView
-        style="@style/InTaskTheme_ordinary"
-        android:id="@+id/name_surname"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/profile_image"
-        android:layout_marginLeft="5dp"
-        android:text="Luca Giurato"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true">
+    <RelativeLayout
+        android:id="@+id/main_pane"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:gravity="center">
-    </TextView>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_alignParentRight="true">
-    <LinearLayout
-        android:id="@+id/contatta_layout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/name_surname"
-        android:gravity="center"
-        android:layout_marginRight="10dp"
-        >
-    <Button
-        android:id="@+id/chat_with"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/custom_button"
-        android:gravity="center"
-        android:padding="5dp"
-        android:foregroundGravity="center_vertical"
-        style="@style/InTaskTheme_small"
-        android:text="contatta">
 
-    </Button>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/contatta_layout_button"
-        android:gravity="center"
-        android:layout_marginRight="10dp"
-        >
-        <ImageButton
-            android:id="@+id/delete_chat"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_baseline_close_35"
-            android:background="@android:color/transparent"
-            android:layout_gravity="center">
-        </ImageButton>
-    </LinearLayout>
-    </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/person" />
+
+        <TextView
+            android:id="@+id/name_surname"
+            style="@style/InTaskTheme_ordinary"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/profile_image"
+            android:gravity="center"
+            android:text="@string/name_surname" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/contatta_layout_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/name_surname"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/chat_with"
+                    style="@style/InTaskTheme_small"
+                    android:layout_width="65dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/custom_button"
+                    android:foregroundGravity="center_vertical"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    android:text="contatta"
+                    android:textStyle="bold">
+
+                </Button>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/contatta_layout_button"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/delete_chat"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_close_35"></ImageButton>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_below="@id/main_pane"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#014F59" />
 </RelativeLayout>

@@ -79,7 +79,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                   final User user = snapshot.getValue(User.class);
-                  holder.name.setText(user.getName() + "\n" + user.getSurname());
+                  holder.name.setText(user.getName() + " " + user.getSurname());
                 if(user.getSetted_image()){
 
                     File localFile = null;
