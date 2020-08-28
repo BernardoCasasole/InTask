@@ -108,5 +108,8 @@
     <string name="cerca_tra_i_job">Cerca tra i job</string>
     <string name="cerca_tra_i_time">Cerca tra i time</string>
     <string name="le_tue_chat">Le tue chat</string>
+    <string name="ufficializza">ufficializza</string>
+    <string name="organizza">organizza</string>
+    <string name="per_quale_annuncio">Per quale annuncio?</string>
 
 </resources>

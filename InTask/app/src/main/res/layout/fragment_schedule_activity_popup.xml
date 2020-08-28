@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="40dp">
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_baseline_access_time_24"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="Quando?"
+            android:textColor="#FF014F59"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/day"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:background="@drawable/edit_text_background"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="date"
+                android:hint="Data.."
+                android:minHeight="25dp"
+                android:textSize="12dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+            <EditText
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Ora.. (hh:mm)"
+                android:inputType="time"
+                android:minHeight="25dp"
+                android:padding="10dp"
+                android:textSize="12dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="@string/per_quale_annuncio"
+            android:textColor="#FF014F59"
+            android:textSize="16sp" />
+            <RadioGroup
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/announce_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
