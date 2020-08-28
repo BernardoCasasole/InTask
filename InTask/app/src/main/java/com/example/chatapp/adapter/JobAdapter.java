@@ -103,16 +103,39 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             });
         }else{
                 holder.button.setText("Contatta");
-                holder.button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(mContext, MessagingActivity.class);
-                        Bundle b = new Bundle();
-                        b.putString("sent",job.getAuthor());
-                        intent.putExtras(b);
-                        mContext.startActivity(intent);
-                    }
-                });
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance()
+                            .getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(!job.getVerified() || Boolean.parseBoolean(snapshot.child("verified").getValue().toString())) {
+                                Intent intent = new Intent(mContext, MessagingActivity.class);
+                                Bundle b = new Bundle();
+                                b.putString("sent", job.getAuthor());
+                                intent.putExtras(b);
+                                mContext.startActivity(intent);
+                            }else {
+                                Toast.makeText(mContext, "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("id", snapshot.child("id").getValue().toString());
+                                Fragment selectedFragment = new ProfileFragment();
+                                selectedFragment.setArguments(bundle);
+                                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
+            });
             }
         if(!job.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);
