@@ -202,7 +202,7 @@ public class MessagingActivity extends AppCompatActivity {
 
                     Data data = new Data(userId,receiverId, "Nuovo messaggio da "+ name +"!",message);
                     Notification notification = new Notification(message, "Nuovo messaggio da "+ name +"!",".MessagingActivity");
-                    Sender sender = new Sender(data,snapshot.getValue(String.class),notification);
+                    Sender sender = new Sender(data,snapshot.getValue(String.class));
 
                     apiService.sendNotification(sender).enqueue(new Callback<MyResponse>() {
                         @Override

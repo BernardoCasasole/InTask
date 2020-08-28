@@ -206,7 +206,7 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Data data = new Data(userId, receiverId, "Richiesta d'amicizia accettata!","Adesso tu e " + name + " siete amici.");
                     Notification notification = new Notification("Adesso tu e " + name + " siete amici.", "Richiesta d'amicizia accettata!",".FriendActivity");
-                    Sender sender = new Sender(data, snapshot.getValue(String.class),notification);
+                    Sender sender = new Sender(data, snapshot.getValue(String.class));
 
                     apiService.sendNotification(sender).enqueue(new Callback<MyResponse>() {
                         @Override

@@ -186,7 +186,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
                     Data data = new Data(userId,receiverId,"Nuova richiesta d'amicizia!",name + " vuole essere tuo amico.");
                     Notification notification = new Notification(name + " vuole essere tuo amico.", "Nuova richiesta d'amicizia!",".FriendActivity");
-                    Sender sender = new Sender(data,snapshot.getValue(String.class),notification);
+                    Sender sender = new Sender(data,snapshot.getValue(String.class));
 
                     apiService.sendNotification(sender).enqueue(new Callback<MyResponse>() {
                         @Override

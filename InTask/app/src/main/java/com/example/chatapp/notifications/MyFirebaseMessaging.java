@@ -14,6 +14,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.chatapp.MessagingActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.adapter.users.RequestsAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +32,6 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         super.onNewToken(token);
         FirebaseUser firebaseUser =FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
-        Log.wtf("DAa","dd");
         if(firebaseUser!=null)
             reference.child(firebaseUser.getUid()).setValue(token);
     }
@@ -61,7 +61,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
 
 
         int j = Integer.parseInt(user.replaceAll("[\\D]",""));
-        Intent intent = new Intent(getApplicationContext(), RequestsAdapter.class);
+        Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("sent",user);
         intent.putExtras(bundle);
