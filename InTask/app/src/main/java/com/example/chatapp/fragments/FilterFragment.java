@@ -1,8 +1,16 @@
 package com.example.chatapp.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,11 +54,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static android.content.Context.LOCATION_SERVICE;
+
 public class FilterFragment extends Fragment {
 
     CheckBox verified, monday, tuesday, wednesday, thursday, friday, saturday, sunday,
             sixTen,tenTwelve, twelveFourteen, fourteenSixteen, sixteenTwenty, twentyMidnight,
-            searchJob, searchTime;
+            searchJob, searchTime, fiveKm, tenKm, twentyKm;
     Button filterButton;
     View view;
     RatingBar ratingBar;
@@ -63,6 +73,9 @@ public class FilterFragment extends Fragment {
     Boolean found;
     ScrollView scrollView;
     String myAds;
+    double latitude, longitude;
+    LocationManager locationManager;
+    LocationListener locationListener;
 
 
     @Override
@@ -76,6 +89,33 @@ public class FilterFragment extends Fragment {
             myAds = b.getString("myAds");
         }
         found = false;
+
+
+
+        locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(@NonNull Location location) {
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+
+            }
+
+            @Override
+            public void onProviderDisabled(@NonNull String provider) {
+                Log.wtf("Boh","accendiGPS");
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.INTERNET}, 10);
+
+        }
+        locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+
+
         verified = view.findViewById(R.id.verified);
         filterButton = view.findViewById(R.id.filter_btn);
         scrollView = view.findViewById(R.id.scrollView);
@@ -115,6 +155,9 @@ public class FilterFragment extends Fragment {
         max = view.findViewById(R.id.max_curentValue);
         searchJob = view.findViewById(R.id.job);
         searchTime = view.findViewById(R.id.time);
+        fiveKm = view.findViewById(R.id.fiveKm);
+        tenKm = view.findViewById(R.id.tenKm);
+        twentyKm = view.findViewById(R.id.twentyKm);
         min.setText(String.valueOf(minReward.getProgress()));
         minReward.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -149,6 +192,8 @@ public class FilterFragment extends Fragment {
                 max.setText(String.valueOf(maxReward.getProgress()));
             }
         });
+
+
 
         resultZero.setVisibility(View.GONE);
         resultNotZero.setVisibility(View.GONE);
@@ -297,7 +342,14 @@ public class FilterFragment extends Fragment {
     }
 
     private boolean timeHasToBeShown(Time time, float average_ratings){
-        return checkVerified(time.getVerified()) && checkType(time.getType())
+        Log.wtf("1", String.valueOf(checkVerified(time.getVerified())));
+        Log.wtf("2", String.valueOf(checkType(time.getType())));
+        Log.wtf("3", String.valueOf(checkDistance(time.getLocation())));
+        Log.wtf("4", String.valueOf(checkDate(time.getDay())));
+        Log.wtf("5", String.valueOf(checkHour(time.getTime())));
+        Log.wtf("6", String.valueOf(chechRating(average_ratings)));
+
+        return checkVerified(time.getVerified()) && checkType(time.getType()) && checkDistance(time.getLocation())
                 && checkDate(time.getDay()) && checkHour(time.getTime()) && chechRating(average_ratings);
 
     }
@@ -410,7 +462,7 @@ public class FilterFragment extends Fragment {
 
     private boolean jobHasToBeShown(Job job, float average_ratings){
 
-        return checkVerified(job.getVerified()) && checkType(job.getType())
+        return checkVerified(job.getVerified()) && checkType(job.getType()) && checkDistance(job.getLocation())
                 && checkDate(job.getDay()) && checkHour(job.getTime()) && chechRating(average_ratings) &&
                 checkReward(job.getReward());
     }
@@ -418,6 +470,67 @@ public class FilterFragment extends Fragment {
     private boolean checkReward(Float reward) {
 
         return reward >= minReward.getProgress() && reward <= maxReward.getProgress();
+    }
+
+    private boolean checkDistance(String otherAddress){
+
+        final double otherLat;
+        final double otherLong;
+        float result[] = new float[3];
+
+
+        otherLat = getLat(otherAddress);
+        otherLong = getLong(otherAddress);
+
+        Location.distanceBetween(latitude, longitude,otherLat,otherLong,result);
+        if (twentyKm.isChecked() && (result[0] / 1000) <= 20)
+            return true;
+        if (tenKm.isChecked() && (result[0] / 1000) <= 10)
+            return true;
+        if (fiveKm.isChecked() && (result[0] / 1000) <= 5)
+            return true;
+        if (!twentyKm.isChecked() && !tenKm.isChecked() &&!fiveKm.isChecked())
+                return true;
+
+        return false;
+    }
+
+    private double getLat(String address){
+
+        Geocoder geocoder;
+        geocoder = new Geocoder(getContext(), Locale.getDefault());
+        try {
+            List<Address> geoResults = geocoder.getFromLocationName(address, 1);
+            while (geoResults.size()==0) {
+                geoResults = geocoder.getFromLocationName(address, 1);
+            }
+            if (geoResults.size()>0) {
+                Address addr = geoResults.get(0);
+                return  addr.getLatitude();
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return 0;
+    }
+
+    private double getLong(String address){
+
+        Geocoder geocoder;
+        geocoder = new Geocoder(getContext(), Locale.getDefault());
+        try {
+            List<Address> geoResults = geocoder.getFromLocationName(address, 1);
+            while (geoResults.size()==0) {
+                geoResults = geocoder.getFromLocationName(address, 1);
+            }
+            if (geoResults.size()>0) {
+                Address addr = geoResults.get(0);
+                return  addr.getLongitude();
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return 0;
     }
 
 }
