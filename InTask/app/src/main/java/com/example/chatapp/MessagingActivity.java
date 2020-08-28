@@ -3,6 +3,7 @@ package com.example.chatapp;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.chatapp.adapter.MessageAdapter;
 import com.example.chatapp.fragments.APIService;
 import com.example.chatapp.model.Chat;
@@ -29,6 +31,7 @@ import com.example.chatapp.notifications.Data;
 import com.example.chatapp.notifications.MyResponse;
 import com.example.chatapp.notifications.Notification;
 import com.example.chatapp.notifications.Sender;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,8 +43,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -123,6 +130,57 @@ public class MessagingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                final User user = snapshot.getValue(User.class);
+                name.setText(user.getName() + "\n" + user.getSurname());
+                if(user.getSetted_image()){
+
+                    File localFile = null;
+                    try {
+                        localFile = File.createTempFile("images", "jpg");
+
+                        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                        final File finalLocalFile = localFile;
+                        storageReference.child("profile_images/"+user.getId()+".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                Glide.with(getApplicationContext()).load(finalLocalFile).into(image);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle any errors
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                btn_organize.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(MessagingActivity.this, PopupActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("sent", userID);
+                        intent.putExtras(b);
+                        startActivity(intent);
+
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 

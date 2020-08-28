@@ -118,32 +118,43 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
                     }
                 });
-                holder.deleteChat.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View view) {
-
-                        FirebaseDatabase.getInstance().getReference("Chats").addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-
-
-                    }
-                });
 
 
                    }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        holder.deleteChat.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                FirebaseDatabase.getInstance().getReference("Chats").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                        for(DataSnapshot snapshot: dataSnapshot.getChildren() ) {
+                            Chat chat = snapshot.getValue(Chat.class);
+                            if(chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(friend) ||
+                                    chat.getReceiver().equals(friend)&&chat.getSender().equals(firebaseUser.getUid())){
+
+                                FirebaseDatabase.getInstance().getReference("Chats").child(snapshot.getKey()).removeValue();
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
             }
         });
