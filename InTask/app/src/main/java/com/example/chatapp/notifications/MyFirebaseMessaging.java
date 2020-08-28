@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
 
 import com.example.chatapp.R;
@@ -29,6 +31,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         super.onNewToken(token);
         FirebaseUser firebaseUser =FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Log.wtf("DAa","dd");
         if(firebaseUser!=null)
             reference.child(firebaseUser.getUid()).setValue(token);
     }

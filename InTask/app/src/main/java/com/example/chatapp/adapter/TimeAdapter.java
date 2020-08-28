@@ -28,6 +28,7 @@ import com.example.chatapp.fragments.ProfileFragment;
 import com.example.chatapp.model.Job;
 import com.example.chatapp.model.Time;
 import com.example.chatapp.start.RegisterActivity;
+import com.example.chatapp.start.StartActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -102,34 +103,37 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance()
-                            .getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(!time.getVerified() || Boolean.parseBoolean(snapshot.child("verified").getValue().toString())) {
-                                Intent intent = new Intent(mContext, MessagingActivity.class);
-                                Bundle b = new Bundle();
-                                b.putString("sent", time.getAuthor());
-                                intent.putExtras(b);
-                                mContext.startActivity(intent);
-                            }else {
-                                Toast.makeText(mContext, "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
-                                Bundle bundle = new Bundle();
-                                bundle.putString("id", snapshot.child("id").getValue().toString());
-                                Fragment selectedFragment = new ProfileFragment();
-                                selectedFragment.setArguments(bundle);
-                                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    if (FirebaseAuth.getInstance().getCurrentUser() == null)
+                        mContext.startActivity(new Intent(mContext, StartActivity.class));
+                    else {
+                        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance()
+                                .getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (!time.getVerified() || Boolean.parseBoolean(snapshot.child("verified").getValue().toString())) {
+                                    Intent intent = new Intent(mContext, MessagingActivity.class);
+                                    Bundle b = new Bundle();
+                                    b.putString("sent", time.getAuthor());
+                                    intent.putExtras(b);
+                                    mContext.startActivity(intent);
+                                } else {
+                                    Toast.makeText(mContext, "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("id", snapshot.child("id").getValue().toString());
+                                    Fragment selectedFragment = new ProfileFragment();
+                                    selectedFragment.setArguments(bundle);
+                                    ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+                                }
 
                             }
 
-                        }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
+                            }
+                        });
+                    }
                 }
             });
         }

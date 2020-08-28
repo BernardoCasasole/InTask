@@ -15,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.chatapp.MessagingActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.model.Time;
 import com.example.chatapp.model.User;
+import com.example.chatapp.start.StartActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -182,14 +185,44 @@ public class AdsTimeFragment extends Fragment {
 
 
 
-                if(time.getAuthor().equals(firebaseUser.getUid())){
+                if(firebaseUser!= null && time.getAuthor().equals(firebaseUser.getUid())){
                     btn_contact.setVisibility(View.GONE);
                 }
                 else{
                     btn_contact.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.wtf("LOL","dd");
+                            if (FirebaseAuth.getInstance().getCurrentUser() == null)
+                                getContext().startActivity(new Intent(getContext(), StartActivity.class));
+                            else {
+                                FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance()
+                                        .getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (!time.getVerified() || Boolean.parseBoolean(snapshot.child("verified").getValue().toString())) {
+                                            Intent intent = new Intent(getContext(), MessagingActivity.class);
+                                            Bundle b = new Bundle();
+                                            b.putString("sent", time.getAuthor());
+                                            intent.putExtras(b);
+                                            getContext().startActivity(intent);
+                                        } else {
+                                            Toast.makeText(getContext(), "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("id", snapshot.child("id").getValue().toString());
+                                            Fragment selectedFragment = new ProfileFragment();
+                                            selectedFragment.setArguments(bundle);
+                                            ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
                         }
                     });
                 }

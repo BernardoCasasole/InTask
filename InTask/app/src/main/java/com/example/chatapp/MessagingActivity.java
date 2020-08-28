@@ -1,6 +1,9 @@
 package com.example.chatapp;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +27,7 @@ import com.example.chatapp.notifications.Data;
 import com.example.chatapp.notifications.MyResponse;
 import com.example.chatapp.notifications.Notification;
 import com.example.chatapp.notifications.Sender;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +36,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,13 +48,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MessagingActivity extends BaseActivity {
+public class MessagingActivity extends AppCompatActivity {
 
 
     String userID;
 
     ImageButton btn_send;
     EditText text_send;
+    FirebaseUser firebaseUser;
+    DatabaseReference reference;
 
     private APIService apiService;
 
@@ -60,6 +70,23 @@ public class MessagingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messaging);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+
+            NotificationChannel channel = new NotificationChannel("myNot","myNot", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MessagingActivity.this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String token = instanceIdResult.getToken();
+                Log.i("FCM Token", token);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+                if(firebaseUser!=null)
+                    reference.child(firebaseUser.getUid()).setValue(token);
+            }
+        });
 
         this.apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 

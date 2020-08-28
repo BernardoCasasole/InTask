@@ -23,41 +23,5 @@ public abstract class BaseActivity extends AppCompatActivity{
     DatabaseReference reference;
     StorageReference storageReference;
 
-    public void initToolbar(){
-
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        bottomNavigationView = findViewById(R.id.bottom_nav_view);
-        bottomNavigationView.setSelectedItemId(selectedItem);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.bottom_nav_publish:
-
-
-                            startActivity(new Intent( BaseActivity.this, StartActivity.class));
-
-                        return true;
-
-                    case R.id.bottom_nav_profile:
-
-                        if(firebaseUser!=null) {
-                            startActivity(new Intent(BaseActivity.this, StartActivity.class));
-                        }else {
-                            Intent intent = new Intent(BaseActivity.this, ProfileActivity.class);
-                           /* Bundle b = new Bundle();
-                            b.putString("userMail", firebaseUser.getEmail());
-                            b.putString("userID", firebaseUser.getUid());
-                            intent.putExtras(b);*/
-                            startActivity(intent);
-                            return true;
-                        }
-                }
-                return false;
-            }
-        });
-
-    }
 }
 
