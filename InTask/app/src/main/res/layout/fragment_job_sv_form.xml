@@ -247,15 +247,16 @@
                 android:textColor="#FF014F59"
                 android:textSize="16sp"/>
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_centerVertical="true"
                 android:id="@+id/image"
-                android:src="@drawable/ic_baseline_landscape_24"
-                android:layout_width="130dp"
-                android:layout_height="155dp"
-                android:background="@drawable/edit_text_background"
-                android:layout_alignParentEnd="true">
-
-            </ImageView>
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
+                android:src="@drawable/work"
+                android:layout_alignParentRight="true"/>
         </RelativeLayout>
         <Space
             android:layout_width="match_parent"
