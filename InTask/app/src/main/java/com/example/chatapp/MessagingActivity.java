@@ -215,6 +215,7 @@ public class MessagingActivity extends AppCompatActivity {
         map.put("type", "none");
         map.put("ads","");
         map.put("key",reference.getKey());
+        map.put("date","");
 
         reference.setValue(map);
 

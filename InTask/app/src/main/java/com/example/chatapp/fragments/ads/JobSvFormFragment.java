@@ -273,6 +273,9 @@ public class JobSvFormFragment extends Fragment {
                     map.put("type", radioButton.getText().toString());
                     map.put("verified", verified.isChecked());
                     map.put("setted_image", uploaded);
+                    map.put("pending", false);
+                    map.put("achieved", false);
+
                     Toast.makeText(getContext(), "Annuncio pubblicato con successo", Toast.LENGTH_SHORT).show();
                     if (uploaded) {
 

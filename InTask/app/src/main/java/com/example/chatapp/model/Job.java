@@ -13,11 +13,13 @@ public class Job {
     private String title;
     private String type;
     private Boolean verified;
+    private Boolean pending;
+    private Boolean achieved;
+
 
     public Job(){}
 
-
-    public Job(String author, String day, String description, String duration, String key, String location, Float reward, Boolean setted_image, String time, String title, String type, Boolean verified) {
+    public Job(String author, String day, String description, String duration, String key, String location, Float reward, Boolean setted_image, String time, String title, String type, Boolean verified, Boolean pending, Boolean achieved) {
         this.author = author;
         this.day = day;
         this.description = description;
@@ -30,6 +32,16 @@ public class Job {
         this.title = title;
         this.type = type;
         this.verified = verified;
+        this.pending = pending;
+        this.achieved = achieved;
+    }
+
+    public Boolean getPending() {
+        return pending;
+    }
+
+    public Boolean getAchieved() {
+        return achieved;
     }
 
     public String getAuthor() {

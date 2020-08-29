@@ -16,8 +16,10 @@ import com.example.chatapp.R;
 import com.example.chatapp.model.Chat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
@@ -57,18 +59,43 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         final Chat chat = mChat.get(position);
         holder.show_message.setText(chat.getMessage());
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(chat.getType().equals("none")){
+        if(chat.getType().equals("none") || chat.getSender().equals(firebaseUser.getUid())){
             holder.accept.setVisibility(View.GONE);
             holder.decline.setVisibility(View.GONE);
         }else {
-            if(chat.getSender().equals(firebaseUser.getUid())){
-                holder.accept.setClickable(false);
-                holder.decline.setClickable(false);
-            }
+
             holder.accept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     FirebaseDatabase.getInstance().getReference("Chats").child(chat.getKey()).child("type").setValue("none");
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Chats").push();
+
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("sender",chat.getReceiver());
+                    map.put("receiver",chat.getSender());
+                    map.put("message","Proposta accettata");
+                    map.put("type", "none");
+                    map.put("ads","");
+                    map.put("key",reference.getKey());
+
+                    reference.setValue(map);
+                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(reference.getKey()).child("pending").setValue(false);
+                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(reference.getKey()).child("achieved").setValue(true);
+
+                    map = new HashMap<>();
+                    map.put("user", chat.getReceiver());
+                    map.put("date", chat.getDate());
+                    map.put("ads", chat.getAds());
+
+                    FirebaseDatabase.getInstance().getReference("Users").child(chat.getSender()).child("rateable").setValue(map);
+
+                    map = new HashMap<>();
+                    map.put("user", chat.getSender());
+                    map.put("date", chat.getDate());
+                    map.put("ads", chat.getAds());
+
+                    FirebaseDatabase.getInstance().getReference("Users").child(chat.getReceiver()).child("rateable").setValue(map);
+
                 }
             });
         }

@@ -161,9 +161,11 @@ public class PopupActivity extends AppCompatActivity {
                                         map.put("type", attributes[0]);
                                         map.put("ads", attributes[1]);
                                         map.put("key",reference.getKey());
+                                        map.put("date",day.getText().toString());
 
                                         reference.setValue(map);
                                         sendNotifications(userID, user.getId(), user.getName(), message);
+                                        FirebaseDatabase.getInstance().getReference(attributes[0]).child(reference.getKey()).child("pending").setValue(true);
                                         finish();
                                     }
 

@@ -12,11 +12,13 @@ public class Time {
     private String title;
     private String type;
     private Boolean verified;
+    private Boolean pending;
+    private Boolean achieved;
 
 
     public Time(){}
 
-    public Time(String author, String day, String description, String distance, String key, String location, Boolean setted_image, String time, String title, String type, Boolean verified) {
+    public Time(String author, String day, String description, String distance, String key, String location, Boolean setted_image, String time, String title, String type, Boolean verified, Boolean pending, Boolean achieved) {
         this.author = author;
         this.day = day;
         this.description = description;
@@ -28,6 +30,16 @@ public class Time {
         this.title = title;
         this.type = type;
         this.verified = verified;
+        this.pending = pending;
+        this.achieved = achieved;
+    }
+
+    public Boolean getPending() {
+        return pending;
+    }
+
+    public Boolean getAchieved() {
+        return achieved;
     }
 
     public String getAuthor() {
