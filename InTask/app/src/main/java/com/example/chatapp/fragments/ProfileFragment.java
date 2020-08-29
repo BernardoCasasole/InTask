@@ -69,7 +69,7 @@ public class ProfileFragment extends Fragment {
     View rootView;
     ImageView imageView,verifiedUSerImage, documentImage;
     TextView name,surname, verifiedUser,titleJob,titleTime, numOfRatings, location;
-    Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition;
+    Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition, rateUser;
     RatingBar ratingBar;
     LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout, verifiedLayout;
     RelativeLayout uploadDocument2;
@@ -134,6 +134,7 @@ public class ProfileFragment extends Fragment {
         name = rootView.findViewById(R.id.name_user);
         surname = rootView.findViewById(R.id.surname_user);
         ratingBar = rootView.findViewById(R.id.rating_user);
+        rateUser = rootView.findViewById(R.id.rate_user);
         uploadDocument1 = rootView.findViewById(R.id.layout_document_1);
         uploadDocument2 = rootView.findViewById(R.id.layout_document_2);
         verifiedUser = rootView.findViewById(R.id.verified_user);
@@ -288,6 +289,7 @@ public class ProfileFragment extends Fragment {
 
                 if(user.getSetted_image())
                     uploadImage("profile_images/"+userID+".jpg", imageView);
+
 
 
             }

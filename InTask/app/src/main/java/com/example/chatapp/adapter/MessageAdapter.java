@@ -83,19 +83,22 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                     FirebaseDatabase.getInstance().getReference(chat.getType()).child(chat.getAds()).child("pending").setValue(false);
                     FirebaseDatabase.getInstance().getReference(chat.getType()).child(chat.getAds()).child("achieved").setValue(true);
 
+                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Users").child(chat.getSender()).child("rateable").push();
+
                     map = new HashMap<>();
                     map.put("user", chat.getReceiver());
                     map.put("date", chat.getDate());
-                    map.put("ads", chat.getAds());
+                    map.put("key", reference1.getKey());
+                    reference1.setValue(map);
 
-                    FirebaseDatabase.getInstance().getReference("Users").child(chat.getSender()).child("rateable").setValue(map);
+                    reference1 = FirebaseDatabase.getInstance().getReference("Users").child(chat.getReceiver()).child("rateable").push();
 
                     map = new HashMap<>();
                     map.put("user", chat.getSender());
                     map.put("date", chat.getDate());
-                    map.put("ads", chat.getAds());
+                    map.put("key", reference1.getKey());
 
-                    FirebaseDatabase.getInstance().getReference("Users").child(chat.getReceiver()).child("rateable").setValue(map);
+                    reference1.setValue(map);
 
                 }
             });
