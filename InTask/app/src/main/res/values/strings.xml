@@ -105,8 +105,8 @@
     <string name="retribuzione_massima">Retribuzione massima</string>
     <string name="risultati_ricerca">Risultati ricerca</string>
     <string name="la_tua_ricerca_non_ha_prodotto_risultati">La tua ricerca non ha prodotto risultati.</string>
-    <string name="cerca_tra_i_job">Cerca tra i job</string>
-    <string name="cerca_tra_i_time">Cerca tra i time</string>
+    <string name="cerca_tra_i_job">Cerca tra le opportunità lavorative</string>
+    <string name="cerca_tra_i_time">Cerca tra le proposte dei nostri professionisti</string>
     <string name="le_tue_chat">Le tue chat</string>
     <string name="ufficializza">ufficializza</string>
     <string name="organizza">organizza</string>

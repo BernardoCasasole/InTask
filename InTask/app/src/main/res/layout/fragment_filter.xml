@@ -63,34 +63,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/job"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+                    <LinearLayout
+                        android:foregroundGravity="center"
+                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cerca_tra_i_job"
-                        android:textColor="#FF014F59"
-                        android:textSize="14sp" />
-                    <CheckBox
-                        android:id="@+id/time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cerca_tra_i_time"
-                        android:textColor="#FF014F59"
-                        android:textSize="14sp" />
+                        android:orientation="vertical">
+                        <CheckBox
+                            android:id="@+id/job"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/cerca_tra_i_job"
+                            android:textColor="#FF014F59"
+                            android:textSize="14sp" />
+                        <CheckBox
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/cerca_tra_i_time"
+                            android:textColor="#FF014F59"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
-
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="5dp" />
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
