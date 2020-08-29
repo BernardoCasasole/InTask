@@ -82,6 +82,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 holder.ratingBar.setRating( Float.parseFloat(snapshot.child(job.getAuthor()).child("average_ratings").getValue().toString()));
+                holder.numOFReviews.setText(snapshot.child(job.getAuthor()).child("ratings").getValue().toString());
             }
 
             @Override
@@ -264,7 +265,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         public class ViewHolder extends RecyclerView.ViewHolder{
 
             public ImageView image,type;
-            public TextView author, title, day, time, reward, location;
+            public TextView author, title, day, time, reward, location, numOFReviews;
             public Button button;
             public RatingBar ratingBar;
             public LinearLayout linearLayoutAds, verified;
@@ -282,6 +283,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 button = itemView.findViewById(R.id.button);
                 linearLayoutAds = itemView.findViewById(R.id.layout_ads);
                 ratingBar = itemView.findViewById(R.id.rating_user);
+                numOFReviews = itemView.findViewById(R.id.number_of_reviews);
+
 
                 image = itemView.findViewById(R.id.job_image);
                 type = itemView.findViewById(R.id.job_symbol);

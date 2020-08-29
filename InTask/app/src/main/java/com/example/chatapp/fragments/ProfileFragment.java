@@ -58,9 +58,14 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import static android.content.Context.LOCATION_SERVICE;
 
@@ -151,6 +156,7 @@ public class ProfileFragment extends Fragment {
         location = rootView.findViewById(R.id.text_location);
         loginLayout.setVisibility(View.GONE);
         addressUser.setVisibility(View.GONE);
+        rateUser.setVisibility(View.GONE);
         getPosition = rootView.findViewById(R.id.position_button);
         getPosition.setOnClickListener(new View.OnClickListener() {
 
@@ -230,17 +236,17 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
 
-                User user = dataSnapshot.getValue(User.class);
+                final User user = dataSnapshot.getValue(User.class);
                 name.setText(user.getName());
                 surname.setText(user.getSurname());
                 ratingBar.setRating(user.getAverage_ratings());
                 numOfRatings.setText(String.valueOf(user.getRatings()));
                 location.setText(user.getLocation());
-                if(!user.getVerified()){
-                    if(!myProfile) {
+                if (!user.getVerified()) {
+                    if (!myProfile) {
                         verifiedUser.setText("Utente non verificato");
                         verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
-                    }else{
+                    } else {
                         verifiedLayout.setVisibility(View.GONE);
                         btn_uploadDocument.setVisibility(View.VISIBLE);
                         uploadDocument1.setVisibility(View.VISIBLE);
@@ -254,14 +260,14 @@ public class ProfileFragment extends Fragment {
                         btn_uploadDocument.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if(btn_uploadDocument.getTag().equals("default"))
+                                if (btn_uploadDocument.getTag().equals("default"))
                                     setImageDocument();
                                 else
                                     databaseReference.child("verified").setValue(true);
                             }
                         });
                     }
-                }else{
+                } else {
                     verifiedLayout.setVisibility(View.VISIBLE);
                     verifiedUser.setText("Utente verificato");
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
@@ -287,13 +293,54 @@ public class ProfileFragment extends Fragment {
 
                 }
 
-                if(user.getSetted_image())
-                    uploadImage("profile_images/"+userID+".jpg", imageView);
+                if (user.getSetted_image())
+                    uploadImage("profile_images/" + userID + ".jpg", imageView);
+                if (!myProfile) {
+                    FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("rateable").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                            for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                try {
+                                    if(snapshot.child("user").getValue().equals(firebaseUser.getUid()) &&
+                                    checkDate(snapshot.child("date").getValue().toString())){
+                                    rateUser.setVisibility(View.VISIBLE);
+                                    rateUser.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ratingBar.setIsIndicator(false);
+                                            ratingBar.setRating(0);
+                                            rateUser.setText("Scegli rate");
+                                            rateUser.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    rateUser.setVisibility(View.GONE);
+                                                    ratingBar.setIsIndicator(true);
+                                                    float rate = ratingBar.getRating();
+                                                    float newRate = (user.getAverage_ratings()*user.getRatings() + rate)/(user.getRatings() + 1);
+                                                    FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("ratings"). setValue(user.getRatings() + 1);
+                                                    FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("average_ratings"). setValue(newRate);
+                                                    FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("rateable").child(snapshot.getKey()).removeValue();
+                                                }
+                                            });
+                                        }
+                                    });
+                                    }
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
 
+                        }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -312,6 +359,17 @@ public class ProfileFragment extends Fragment {
 
 
         return rootView;
+    }
+
+    private boolean checkDate(String sDate) throws ParseException {
+
+        DateFormat format = new SimpleDateFormat("dd/MM/yy", Locale.ITALIAN);
+        Date myDate = format.parse(sDate);
+        Date now = new Date();
+        long diffInMillies = now.getTime() - myDate.getTime();
+        return TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS) >= 1;
+
+
     }
 
     private void setImageProfile() {

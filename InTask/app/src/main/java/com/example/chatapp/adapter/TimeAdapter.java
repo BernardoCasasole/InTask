@@ -76,6 +76,8 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 holder.ratingBar.setRating( Float.parseFloat(snapshot.child(time.getAuthor()).child("average_ratings").getValue().toString()));
+                holder.numOFReviews.setText(snapshot.child(time.getAuthor()).child("ratings").getValue().toString());
+
             }
 
             @Override
@@ -259,7 +261,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
             public ImageView image,type;
             public Button button;
-            public TextView author, title, day, time;
+            public TextView author, title, day, time, numOFReviews;
             public LinearLayout linearLayoutAds, verified;
             public RatingBar ratingBar;
 
@@ -274,6 +276,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 button = itemView.findViewById(R.id.button);
                 linearLayoutAds = itemView.findViewById(R.id.layout_ads);
                 ratingBar = itemView.findViewById(R.id.rating_user);
+                numOFReviews = itemView.findViewById(R.id.number_of_reviews);
 
                 image = itemView.findViewById(R.id.job_image);
                 type = itemView.findViewById(R.id.job_symbol);
