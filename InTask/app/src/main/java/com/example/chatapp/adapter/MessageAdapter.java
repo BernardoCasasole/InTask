@@ -98,6 +98,25 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
                 }
             });
+
+            holder.decline.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FirebaseDatabase.getInstance().getReference("Chats").child(chat.getKey()).child("type").setValue("none");
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Chats").push();
+
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("sender",chat.getReceiver());
+                    map.put("receiver",chat.getSender());
+                    map.put("message","Proposta rifiutata");
+                    map.put("type", "none");
+                    map.put("ads","");
+                    map.put("key",reference.getKey());
+
+                    reference.setValue(map);
+                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(reference.getKey()).child("pending").setValue(false);
+                }
+            });
         }
 
     }
