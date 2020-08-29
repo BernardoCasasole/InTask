@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
 
     View rootView;
     ImageView imageView,verifiedUSerImage, documentImage;
-    TextView name,surname, verifiedUser,titleJob,titleTime;
+    TextView name,surname, verifiedUser,titleJob,titleTime, numOfRatings;
     Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition;
     RatingBar ratingBar;
     LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout, verifiedLayout;
@@ -122,6 +122,7 @@ public class ProfileFragment extends Fragment {
 
         }
         locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
@@ -145,6 +146,7 @@ public class ProfileFragment extends Fragment {
         titleTime = rootView.findViewById(R.id.title_time);
         jobLayout = rootView.findViewById(R.id.layout_job);
         timeLayout = rootView.findViewById(R.id.layout_time);
+        numOfRatings = rootView.findViewById(R.id.number_of_reviews);
         loginLayout.setVisibility(View.GONE);
         getPosition = rootView.findViewById(R.id.position_button);
         getPosition.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +159,8 @@ public class ProfileFragment extends Fragment {
                 geocoder = new Geocoder(getContext(), Locale.getDefault());
 
                 try {
+                    Log.wtf("DAD", String.valueOf(latitude));
+                    Log.wtf("DADA", String.valueOf(longitude));
                     addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
                     addressUser.setText(address);
@@ -217,6 +221,7 @@ public class ProfileFragment extends Fragment {
                 name.setText(user.getName());
                 surname.setText(user.getSurname());
                 ratingBar.setRating(user.getAverage_ratings());
+                numOfRatings.setText(String.valueOf(user.getRatings()));
                 if(!user.getVerified()){
                     if(!myProfile) {
                         verifiedUser.setText("Utente non verificato");

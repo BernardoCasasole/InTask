@@ -108,6 +108,7 @@ public class PublicationTimeFragment extends Fragment {
 
         }
             locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
