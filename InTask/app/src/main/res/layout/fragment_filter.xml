@@ -654,7 +654,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="left"
                     android:padding="5dp"
-                    android:text="Giorno della settimana" />
+                    android:text="@string/limite_massimo_distanza_da_te_nella_ricerca" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -668,8 +668,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:columnCount="3"
-                        android:rowCount="3">
+                        android:columnCount="4"
+                        android:rowCount="1">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="wrap_content"
@@ -683,7 +683,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Lun" />
+                                android:text="5 km" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -698,7 +698,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Mar" />
+                                android:text="10 km" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -713,9 +713,23 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Mer" />
+                                android:text="20 km" />
                         </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            app:cardElevation="0dp">
+
+                            <CheckBox
+                                android:id="@+id/onehundredKm"
+                                style="@style/InTaskTheme_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:text="100 km" />
+                        </androidx.cardview.widget.CardView>
                     </GridLayout>
                 </LinearLayout>
 
@@ -852,6 +866,7 @@
             </LinearLayout>
 
             <Button
+                android:textStyle="bold"
                 android:id="@+id/filter_btn"
                 style="@style/InTaskTheme_subtitle"
                 android:layout_width="wrap_content"
@@ -859,7 +874,8 @@
                 android:layout_gravity="center"
                 android:background="@drawable/custom_button"
                 android:gravity="center"
-                android:text="@string/filter" />
+                android:text="@string/filter"
+                android:layout_marginBottom="20dp"/>
 
 
         </LinearLayout>
@@ -942,6 +958,7 @@
             android:layout_gravity="center"
             android:layout_margin="7dp"
             android:text="@string/la_tua_ricerca_non_ha_prodotto_risultati" />
+
     </LinearLayout>
 
 

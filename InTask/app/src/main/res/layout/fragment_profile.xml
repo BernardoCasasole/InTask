@@ -65,7 +65,10 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:text="Cognome" />
-
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
                         <RatingBar
                             android:id="@+id/rating_user"
                             android:layout_width="wrap_content"
@@ -75,6 +78,16 @@
                             android:stepSize="0.1"
                             android:isIndicator="true"
                             android:layout_margin="10dp"/>
+                        <TextView
+                            android:id="@+id/number_of_reviews"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/InTaskTheme_small"
+                            android:text="(0)"
+                            android:layout_gravity="center">
+
+                        </TextView>
+                        </LinearLayout>
                         <!--in code: mRatingBar.setRating(int)-->
                     </LinearLayout>
 
@@ -188,6 +201,8 @@
                 tools:ignore="MissingConstraints">
 
                 <LinearLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -203,19 +218,31 @@
                             android:layout_margin="10dp"
                             android:text="Indirizzo" />
                     </LinearLayout>
-                    <EditText
-                        android:layout_gravity="center"
-                        android:id="@+id/address_user"
-                        android:textSize="15sp"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/edit_text_background"
-                        android:hint="Inserisci il tuo indirizzo"
-                        android:minWidth="250dp"
-                        android:padding="10dp" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:layout_gravity="center"
+                            android:id="@+id/address_user"
+                            android:textSize="15sp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/edit_text_background"
+                            android:hint="Inserisci il tuo indirizzo"
+                            android:minWidth="250dp"
+                            android:padding="10dp" />
+                        <TextView
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="00, Via inserita, Città, Nazione, 12121" />
+
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -420,7 +447,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/view_pager_time_off"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
@@ -432,13 +460,21 @@
                 android:id="@+id/time_public_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+        <!--
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
+        AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
+        behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+            @Override
+            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                return false;
+            }
+        });-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
                 >
-
 
                 <Button
                     android:layout_centerVertical="true"
@@ -447,7 +483,7 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custom_button"

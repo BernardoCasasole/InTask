@@ -94,7 +94,8 @@
         android:layout_below="@id/top_pane"
         android:layout_above="@+id/bottom_layout"
         android:background="@android:color/darker_gray"
-        android:padding="8dp" />
+        android:padding="8dp"/>
+        <!--LinearLayoutManager.setReverseLayout(true)-->
 
 
     <RelativeLayout

@@ -113,5 +113,6 @@
     <string name="per_quale_annuncio">Per quale annuncio?</string>
     <string name="invia_proposta">Invia proposta</string>
     <string name="name_surname">Name Surname</string>
+    <string name="limite_massimo_distanza_da_te_nella_ricerca">Limite massimo distanza da te nella ricerca</string>
 
 </resources>

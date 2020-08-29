@@ -43,7 +43,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:rowCount="2"
+                    android:rowCount="3"
                     android:columnCount="2"
                     android:layout_margin="3dp">
                     <androidx.cardview.widget.CardView
@@ -115,6 +115,38 @@
                             android:layout_toRightOf="@+id/job_title"
                             android:text="11.45" />
                     </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="0dp"
+                        android:backgroundTint="@android:color/transparent"
+                        >
+                    <LinearLayout
+                        android:id="@+id/job_verified"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_check_15"
+                            android:layout_marginLeft="5dp"
+                            android:layout_gravity="center">
+                        </ImageView>
+                        <TextView
+
+
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="10dp"
+                            android:text="verificato" />
+                    </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                 </GridLayout>
 
 
@@ -148,39 +180,32 @@
                     android:background="@drawable/edit_text_background"
                     android:src="@drawable/ic_baseline_local_florist_big" />
             </LinearLayout>
-            <RatingBar
-                android:id="@+id/rating_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/ratingBarStyleSmall"
-                android:numStars="5"
-                android:stepSize="0.1"
-                android:isIndicator="true"
-                android:layout_margin="10dp"/>
             <LinearLayout
-                android:id="@+id/job_verified"
+                android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
                 android:orientation="horizontal">
-                <ImageView
+                <RatingBar
+                    android:id="@+id/rating_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_check_15"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center">
-                </ImageView>
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    android:isIndicator="true"
+                    android:layout_margin="10dp"/>
                 <TextView
-
-
-                    style="@style/InTaskTheme_small"
+                    android:id="@+id/number_of_reviews"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="10dp"
-                    android:text="verificato" />
+                    style="@style/InTaskTheme_small"
+                    android:text="(0)"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp">
+
+                </TextView>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
