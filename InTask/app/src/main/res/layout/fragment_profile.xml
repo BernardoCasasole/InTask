@@ -194,7 +194,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/address_input"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -237,6 +237,7 @@
                             android:minWidth="250dp"
                             android:padding="10dp" />
                         <TextView
+                            android:id="@+id/text_location"
                             style="@style/InTaskTheme_small"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -245,6 +246,7 @@
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/address_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -373,18 +375,20 @@
                             android:text="@string/immagine_documento_string" />
 
                         <ImageView
-                            android:layout_alignParentEnd="true"
                             android:id="@+id/document_image"
                             android:layout_width="80dp"
                             android:layout_height="100dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_alignParentEnd="true"
                             android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginEnd="55dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/edit_text_background"
-                            android:src="@drawable/ic_passport_svgrepo_com" />
+                            android:src="@drawable/ic_passport_svgrepo_com"
+                             />
                     </RelativeLayout>
                     <Button
+                        android:tag="default"
                         android:id="@+id/user_document_upload"
                         android:padding="5dp"
                         android:layout_width="wrap_content"

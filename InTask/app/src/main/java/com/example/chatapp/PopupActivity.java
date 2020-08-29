@@ -93,15 +93,12 @@ public class PopupActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseDatabase.getInstance().getReference("Time").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Time").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Time time = snapshot.getValue(Time.class);
-                    Log.wtf("DADA", String.valueOf(!time.getPending()));
-                    Log.wtf("DADA", String.valueOf(!time.getAchieved()));
-                    Log.wtf("DADA", String.valueOf((time.getAuthor().equals(userID)||time.getAuthor().equals(firebaseUser.getUid()))));
                     if(!time.getPending() && !time.getAchieved() &&(time.getAuthor().equals(userID)||time.getAuthor().equals(firebaseUser.getUid()))){
 
 
@@ -123,7 +120,7 @@ public class PopupActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseDatabase.getInstance().getReference("Job").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Job").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

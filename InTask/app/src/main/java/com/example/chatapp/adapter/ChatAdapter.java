@@ -80,6 +80,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                   final User user = snapshot.getValue(User.class);
                   holder.name.setText(user.getName() + " " + user.getSurname());
+                    holder.name.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", user.getId());
+                        Fragment fragment = new ProfileFragment();
+                        fragment.setArguments(bundle);
+                        ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                    }
+                });
                 if(user.getSetted_image()){
 
                     File localFile = null;

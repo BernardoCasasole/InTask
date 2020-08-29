@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
 
     View rootView;
     ImageView imageView,verifiedUSerImage, documentImage;
-    TextView name,surname, verifiedUser,titleJob,titleTime, numOfRatings;
+    TextView name,surname, verifiedUser,titleJob,titleTime, numOfRatings, location;
     Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition;
     RatingBar ratingBar;
     LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout, verifiedLayout;
@@ -147,7 +147,9 @@ public class ProfileFragment extends Fragment {
         jobLayout = rootView.findViewById(R.id.layout_job);
         timeLayout = rootView.findViewById(R.id.layout_time);
         numOfRatings = rootView.findViewById(R.id.number_of_reviews);
+        location = rootView.findViewById(R.id.text_location);
         loginLayout.setVisibility(View.GONE);
+        addressUser.setVisibility(View.GONE);
         getPosition = rootView.findViewById(R.id.position_button);
         getPosition.setOnClickListener(new View.OnClickListener() {
 
@@ -159,11 +161,11 @@ public class ProfileFragment extends Fragment {
                 geocoder = new Geocoder(getContext(), Locale.getDefault());
 
                 try {
-                    Log.wtf("DAD", String.valueOf(latitude));
-                    Log.wtf("DADA", String.valueOf(longitude));
                     addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-                    addressUser.setText(address);
+                    databaseReference.child("location").setValue(address);
+                    location.setText(address);
+                    Toast.makeText(getContext(),"Indirizzo modificato!",Toast.LENGTH_SHORT).show();
                 } catch (IOException | IndexOutOfBoundsException e) {
                     Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
                 }
@@ -189,13 +191,23 @@ public class ProfileFragment extends Fragment {
         btn_updateAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(addressUser.getText().toString().equals("")){
-                    Toast.makeText(getContext(),"Riempi il campo!",Toast.LENGTH_SHORT).show();
-                }else{
-                    databaseReference.child("location").setValue(addressUser.getText().toString());
-                    addressUser.setText("");
-                    Toast.makeText(getContext(),"Indirizzo modificato!",Toast.LENGTH_SHORT).show();
-                }
+                addressUser.setVisibility(View.VISIBLE);
+                location.setVisibility(View.GONE);
+                btn_updateAddress.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(addressUser.getText().toString().equals("")){
+                            Toast.makeText(getContext(),"Riempi il campo!",Toast.LENGTH_SHORT).show();
+                        }else{
+
+                            databaseReference.child("location").setValue(addressUser.getText().toString());
+                            Toast.makeText(getContext(),"Indirizzo modificato!",Toast.LENGTH_SHORT).show();
+                            addressUser.setVisibility(View.GONE);
+                            location.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+
             }
         });
 
@@ -222,6 +234,7 @@ public class ProfileFragment extends Fragment {
                 surname.setText(user.getSurname());
                 ratingBar.setRating(user.getAverage_ratings());
                 numOfRatings.setText(String.valueOf(user.getRatings()));
+                location.setText(user.getLocation());
                 if(!user.getVerified()){
                     if(!myProfile) {
                         verifiedUser.setText("Utente non verificato");
@@ -240,13 +253,15 @@ public class ProfileFragment extends Fragment {
                         btn_uploadDocument.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
-                                databaseReference.child("verified").setValue(true);
+                                if(btn_uploadDocument.getTag().equals("default"))
+                                    setImageDocument();
+                                else
+                                    databaseReference.child("verified").setValue(true);
                             }
                         });
                     }
                 }else{
-
+                    verifiedLayout.setVisibility(View.VISIBLE);
                     verifiedUser.setText("Utente verificato");
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
                     if (myProfile) {
@@ -317,11 +332,6 @@ public class ProfileFragment extends Fragment {
 
     private void setImageDocument() {
 
-        documentImage.setClickable(true);
-        documentImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
                 documentImage.setImageBitmap(null);
                 if (Image != null)
                     Image.recycle();
@@ -329,8 +339,7 @@ public class ProfileFragment extends Fragment {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY2);
-            }
-        });
+
     }
 
     @Override
@@ -375,6 +384,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         uploadImage("/document_images/"+userID+".jpg", documentImage);
+                        btn_uploadDocument.setTag("changed");
                         Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {

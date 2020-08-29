@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.chatapp.adapter.MessageAdapter;
 import com.example.chatapp.fragments.APIService;
+import com.example.chatapp.fragments.ProfileFragment;
 import com.example.chatapp.model.Chat;
 import com.example.chatapp.model.User;
 import com.example.chatapp.notifications.Client;
@@ -137,6 +139,7 @@ public class MessagingActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 final User user = snapshot.getValue(User.class);
                 name.setText(user.getName() + " " + user.getSurname());
+
                 if(user.getSetted_image()){
 
                     File localFile = null;
