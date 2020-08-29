@@ -136,7 +136,7 @@ public class MessagingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 final User user = snapshot.getValue(User.class);
-                name.setText(user.getName() + "\n" + user.getSurname());
+                name.setText(user.getName() + " " + user.getSurname());
                 if(user.getSetted_image()){
 
                     File localFile = null;
@@ -206,14 +206,17 @@ public class MessagingActivity extends AppCompatActivity {
 
     private void sendMessage(final String sender, final String receiver, final String message){
 
-       reference = FirebaseDatabase.getInstance().getReference();
+       reference = FirebaseDatabase.getInstance().getReference().child("Chats").push();
 
         HashMap<String,Object> map = new HashMap<>();
         map.put("sender",sender);
         map.put("receiver",receiver);
         map.put("message",message);
+        map.put("type", "none");
+        map.put("ads","");
+        map.put("key",reference.getKey());
 
-        reference.child("Chats").push().setValue(map);
+        reference.setValue(map);
 
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 

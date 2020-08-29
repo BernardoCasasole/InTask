@@ -3,21 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="4dp">
-<EditText xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/InTaskTheme_ordinary"
-    android:textColor="#FFFFFF"
-    android:id="@+id/show_message"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentEnd="true"
-    android:layout_gravity="end"
-    android:background="@drawable/background_right_chat"
-    android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:maxWidth="300dp"
-    android:padding="8dp"
-    android:textSize="18sp"
-    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/show_message"
+            style="@style/InTaskTheme_ordinary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@drawable/background_right_chat"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:maxWidth="300dp"
+            android:padding="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+        <Button
+            android:id="@+id/decline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </LinearLayout>
 
 
 </RelativeLayout>

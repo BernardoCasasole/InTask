@@ -6,24 +6,39 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.chatapp.fragments.APIService;
 import com.example.chatapp.model.Job;
 import com.example.chatapp.model.Time;
+import com.example.chatapp.model.User;
+import com.example.chatapp.notifications.Client;
+import com.example.chatapp.notifications.Data;
+import com.example.chatapp.notifications.MyResponse;
+import com.example.chatapp.notifications.Notification;
+import com.example.chatapp.notifications.Sender;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PopupActivity extends AppCompatActivity {
 
@@ -32,12 +47,15 @@ public class PopupActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     String userID;
     FirebaseUser firebaseUser;
+    Button btn_send;
+    private APIService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
+        this.apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
         Bundle b = getIntent().getExtras();
         if(b != null) {
             userID = b.getString("sent");
@@ -48,6 +66,7 @@ public class PopupActivity extends AppCompatActivity {
         myCalendar = Calendar.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         radioGroup = findViewById(R.id.type);
+        btn_send = findViewById(R.id.proposal_btn_send);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -83,7 +102,7 @@ public class PopupActivity extends AppCompatActivity {
 
                         RadioButton radioButton = new RadioButton(getApplicationContext());
                         radioButton.setText(time.getTitle());
-                        radioButton.setTag(time.getKey());//set radiobutton id and store it somewhere
+                        radioButton.setTag("Time@".concat(time.getKey()));//set radiobutton id and store it somewhere
                         RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
                         radioGroup.addView(radioButton, params);
                     }
@@ -109,10 +128,53 @@ public class PopupActivity extends AppCompatActivity {
 
                         RadioButton radioButton = new RadioButton(getApplicationContext());
                         radioButton.setText(job.getTitle());
-                        radioButton.setTag(job.getKey());//set radiobutton id and store it somewhere
+                        radioButton.setTag("Job@".concat(job.getKey()));//set radiobutton id and store it somewhere
                         RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
                         radioGroup.addView(radioButton, params);
                     }
+
+                    btn_send.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            if (checkHour(time.getText().toString()) &&
+                                    findViewById(radioGroup.getCheckedRadioButtonId()) != null &&
+                                    day.getText() != null) {
+
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+
+                                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        User user = snapshot.getValue(User.class);
+                                        RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
+                                        String tag = (String) radioButton.getTag();
+                                        String[] attributes = tag.split("@");
+                                        String message = user.getName() + " ti ha fatto una proposta per " +
+                                                radioButton.getText().toString() + " in data "+ day.getText().toString() +
+                                                ", ora " + time.getText().toString() + ".";
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Chats").push();
+                                        HashMap<String, Object> map = new HashMap<>();
+                                        map.put("sender", firebaseUser.getUid());
+                                        map.put("receiver", userID);
+                                        map.put("message", message);
+                                        map.put("type", attributes[0]);
+                                        map.put("ads", attributes[1]);
+                                        map.put("key",reference.getKey());
+
+                                        reference.setValue(map);
+                                        sendNotifications(userID, user.getId(), user.getName(), message);
+                                        finish();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+                        }
+                    });
 
 
                 }
@@ -124,6 +186,8 @@ public class PopupActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void updateLabel() {
@@ -149,4 +213,46 @@ public class PopupActivity extends AppCompatActivity {
         }
         return  true;
     }
+
+    private void sendNotifications(final String receiverId, final String userId,final String name, final String message){
+
+
+        final DatabaseReference token = FirebaseDatabase.getInstance().getReference("Tokens");
+
+        Query query = token.orderByKey().equalTo(receiverId);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+
+                    Data data = new Data(userId,receiverId, "Nuovo messaggio da "+ name +"!",message);
+                    Notification notification = new Notification(message, "Nuovo messaggio da "+ name +"!",".MessagingActivity");
+                    Sender sender = new Sender(data,snapshot.getValue(String.class));
+
+                    apiService.sendNotification(sender).enqueue(new Callback<MyResponse>() {
+                        @Override
+                        public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                            if(response.code()==200){
+                                if(response.body().success!=1){
+                                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<MyResponse> call, Throwable t) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }
