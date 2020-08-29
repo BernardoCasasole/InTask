@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -95,9 +96,13 @@ public class PopupActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("Time").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Time time = snapshot.getValue(Time.class);
-                    if(!time.getPending() && (time.getAuthor().equals(userID)||time.getAuthor().equals(firebaseUser.getUid()))){
+                    Log.wtf("DADA", String.valueOf(!time.getPending()));
+                    Log.wtf("DADA", String.valueOf(!time.getAchieved()));
+                    Log.wtf("DADA", String.valueOf((time.getAuthor().equals(userID)||time.getAuthor().equals(firebaseUser.getUid()))));
+                    if(!time.getPending() && !time.getAchieved() &&(time.getAuthor().equals(userID)||time.getAuthor().equals(firebaseUser.getUid()))){
 
 
                         RadioButton radioButton = new RadioButton(getApplicationContext());
@@ -121,10 +126,10 @@ public class PopupActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("Job").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                radioGroup.removeAllViews();
+
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Job job = snapshot.getValue(Job.class);
-                    if(!job.getPending() && (job.getAuthor().equals(userID)||job.getAuthor().equals(firebaseUser.getUid()))){
+                    if(!job.getPending() && !job.getAchieved() &&(job.getAuthor().equals(userID)||job.getAuthor().equals(firebaseUser.getUid()))){
 
 
                         RadioButton radioButton = new RadioButton(getApplicationContext());
