@@ -107,7 +107,7 @@ public class PublicationTimeFragment extends Fragment {
                         Manifest.permission.INTERNET}, 10);
 
         }
-            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+           // locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
 
