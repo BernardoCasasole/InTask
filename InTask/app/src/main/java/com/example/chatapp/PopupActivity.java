@@ -97,7 +97,7 @@ public class PopupActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Time time = snapshot.getValue(Time.class);
-                    if(time.getAuthor().equals(userID)||time.getAuthor().equals(firebaseUser.getUid())){
+                    if(!time.getPending() && (time.getAuthor().equals(userID)||time.getAuthor().equals(firebaseUser.getUid()))){
 
 
                         RadioButton radioButton = new RadioButton(getApplicationContext());
@@ -121,9 +121,10 @@ public class PopupActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("Job").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                radioGroup.removeAllViews();
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Job job = snapshot.getValue(Job.class);
-                    if(job.getAuthor().equals(userID)||job.getAuthor().equals(firebaseUser.getUid())){
+                    if(!job.getPending() && (job.getAuthor().equals(userID)||job.getAuthor().equals(firebaseUser.getUid()))){
 
 
                         RadioButton radioButton = new RadioButton(getApplicationContext());
@@ -165,7 +166,7 @@ public class PopupActivity extends AppCompatActivity {
 
                                         reference.setValue(map);
                                         sendNotifications(userID, user.getId(), user.getName(), message);
-                                        FirebaseDatabase.getInstance().getReference(attributes[0]).child(reference.getKey()).child("pending").setValue(true);
+                                        FirebaseDatabase.getInstance().getReference(attributes[0]).child(attributes[1]).child("pending").setValue(true);
                                         finish();
                                     }
 

@@ -79,8 +79,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                     map.put("key",reference.getKey());
 
                     reference.setValue(map);
-                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(reference.getKey()).child("pending").setValue(false);
-                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(reference.getKey()).child("achieved").setValue(true);
+
+                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(chat.getAds()).child("pending").setValue(false);
+                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(chat.getAds()).child("achieved").setValue(true);
 
                     map = new HashMap<>();
                     map.put("user", chat.getReceiver());
@@ -114,7 +115,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                     map.put("key",reference.getKey());
 
                     reference.setValue(map);
-                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(reference.getKey()).child("pending").setValue(false);
+                    FirebaseDatabase.getInstance().getReference(chat.getType()).child(chat.getAds()).child("pending").setValue(false);
                 }
             });
         }

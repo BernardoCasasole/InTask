@@ -23,9 +23,14 @@ import com.example.chatapp.fragments.HomeFragment;
 import com.example.chatapp.fragments.ProfileFragment;
 import com.example.chatapp.fragments.ads.PublicationChoiceFragment;
 import com.example.chatapp.start.StartActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String token = instanceIdResult.getToken();
+                Log.i("FCM Token", token);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+                if(firebaseUser!=null)
+                    reference.child(firebaseUser.getUid()).setValue(token);
+            }
+        });
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
 
