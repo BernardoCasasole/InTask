@@ -51,14 +51,13 @@
                 <Button
                     android:id="@+id/chat_with"
                     style="@style/InTaskTheme_small"
-                    android:layout_width="65dp"
-                    android:layout_height="35dp"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/custom_button"
                     android:foregroundGravity="center_vertical"
                     android:gravity="center"
                     android:padding="1dp"
-                    android:text="contatta"
-                    android:textStyle="bold">
+                    android:text="contatta">
 
                 </Button>
             </LinearLayout>

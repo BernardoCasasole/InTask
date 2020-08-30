@@ -11,7 +11,7 @@
 
         <EditText
             android:id="@+id/show_message"
-            style="@style/InTaskTheme_ordinary"
+            style="@style/InTaskTheme_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -19,20 +19,37 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:maxWidth="300dp"
-            android:padding="8dp"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:padding="5dp"
+            android:textColor="#FFFFFF" />
 
-        <Button
-            android:id="@+id/accept"
+        <LinearLayout
+            android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
-        <Button
-            android:id="@+id/decline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp">
+            <Button
+                android:id="@+id/accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accetta"
+                style="@style/InTaskTheme_ordinary"
+                android:background="@drawable/custom_button"
+                android:layout_marginRight="5dp"
+                android:textColor="#0A5902"
+                android:textStyle="bold"/>
+            <Button
+                android:id="@+id/decline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rifiuta"
+                style="@style/InTaskTheme_ordinary"
+                android:background="@drawable/custom_button"
+                android:layout_marginLeft="5dp"
+                android:textColor="#710000"
+                android:textStyle="bold"/>
+        </LinearLayout>
     </LinearLayout>
 
 

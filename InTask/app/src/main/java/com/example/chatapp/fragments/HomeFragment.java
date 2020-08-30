@@ -3,6 +3,7 @@ package com.example.chatapp.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -25,7 +26,7 @@ public class HomeFragment extends Fragment {
 
     View view;
     Bundle bundle;
-    Button filterButton;
+    AppCompatImageButton filterButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

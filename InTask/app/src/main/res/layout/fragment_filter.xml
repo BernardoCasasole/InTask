@@ -407,7 +407,11 @@
                     android:max="200"
                     android:outlineSpotShadowColor="#FF014F59"
                     android:progress="0" />
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
                 <TextView
                     android:id="@+id/min_curentValue"
                     android:layout_width="wrap_content"
@@ -416,6 +420,14 @@
                     android:layout_gravity="center"
                     android:gravity="center" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/minimum_retribution"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="€" />
+                </LinearLayout>
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="5dp" />
@@ -446,13 +458,27 @@
                     android:outlineSpotShadowColor="#FF014F59"
                     android:progress="200" />
 
-                <TextView
-                    android:id="@+id/max_curentValue"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/maximum_retribution"
-                    android:layout_gravity="center"
-                    android:gravity="center" />
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+                    <TextView
+                        android:id="@+id/max_curentValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/minimum_retribution"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/maximum_retribution"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="€" />
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
@@ -866,7 +892,6 @@
             </LinearLayout>
 
             <Button
-                android:textStyle="bold"
                 android:id="@+id/filter_btn"
                 style="@style/InTaskTheme_subtitle"
                 android:layout_width="wrap_content"

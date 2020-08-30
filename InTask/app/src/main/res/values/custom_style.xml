@@ -7,12 +7,26 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="InTaskTheme_chat" parent="android:Theme.Holo.Light">
+        <!-- Change default text colour from dark grey to black -->
+        <item name="android:textColor">#014F59</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
     <style name="InTaskTheme_title" parent="android:Theme.Holo.Light">
         <!-- Change default text colour from dark grey to black -->
         <item name="android:textColor">#014F59</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="InTaskTheme_verified" parent="android:Theme.Holo.Light">
+        <!-- Change default text colour from dark grey to black -->
+        <item name="android:textColor">#32484A</item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="InTaskTheme_subtitle" parent="android:Theme.Holo.Light">

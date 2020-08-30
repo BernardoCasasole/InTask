@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/edit_text_background">
+    android:background="@drawable/edit_text_background"
+    android:backgroundTint="#1B004361"
+    android:layout_margin="5dp">
 
     <LinearLayout
         android:id="@+id/layout_ads"

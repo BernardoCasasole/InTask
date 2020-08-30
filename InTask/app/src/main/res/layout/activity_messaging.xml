@@ -16,10 +16,10 @@
 
         <ImageButton
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/top_pane_back_button"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@drawable/custom_button"
@@ -28,12 +28,12 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_centerVertical="true"
             android:id="@+id/profile_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_centerHorizontal="true"
             android:layout_margin="7dp"
             android:layout_toRightOf="@id/top_pane_back_button"
-            android:src="@drawable/lucagiurato" />
+            android:src="@drawable/person" />
 
         <TextView
             android:layout_centerVertical="true"
@@ -44,7 +44,7 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/profile_image"
             android:gravity="center"
-            android:text="Luca Giurato" />
+            android:text="Name Surname" />
 
         <LinearLayout
             android:layout_centerVertical="true"
@@ -64,26 +64,19 @@
                 <Button
                     android:id="@+id/chat_with"
                     style="@style/InTaskTheme_small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
                     android:background="@drawable/custom_button"
                     android:foregroundGravity="center_vertical"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:text="@string/organizza">
 
                 </Button>
             </LinearLayout>
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="4dp"
-            android:background="#014F59" />
-
 
     </RelativeLayout>
 
@@ -94,7 +87,8 @@
         android:layout_below="@id/top_pane"
         android:layout_above="@+id/bottom_layout"
         android:background="@android:color/darker_gray"
-        android:padding="8dp"/>
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"/>
         <!--LinearLayoutManager.setReverseLayout(true)-->
 
 
