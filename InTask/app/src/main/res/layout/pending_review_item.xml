@@ -3,8 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/edit_text_background">
     <LinearLayout
+        android:background="#0C004361"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
@@ -25,19 +28,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:isIndicator="false"
             android:numStars="5"
             android:stepSize="0.5" />
         <Button
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/user_data_update_button"
             style="@style/InTaskTheme_small"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
             android:background="@drawable/custom_button"
             android:padding="5dp"
             android:text="@string/conferma_valutazione" />
