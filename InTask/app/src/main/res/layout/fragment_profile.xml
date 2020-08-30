@@ -115,15 +115,6 @@
                             android:layout_marginRight="10dp"
                             android:src="@drawable/ic_baseline_close_35"/>
                         </LinearLayout>
-
-                        <Button
-                            android:id="@+id/rate_user"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Valuta utente"
-                            style="@style/InTaskTheme_ordinary"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/custom_button"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -327,6 +318,33 @@
                     android:layout_marginTop="4dp"
                     android:background="#014F59" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pending_reviews_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/InTaskTheme_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    android:text="Valuta gli utenti con cui hai lavorato"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/pending_reviews_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="20dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/pending_reviews_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Valuta, da 1 a 5, la tua esperienza con Utente relativa al lavoro Lavoro"
+            style="@style/InTaskTheme_ordinary"
+            android:padding="10dp">
+        </TextView>
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ricordati_di_tenere_in_considerazione_se"
+            style="@style/InTaskTheme_ordinary"
+            android:padding="10dp"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u2022_l_utente_stato_di_parola"
+            android:paddingLeft="10dp"
+            style="@style/InTaskTheme_small"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u2022_l_utente_stato_preciso_e_puntuale"
+            android:paddingLeft="10dp"
+            style="@style/InTaskTheme_small"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u2022_l_utente_si_dimostrato_affidabile"
+            android:paddingLeft="10dp"
+            style="@style/InTaskTheme_small"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/u2022_consiglieresti_ad_un_amico_di_collaborare_con_questo_utente"
+            android:paddingLeft="10dp"
+            style="@style/InTaskTheme_small"/>
+
+        <RatingBar
+            android:layout_gravity="center"
+            android:id="@+id/rating_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:numStars="5"
+            android:stepSize="0.1"
+            android:isIndicator="true"
+            android:layout_margin="20dp"/>
+        <Button
+            android:layout_marginBottom="20dp"
+            android:id="@+id/user_data_update_button"
+            style="@style/InTaskTheme_small"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/custom_button"
+            android:padding="5dp"
+            android:text="@string/conferma_valutazione" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
