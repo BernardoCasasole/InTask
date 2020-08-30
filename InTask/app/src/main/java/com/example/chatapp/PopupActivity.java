@@ -210,6 +210,7 @@ public class PopupActivity extends AppCompatActivity {
 
     private boolean checkHour(String result){
 
+        if(result.equals("")) return false;
         int a = ((int) result.charAt(0)) - 48;
         int b = ((int) result.charAt(1)) - 48;
         int c = ((int) result.charAt(3)) - 48;

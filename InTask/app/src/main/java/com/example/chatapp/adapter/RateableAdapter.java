@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,9 +58,8 @@ public class RateableAdapter extends RecyclerView.Adapter<RateableAdapter.ViewHo
                         float newRate = (user.getAverage_ratings()*user.getRatings() + rate)/(user.getRatings() + 1);
                         FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("ratings"). setValue(user.getRatings() + 1);
                         FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("average_ratings"). setValue(newRate);
-                        Log.wtf("SA",FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        Log.wtf("DD",rateable.getKey());
                         FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("rateable").child(rateable.getKey()).removeValue();
+                        Toast.makeText(mContext, "Utente valutato correttamente!", Toast.LENGTH_SHORT).show();
 
                     }
                 });
