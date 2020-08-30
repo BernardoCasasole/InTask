@@ -143,7 +143,7 @@ public class AdsTimeFragment extends Fragment {
                     status.setText(("Disponibile"));
                     status.setTextColor(Color.rgb(0, 153, 0));
                 }
-                distance.setText(time.getDistance());
+                distance.setText(time.getDistance().concat(" km"));
                 description.setText(time.getDescription());
                 type.setText(time.getType());
 
@@ -202,7 +202,7 @@ public class AdsTimeFragment extends Fragment {
 
 
 
-                if(!time.getPending() && !time.getAchieved() && (firebaseUser!= null && time.getAuthor().equals(firebaseUser.getUid()))){
+                if(time.getPending() || time.getAchieved() && (firebaseUser!= null && time.getAuthor().equals(firebaseUser.getUid()))){
                     btn_contact.setVisibility(View.GONE);
                 }
                 else{

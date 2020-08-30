@@ -52,12 +52,18 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        String title = "";
         bundle = new Bundle();
         bundle.putString("type", "time");
         bundle.putString("myAds", myAds);
         Fragment fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
-        viewPageAdapter.addFragments(fragment,"I nostri professionisti");
+        if(Boolean.parseBoolean(myAds))
+            title = "Le tue disponibilità";
+        else
+            title = "I nostri professionisti";
+
+        viewPageAdapter.addFragments(fragment,title);
 
 
         bundle = new Bundle();
@@ -65,7 +71,12 @@ public class HomeFragment extends Fragment {
         bundle.putString("myAds", myAds);
         fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
-        viewPageAdapter.addFragments(fragment,"Le Offerte Di Lavoro");
+        if(Boolean.parseBoolean(myAds))
+            title = "Le tue offerte di lavoro";
+        else
+            title = "Le offerte di lavoro";
+
+        viewPageAdapter.addFragments(fragment,title);
 
         viewPager.setAdapter(viewPageAdapter);
         tabLayout.setupWithViewPager(viewPager);

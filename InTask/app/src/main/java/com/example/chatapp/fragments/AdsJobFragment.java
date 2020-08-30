@@ -201,7 +201,7 @@ public class AdsJobFragment extends Fragment {
 
 
 
-                if(!job.getPending() && !job.getAchieved() && (firebaseUser!= null && job.getAuthor().equals(firebaseUser.getUid()))){
+                if(job.getPending() || job.getAchieved() || (firebaseUser!= null && job.getAuthor().equals(firebaseUser.getUid()))){
                     btn_contact.setVisibility(View.GONE);
                 }
                 else{
