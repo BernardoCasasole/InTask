@@ -262,6 +262,7 @@ public class MessagingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mChat.clear();
+                mChat.add(new Chat());
                 for(DataSnapshot snapshot: dataSnapshot.getChildren() ){
 
                     Chat chat = snapshot.getValue(Chat.class);
@@ -270,9 +271,7 @@ public class MessagingActivity extends AppCompatActivity {
                         mChat.add(chat);
                     }
                 }
-                if(mChat.isEmpty())
-                        recyclerView.setAdapter(new FirstMessageAdapter(recyclerView.getContext()));
-                else{
+
                 messageAdapter = new MessageAdapter(getApplicationContext(),mChat);
                 recyclerView.setAdapter(messageAdapter);
                 recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
@@ -283,7 +282,7 @@ public class MessagingActivity extends AppCompatActivity {
                     }
                 });
             }
-            }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -312,7 +311,7 @@ public class MessagingActivity extends AppCompatActivity {
                         public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                             if(response.code()==200){
                                 if(response.body().success!=1){
-                                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                    Log.wtf("Errore","notifica");
                                 }
 
                             }
