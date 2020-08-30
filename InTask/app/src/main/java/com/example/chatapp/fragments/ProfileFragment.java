@@ -263,10 +263,10 @@ public class ProfileFragment extends Fragment {
                     }
                 });
                 if (!user.getVerified()) {
-                    if (!myProfile) {
+
                         verifiedUser.setText("Utente non verificato");
                         verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
-                    } else {
+                     if(myProfile) {
                         verifiedLayout.setVisibility(View.GONE);
                         btn_uploadDocument.setVisibility(View.VISIBLE);
                         uploadDocument1.setVisibility(View.VISIBLE);
