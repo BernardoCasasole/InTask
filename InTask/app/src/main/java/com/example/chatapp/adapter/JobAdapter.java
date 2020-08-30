@@ -87,7 +87,10 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.time.setText(job.getTime());
         holder.reward.setText(String.valueOf(job.getReward()));
         holder.location.setClickable(true);
-        getDistance(job.getLocation(), holder.location);
+        if(FirebaseAuth.getInstance().getCurrentUser()!= null)
+            getDistance(job.getLocation(), holder.location);
+        else
+            holder.location.setText(job.getLocation());
         holder.location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
