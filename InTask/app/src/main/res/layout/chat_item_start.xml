@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:background="@android:color/transparent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:background="@android:color/transparent">
+        <EditText
+            android:layout_gravity="center"
+            style="@style/InTaskTheme_chat"
+            android:textColor="#FFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="300dp"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:padding="5dp"
+            android:text="Benvenuto nella chat di inTask!"
+            android:backgroundTint="@android:color/transparent">
+        </EditText>
+        <EditText
+            android:layout_gravity="center"
+            style="@style/InTaskTheme_small"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="300dp"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:padding="5dp"
+            android:text="Metti d'accordo con gli utenti, pianifica data e ora, e poi ufficializza il vostro appuntamento cliccando sul bottone 'organizza'. Invia la richiesta o attendi che ti venga inviata, accettala e il gioco è fatto!\n Potrai valutare la tua esperienza e l'utente dopo la data concordata attraverso la tua pagina profilo tuente"
+            android:gravity="left"
+            android:backgroundTint="@android:color/transparent">
+        </EditText>
+
+    </LinearLayout>
+
+</RelativeLayout>
