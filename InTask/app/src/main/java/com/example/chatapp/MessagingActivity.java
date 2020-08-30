@@ -13,18 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.chatapp.adapter.FirstMessageAdapter;
-import com.example.chatapp.adapter.JobAdapter;
 import com.example.chatapp.adapter.MessageAdapter;
 import com.example.chatapp.fragments.APIService;
 import com.example.chatapp.model.Chat;
@@ -34,7 +29,6 @@ import com.example.chatapp.notifications.Data;
 import com.example.chatapp.notifications.MyResponse;
 import com.example.chatapp.notifications.Notification;
 import com.example.chatapp.notifications.Sender;
-import com.example.chatapp.start.RegisterActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
