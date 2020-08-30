@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -78,6 +79,14 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.time.setText(job.getTime());
         holder.reward.setText(String.valueOf(job.getReward()));
         holder.location.setText(job.getLocation());
+        holder.location.setClickable(true);
+        holder.location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String map = "http://maps.google.co.in/maps?q=" + job.getLocation();
+                mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(map)));
+            }
+        });
         FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -196,6 +205,10 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 storageReference.child("job_images/"+job.getKey()+".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Activity activity = (Activity)mContext;
+                        if (activity.isFinishing()) {
+                            return;
+                        }
                         Glide.with(mContext).load(finalLocalFile).into(holder.image);
                     }
                 }).addOnFailureListener(new OnFailureListener() {

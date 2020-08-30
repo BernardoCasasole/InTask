@@ -38,6 +38,7 @@ import com.example.chatapp.adapter.TimeAdapter;
 import com.example.chatapp.model.Job;
 import com.example.chatapp.model.Time;
 import com.example.chatapp.model.User;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -224,6 +225,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                 BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_nav_view);
                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);

@@ -101,6 +101,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                         storageReference.child("profile_images/"+user.getId()+".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                Activity activity = (Activity)mContext;
+                                if (activity.isFinishing()) {
+                                    return;
+                                }
                                 Glide.with(mContext).load(finalLocalFile).into(holder.image);
                             }
                         }).addOnFailureListener(new OnFailureListener() {

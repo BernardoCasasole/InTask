@@ -1,5 +1,6 @@
 package com.example.chatapp.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -191,6 +192,10 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 storageReference.child("time_images/"+time.getKey()+".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Activity activity = (Activity)mContext;
+                        if (activity.isFinishing()) {
+                            return;
+                        }
                         Glide.with(mContext).load(finalLocalFile).into(holder.image);
                     }
                 }).addOnFailureListener(new OnFailureListener() {

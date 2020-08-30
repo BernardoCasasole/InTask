@@ -70,11 +70,12 @@
                 />
 
             <com.facebook.login.widget.LoginButton
+                xmlns:facebook="http://schemas.android.com/apk/res-auto"
+                facebook:com_facebook_login_text="Accedi"
                 android:id="@+id/fb_button"
                 android:layout_width="120dp"
                 android:layout_height="80dp"
                 android:drawableStart="@drawable/ic_fb_logo"
-                android:text="@string/facebook_sign_in"
                 android:textSize="14sp">
 
             </com.facebook.login.widget.LoginButton>
