@@ -73,7 +73,7 @@
     <string name="che_lavoro_vuoi_proporre">Che lavoro vuoi proporre?</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
-    <string name="quando">Quando?</string>
+    <string name="quando">Quando? (indica data e ora solo se necessarie)</string>
     <string name="facebook_sign_in">Sign In</string>
     <string name="inserisci_posizione_attuale">inserisci posizione attuale</string>
     <string name="posizione">Posizione</string>

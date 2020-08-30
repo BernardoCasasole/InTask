@@ -246,7 +246,7 @@
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_access_time_24"
             android:fontFamily="sans-serif-condensed-light"
-            android:text="Quando?"
+            android:text="@string/quando"
             android:textColor="#FF014F59"
             android:textSize="16sp" />
         <LinearLayout

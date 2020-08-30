@@ -93,6 +93,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp">
             </Space>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="#014F59" />
             <TextView
                 android:id="@+id/description_job_pubb"
                 style="@style/InTaskTheme_small"
@@ -102,10 +108,12 @@
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
                 android:padding="8dp"
                 />
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#014F59" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,10 +139,13 @@
                 android:drawableEnd="@drawable/ic_baseline_local_florist_24"
                 />
             </LinearLayout>
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#014F59" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,10 +170,12 @@
                 android:padding="8dp"
                 />
             </LinearLayout>
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#014F59" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -188,10 +201,12 @@
                     android:padding="8dp"
                     />
             </LinearLayout>
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#014F59" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -216,10 +231,12 @@
                 android:padding="8dp"
                 />
             </LinearLayout>
-            <Space
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
-            </Space>
+                android:layout_height="0.1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#014F59" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -237,8 +254,14 @@
                     android:text="Accetta solo se verificato:"
                     android:textStyle="italic" />
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#014F59" />
             <Button
+                android:layout_marginBottom="20dp"
                 android:id="@+id/button_contact"
                 style="@style/InTaskTheme_ordinary"
                 android:layout_width="wrap_content"
