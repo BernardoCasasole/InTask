@@ -138,7 +138,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public int getItemViewType(int position) {
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        Log.wtf("DADA",String.valueOf(position));
         if(position == 0)
             return MSG_START_TYPE;
         else if (mChat.get(position).getSender().equals(firebaseUser.getUid()))
