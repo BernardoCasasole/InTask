@@ -162,6 +162,7 @@ public class ProfileFragment extends Fragment {
         addressUser.setVisibility(View.GONE);
         rateUser.setVisibility(View.GONE);
         getPosition = rootView.findViewById(R.id.position_button);
+        getPosition.setVisibility(View.GONE);
         getPosition.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -174,12 +175,7 @@ public class ProfileFragment extends Fragment {
                 try {
                     addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-                    databaseReference.child("location").setValue(address);
-                    location.setTypeface(null, Typeface.ITALIC);
-                    SpannableString content = new SpannableString(address);
-                    content.setSpan(new UnderlineSpan(), 0, address.length(), 0);
-                    location.setText(content);
-                    Toast.makeText(getContext(),"Indirizzo modificato!",Toast.LENGTH_SHORT).show();
+                    addressUser.setText(address);
                 } catch (IOException | IndexOutOfBoundsException e) {
                     Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
                 }
@@ -205,11 +201,15 @@ public class ProfileFragment extends Fragment {
         btn_updateAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getPosition.setVisibility(View.VISIBLE);
                 addressUser.setVisibility(View.VISIBLE);
+                btn_updateAddress.setText("Salva modifiche");
                 location.setVisibility(View.GONE);
                 btn_updateAddress.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        getPosition.setVisibility(View.GONE);
+                        btn_updateAddress.setText("Modifica indirizzo");
                         if(addressUser.getText().toString().equals("")){
                             Toast.makeText(getContext(),"Riempi il campo!",Toast.LENGTH_SHORT).show();
                         }else{

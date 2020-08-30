@@ -87,7 +87,6 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.time.setText(job.getTime());
         holder.reward.setText(String.valueOf(job.getReward()));
         holder.location.setClickable(true);
-        holder.location.setTypeface(null, Typeface.ITALIC);
         getDistance(job.getLocation(), holder.location);
         holder.location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -355,7 +354,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                     longitude = getLong(user.getLocation());
                     Location.distanceBetween(latitude, longitude, otherLat, otherLong, result);
                     result[0]/=1000;
-                    String address = String.valueOf((double)Math.round(result[0] * 100d) / 100d).concat(" km");
+                    String address = String.valueOf((double)Math.round(result[0] * 10d) / 10d).concat(" km");
                     SpannableString content = new SpannableString(address);
                     content.setSpan(new UnderlineSpan(), 0, address.length(), 0);
                     location.setText(content);
