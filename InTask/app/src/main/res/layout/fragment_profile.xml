@@ -90,13 +90,16 @@
 
 
                         </TextView>
-                            <Button
+
+                        </LinearLayout>
+                        <Button
                             android:id="@+id/rate_user"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Button" />
-                        </LinearLayout>
-                        <!--in code: mRatingBar.setRating(int)-->
+                            android:text="Valuta utente"
+                            style="@style/InTaskTheme_ordinary"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/custom_button"/>
                     </LinearLayout>
 
                 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/edit_text_background"
-    android:backgroundTint="#1B004361"
+    android:backgroundTint="#0C004361"
     android:layout_margin="5dp">
 
     <LinearLayout
@@ -180,10 +180,10 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/edit_text_background"
-                    android:src="@drawable/ic_baseline_local_florist_big" />
+                    android:src="@drawable/ic_baseline_local_florist_24" />
             </LinearLayout>
             <LinearLayout
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="43dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
