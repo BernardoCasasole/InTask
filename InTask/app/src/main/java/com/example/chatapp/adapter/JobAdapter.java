@@ -337,7 +337,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
         firebaseUser =FirebaseAuth.getInstance().getCurrentUser();
 
-        FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
@@ -376,9 +376,9 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         geocoder = new Geocoder(mContext, Locale.getDefault());
         try {
             List<Address> geoResults = geocoder.getFromLocationName(address, 1);
-            while (geoResults.size()==0) {
+           /* while (geoResults.size()==0) {
                 geoResults = geocoder.getFromLocationName(address, 1);
-            }
+            }*/
             if (geoResults.size()>0) {
                 Address addr = geoResults.get(0);
                 return  addr.getLatitude();
@@ -395,9 +395,9 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         geocoder = new Geocoder(mContext, Locale.getDefault());
         try {
             List<Address> geoResults = geocoder.getFromLocationName(address, 1);
-            while (geoResults.size()==0) {
+           /* while (geoResults.size()==0) {
                 geoResults = geocoder.getFromLocationName(address, 1);
-            }
+            }*/
             if (geoResults.size()>0) {
                 Address addr = geoResults.get(0);
                 return  addr.getLongitude();

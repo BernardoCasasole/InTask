@@ -503,9 +503,9 @@ public class FilterFragment extends Fragment {
         geocoder = new Geocoder(getContext(), Locale.getDefault());
         try {
             List<Address> geoResults = geocoder.getFromLocationName(address, 1);
-            while (geoResults.size()==0) {
+           /* while (geoResults.size()==0) {
                 geoResults = geocoder.getFromLocationName(address, 1);
-            }
+            }*/
             if (geoResults.size()>0) {
                 Address addr = geoResults.get(0);
                 return  addr.getLatitude();
@@ -522,9 +522,9 @@ public class FilterFragment extends Fragment {
         geocoder = new Geocoder(getContext(), Locale.getDefault());
         try {
             List<Address> geoResults = geocoder.getFromLocationName(address, 1);
-            while (geoResults.size()==0) {
+           /* while (geoResults.size()==0) {
                 geoResults = geocoder.getFromLocationName(address, 1);
-            }
+            }*/
             if (geoResults.size()>0) {
                 Address addr = geoResults.get(0);
                 return  addr.getLongitude();
