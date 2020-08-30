@@ -16,7 +16,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.chatapp.MessagingActivity;
 import com.example.chatapp.R;
-import com.example.chatapp.adapter.users.RequestsAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

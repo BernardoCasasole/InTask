@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.chatapp.FriendActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.fragments.ads.JobSvFormFragment;
 import com.google.android.material.tabs.TabLayout;

@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.example.chatapp.R;
 import com.example.chatapp.adapter.JobAdapter;
 import com.example.chatapp.adapter.TimeAdapter;
-import com.example.chatapp.adapter.users.UserAdapter;
 import com.example.chatapp.model.Job;
 import com.example.chatapp.model.Time;
 import com.example.chatapp.model.User;
