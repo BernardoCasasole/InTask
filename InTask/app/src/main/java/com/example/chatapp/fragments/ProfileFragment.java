@@ -80,7 +80,7 @@ public class ProfileFragment extends Fragment {
     TextView name,surname, verifiedUser,titleJob,titleTime, numOfRatings, location;
     Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition, rateUser;
     RatingBar ratingBar;
-    LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout, verifiedLayout;
+    LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout, verifiedLayout, updateLayout;
     RelativeLayout uploadDocument2;
     RecyclerView recyclerViewJob, recyclerViewTime;
     EditText addressUser;
@@ -188,6 +188,7 @@ public class ProfileFragment extends Fragment {
         btn_updateDocument = rootView.findViewById(R.id.user_document_update);
         btn_logout = rootView.findViewById(R.id.logout_id);
         btn_updateAddress = rootView.findViewById(R.id.user_address_update_button);
+        updateLayout = rootView.findViewById(R.id.user_document_update_layout);
         btn_updateDocument.setVisibility(View.GONE);
         if(!myProfile){
             uploadDocument1.setVisibility(View.GONE);
@@ -195,6 +196,7 @@ public class ProfileFragment extends Fragment {
             uploadDocument2.setVisibility(View.GONE);
             addressLayout.setVisibility((View.GONE));
             btn_logout.setVisibility(View.GONE);
+            updateLayout.setVisibility(View.GONE);
 
         }
 
@@ -203,13 +205,13 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 getPosition.setVisibility(View.VISIBLE);
                 addressUser.setVisibility(View.VISIBLE);
-                btn_updateAddress.setText("Salva modifiche");
+                btn_updateAddress.setText("salva modifiche");
                 location.setVisibility(View.GONE);
                 btn_updateAddress.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         getPosition.setVisibility(View.GONE);
-                        btn_updateAddress.setText("Modifica indirizzo");
+                        btn_updateAddress.setText("modifica indirizzo");
                         if(addressUser.getText().toString().equals("")){
                             Toast.makeText(getContext(),"Riempi il campo!",Toast.LENGTH_SHORT).show();
                         }else{
@@ -290,6 +292,7 @@ public class ProfileFragment extends Fragment {
                     verifiedUser.setText("Utente verificato");
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
                     if (myProfile) {
+                        updateLayout.setVisibility(View.VISIBLE);
                         btn_uploadDocument.setVisibility(View.GONE);
                         btn_updateDocument.setVisibility(View.VISIBLE);
                         btn_updateDocument.setOnClickListener(new View.OnClickListener() {
