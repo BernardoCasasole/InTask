@@ -33,6 +33,7 @@ import com.example.chatapp.notifications.Data;
 import com.example.chatapp.notifications.MyResponse;
 import com.example.chatapp.notifications.Notification;
 import com.example.chatapp.notifications.Sender;
+import com.example.chatapp.start.RegisterActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -79,6 +80,15 @@ public class MessagingActivity extends AppCompatActivity {
     List<Chat> mChat;
 
     RecyclerView recyclerView;
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(MessagingActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
 
 
     @Override
@@ -317,4 +327,6 @@ public class MessagingActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

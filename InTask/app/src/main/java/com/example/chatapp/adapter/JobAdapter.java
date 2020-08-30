@@ -11,6 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -53,6 +56,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
@@ -86,6 +90,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.location.setTypeface(null, Typeface.ITALIC);
         SpannableString content = new SpannableString(job.getLocation());
         content.setSpan(new UnderlineSpan(), 0, job.getLocation().length(), 0);
+        getDistance(job.getLocation(), holder.location);
         holder.location.setText(content);
         holder.location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -327,4 +332,82 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
             }
         }
+
+    private void getDistance(final String otherAddress, final TextView location){
+
+
+        FirebaseUser firebaseUser;
+
+        firebaseUser =FirebaseAuth.getInstance().getCurrentUser();
+
+        FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if(user.getLocation().equals("")) {
+                    SpannableString content = new SpannableString(otherAddress);
+                    content.setSpan(new UnderlineSpan(), 0, otherAddress.length(), 0);
+                    location.setText(content);
+                }else {
+                    double latitude, otherLat;
+                    double longitude, otherLong;
+                    float result[] = new float[3];
+                    otherLat = getLat(otherAddress);
+                    otherLong = getLong(otherAddress);
+                    latitude = getLat(user.getLocation());
+                    longitude = getLong(user.getLocation());
+                    Location.distanceBetween(latitude, longitude, otherLat, otherLong, result);
+                    result[0]/=1000;
+                    String address = String.valueOf((double)Math.round(result[0] * 100d) / 100d).concat(" km");
+                    SpannableString content = new SpannableString(address);
+                    content.setSpan(new UnderlineSpan(), 0, address.length(), 0);
+                    location.setText(content);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private double getLat(String address){
+
+        Geocoder geocoder;
+        geocoder = new Geocoder(mContext, Locale.getDefault());
+        try {
+            List<Address> geoResults = geocoder.getFromLocationName(address, 1);
+            while (geoResults.size()==0) {
+                geoResults = geocoder.getFromLocationName(address, 1);
+            }
+            if (geoResults.size()>0) {
+                Address addr = geoResults.get(0);
+                return  addr.getLatitude();
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return 0;
+    }
+
+    private double getLong(String address){
+
+        Geocoder geocoder;
+        geocoder = new Geocoder(mContext, Locale.getDefault());
+        try {
+            List<Address> geoResults = geocoder.getFromLocationName(address, 1);
+            while (geoResults.size()==0) {
+                geoResults = geocoder.getFromLocationName(address, 1);
+            }
+            if (geoResults.size()>0) {
+                Address addr = geoResults.get(0);
+                return  addr.getLongitude();
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return 0;
+    }
 }
