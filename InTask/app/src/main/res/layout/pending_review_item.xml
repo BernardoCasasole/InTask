@@ -18,39 +18,6 @@
             style="@style/InTaskTheme_ordinary"
             android:padding="10dp">
         </TextView>
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ricordati_di_tenere_in_considerazione_se"
-            style="@style/InTaskTheme_ordinary"
-            android:padding="10dp"
-            >
-        </TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/u2022_l_utente_stato_di_parola"
-            android:paddingLeft="10dp"
-            style="@style/InTaskTheme_small"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/u2022_l_utente_stato_preciso_e_puntuale"
-            android:paddingLeft="10dp"
-            style="@style/InTaskTheme_small"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/u2022_l_utente_si_dimostrato_affidabile"
-            android:paddingLeft="10dp"
-            style="@style/InTaskTheme_small"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/u2022_consiglieresti_ad_un_amico_di_collaborare_con_questo_utente"
-            android:paddingLeft="10dp"
-            style="@style/InTaskTheme_small"/>
 
         <RatingBar
             android:id="@+id/rating_user"
