@@ -251,7 +251,6 @@ public class ProfileFragment extends Fragment {
                 surname.setText(user.getSurname());
                 ratingBar.setRating(user.getAverage_ratings());
                 numOfRatings.setText(String.valueOf(user.getRatings()));
-                location.setTypeface(null, Typeface.ITALIC);
                 SpannableString content = new SpannableString(user.getLocation());
                 content.setSpan(new UnderlineSpan(), 0, user.getLocation().length(), 0);
                 location.setText(content);
