@@ -1,6 +1,8 @@
 package com.example.chatapp.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +50,7 @@ public class AdsTimeFragment extends Fragment {
     String adsID;
 
     ImageView image;
-    TextView title, author, date, hour, description, type, location, distance, verified;
+    TextView title, author, date, hour, description, type, location, distance, verified, status;
     Button btn_contact;
 
     FirebaseUser firebaseUser;
@@ -78,6 +82,7 @@ public class AdsTimeFragment extends Fragment {
         distance = rootView.findViewById(R.id.hours_number_time_pubb);
         verified = rootView.findViewById(R.id.verified);
         btn_contact = rootView.findViewById(R.id.button_contact);
+        status = rootView.findViewById(R.id.status);
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -117,8 +122,11 @@ public class AdsTimeFragment extends Fragment {
                 title.setText(time.getTitle());
                 date.setText(time.getDay());
                 hour.setText(time.getTime());
-                location.setText(time.getLocation());
                 location.setClickable(true);
+                location.setTypeface(null, Typeface.ITALIC);
+                SpannableString content = new SpannableString(time.getLocation());
+                content.setSpan(new UnderlineSpan(), 0, time.getLocation().length(), 0);
+                location.setText(content);
                 location.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -126,6 +134,16 @@ public class AdsTimeFragment extends Fragment {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(map)));
                     }
                 });
+                if(time.getAchieved()) {
+                    status.setText("Archiviato");
+                    status.setTextColor(Color.RED);
+                }else if(time.getPending())
+                    status.setText(("In trattativa"));
+
+                else {
+                    status.setText(("Disponibile"));
+                    status.setTextColor(Color.rgb(0, 153, 0));
+                }
                 distance.setText(time.getDistance());
                 description.setText(time.getDescription());
                 type.setText(time.getType());
@@ -185,7 +203,7 @@ public class AdsTimeFragment extends Fragment {
 
 
 
-                if(firebaseUser!= null && time.getAuthor().equals(firebaseUser.getUid())){
+                if(!time.getPending() && !time.getAchieved() && (firebaseUser!= null && time.getAuthor().equals(firebaseUser.getUid()))){
                     btn_contact.setVisibility(View.GONE);
                 }
                 else{

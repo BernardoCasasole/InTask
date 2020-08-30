@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     Fragment homeFragment;
     BottomNavigationView bottomNavigationView;
-    boolean close = false;
+    boolean close = true;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -160,10 +160,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             close =true;
             bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
-            Bundle bundle = new Bundle();
-            bundle.putString("myAds", "false");
-            homeFragment = new HomeFragment();
-            homeFragment.setArguments(bundle);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
         }

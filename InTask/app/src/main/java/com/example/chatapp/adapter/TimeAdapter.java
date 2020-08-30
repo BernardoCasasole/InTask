@@ -3,6 +3,7 @@ package com.example.chatapp.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,10 +70,20 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
         final Time time = mAds.get(position);
 
-
+        holder.button.setVisibility(View.GONE);
         holder.title.setText(time.getTitle());
         holder.day.setText(time.getDay());
         holder.time.setText(time.getTime());
+        if(time.getAchieved()) {
+            holder.status.setText("Archiviato");
+            holder.status.setTextColor(Color.RED);
+        }else if(time.getPending())
+            holder.status.setText(("In trattativa"));
+
+        else {
+            holder.status.setText(("Disponibile"));
+            holder.status.setTextColor(Color.rgb(0, 153, 0));
+        }
         FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -86,8 +97,9 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
             }
         });
-
-        if(myAds) {
+    if(!time.getAchieved() && !time.getPending()) {
+        holder.button.setVisibility(View.VISIBLE);
+        if (myAds) {
             holder.button.setText("Elimina");
             holder.button.setOnClickListener(new View.OnClickListener() {
 
@@ -95,13 +107,13 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 public void onClick(View view) {
 
                     FirebaseDatabase.getInstance().getReference("Time").child(time.getKey()).removeValue();
-                    if(time.getSetted_image())
-                    FirebaseStorage.getInstance().getReference().child("/time_images/"+time.getKey()+".jpg").delete();
+                    if (time.getSetted_image())
+                        FirebaseStorage.getInstance().getReference().child("/time_images/" + time.getKey() + ".jpg").delete();
 
 
                 }
             });
-        }else{
+        } else {
             holder.button.setText("Contatta");
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,6 +152,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 }
             });
         }
+    }
         if(!time.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);
 
@@ -266,7 +279,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
             public ImageView image,type;
             public Button button;
-            public TextView author, title, day, time, numOFReviews;
+            public TextView author, title, day, time, numOFReviews, status;
             public LinearLayout linearLayoutAds, verified;
             public RatingBar ratingBar;
 
@@ -282,6 +295,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 linearLayoutAds = itemView.findViewById(R.id.layout_ads);
                 ratingBar = itemView.findViewById(R.id.rating_user);
                 numOFReviews = itemView.findViewById(R.id.number_of_reviews);
+                status = itemView.findViewById(R.id.status);
 
                 image = itemView.findViewById(R.id.job_image);
                 type = itemView.findViewById(R.id.job_symbol);

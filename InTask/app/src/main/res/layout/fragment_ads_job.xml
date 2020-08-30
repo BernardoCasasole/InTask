@@ -163,6 +163,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp">
             </Space>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    style="@style/InTaskTheme_ordinary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Stato annuncio:"
+                    android:padding="8dp"
+                    android:textStyle="italic"
+                    />
+                <TextView
+                    android:id="@+id/status"
+                    style="@style/InTaskTheme_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="8dp"
+                    />
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+            </Space>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

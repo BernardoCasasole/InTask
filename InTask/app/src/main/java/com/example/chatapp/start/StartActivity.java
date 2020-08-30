@@ -176,6 +176,10 @@ public class StartActivity extends AppCompatActivity {
     private void handleFacebookAccessToken(AccessToken token) {
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        Intent intent = new Intent(StartActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -297,6 +301,7 @@ public class StartActivity extends AppCompatActivity {
 
             }
         });
+
 }
 }
 

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -18,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -172,7 +175,10 @@ public class ProfileFragment extends Fragment {
                     addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
                     databaseReference.child("location").setValue(address);
-                    location.setText(address);
+                    location.setTypeface(null, Typeface.ITALIC);
+                    SpannableString content = new SpannableString(address);
+                    content.setSpan(new UnderlineSpan(), 0, address.length(), 0);
+                    location.setText(content);
                     Toast.makeText(getContext(),"Indirizzo modificato!",Toast.LENGTH_SHORT).show();
                 } catch (IOException | IndexOutOfBoundsException e) {
                     Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
@@ -243,7 +249,17 @@ public class ProfileFragment extends Fragment {
                 surname.setText(user.getSurname());
                 ratingBar.setRating(user.getAverage_ratings());
                 numOfRatings.setText(String.valueOf(user.getRatings()));
-                location.setText(user.getLocation());
+                location.setTypeface(null, Typeface.ITALIC);
+                SpannableString content = new SpannableString(user.getLocation());
+                content.setSpan(new UnderlineSpan(), 0, user.getLocation().length(), 0);
+                location.setText(content);
+                location.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String map = "http://maps.google.co.in/maps?q=" + user.getLocation();
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(map)));
+                    }
+                });
                 if (!user.getVerified()) {
                     if (!myProfile) {
                         verifiedUser.setText("Utente non verificato");

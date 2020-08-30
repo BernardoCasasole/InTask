@@ -183,6 +183,23 @@
                                 android:text="verificato" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="0dp"
+                        android:backgroundTint="@android:color/transparent"
+                        >
+
+                        <TextView
+                            android:id="@+id/status"
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="10dp"
+                            />
+
+                    </androidx.cardview.widget.CardView>
                 </GridLayout>
 
 

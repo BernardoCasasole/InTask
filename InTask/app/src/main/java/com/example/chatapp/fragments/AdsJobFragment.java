@@ -1,6 +1,8 @@
 package com.example.chatapp.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +50,7 @@ public class AdsJobFragment extends Fragment {
     String adsID;
 
     ImageView image;
-    TextView title, author, when, reward, description, type, location, duration, verified;
+    TextView title, author, when, reward, description, type, location, duration, verified, status;
     Button btn_contact;
 
     FirebaseUser firebaseUser;
@@ -78,6 +82,7 @@ public class AdsJobFragment extends Fragment {
         duration = rootView.findViewById(R.id.hours_number_job_pubb);
         verified = rootView.findViewById(R.id.verified);
         btn_contact = rootView.findViewById(R.id.button_contact);
+        status = rootView.findViewById(R.id.status);
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -117,8 +122,10 @@ public class AdsJobFragment extends Fragment {
                 title.setText(job.getTitle());
                 when.setText(job.getDay().concat(", ").concat(job.getTime()));
                 reward.setText(String.valueOf(job.getReward()));
-                location.setText(job.getLocation());
                 location.setClickable(true);
+                location.setTypeface(null, Typeface.ITALIC);
+                SpannableString content = new SpannableString(job.getLocation());
+                content.setSpan(new UnderlineSpan(), 0, job.getLocation().length(), 0);
                 location.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -129,6 +136,15 @@ public class AdsJobFragment extends Fragment {
                 duration.setText(job.getDuration());
                 description.setText(job.getDescription());
                 type.setText(job.getType());
+                if(job.getAchieved()) {
+                    status.setText("Archiviato");
+                    status.setTextColor(Color.RED);
+                }else if(job.getPending())
+                    status.setText(("In trattativa"));
+                else {
+                    status.setText(("Disponibile"));
+                    status.setTextColor(Color.rgb(0, 153, 0));
+                }
 
                 switch (job.getType()) {
                     case "Giardinaggio":
@@ -185,7 +201,7 @@ public class AdsJobFragment extends Fragment {
 
 
 
-                if(firebaseUser!= null && job.getAuthor().equals(firebaseUser.getUid())){
+                if(!job.getPending() && !job.getAchieved() && (firebaseUser!= null && job.getAuthor().equals(firebaseUser.getUid()))){
                     btn_contact.setVisibility(View.GONE);
                 }
                 else{

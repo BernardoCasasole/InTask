@@ -9,8 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,13 +77,16 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
         final Job job = mAds.get(position);
 
-
+        holder.button.setVisibility(View.GONE);
         holder.title.setText(job.getTitle());
         holder.day.setText(job.getDay());
         holder.time.setText(job.getTime());
         holder.reward.setText(String.valueOf(job.getReward()));
-        holder.location.setText(job.getLocation());
         holder.location.setClickable(true);
+        holder.location.setTypeface(null, Typeface.ITALIC);
+        SpannableString content = new SpannableString(job.getLocation());
+        content.setSpan(new UnderlineSpan(), 0, job.getLocation().length(), 0);
+        holder.location.setText(content);
         holder.location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +94,16 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(map)));
             }
         });
+        if(job.getAchieved()) {
+            holder.status.setText("Archiviato");
+            holder.status.setTextColor(Color.RED);
+        }else if(job.getPending())
+            holder.status.setText(("In trattativa"));
+
+        else {
+            holder.status.setText(("Disponibile"));
+            holder.status.setTextColor(Color.rgb(0, 153, 0));
+        }
         FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,59 +116,62 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
             }
         });
-        if(myAds) {
-            holder.button.setText("Elimina");
-            holder.button.setOnClickListener(new View.OnClickListener() {
+        if(!job.getAchieved() && !job.getPending()) {
+            holder.button.setVisibility(View.VISIBLE);
+            if (myAds) {
+                holder.button.setText("Elimina");
+                holder.button.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View view) {
+                    @Override
+                    public void onClick(View view) {
 
-                    FirebaseDatabase.getInstance().getReference("Job").child(job.getKey()).removeValue();
-                    if(job.getSetted_image())
-                        FirebaseStorage.getInstance().getReference().child("/time_images/"+job.getKey()+".jpg").delete();
+                        FirebaseDatabase.getInstance().getReference("Job").child(job.getKey()).removeValue();
+                        if (job.getSetted_image())
+                            FirebaseStorage.getInstance().getReference().child("/time_images/" + job.getKey() + ".jpg").delete();
 
 
-                }
-            });
-        }else{
+                    }
+                });
+            } else {
                 holder.button.setText("Contatta");
-            holder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (FirebaseAuth.getInstance().getCurrentUser() == null)
-                        mContext.startActivity(new Intent(mContext, StartActivity.class));
-                    else{
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance()
-                            .getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (!job.getVerified() || Boolean.parseBoolean(snapshot.child("verified").getValue().toString())) {
-                                Intent intent = new Intent(mContext, MessagingActivity.class);
-                                Bundle b = new Bundle();
-                                b.putString("sent", job.getAuthor());
-                                intent.putExtras(b);
-                                mContext.startActivity(intent);
-                            } else {
-                                Toast.makeText(mContext, "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
-                                Bundle bundle = new Bundle();
-                                bundle.putString("id", snapshot.child("id").getValue().toString());
-                                Fragment selectedFragment = new ProfileFragment();
-                                selectedFragment.setArguments(bundle);
-                                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                holder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (FirebaseAuth.getInstance().getCurrentUser() == null)
+                            mContext.startActivity(new Intent(mContext, StartActivity.class));
+                        else {
+                            FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance()
+                                    .getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (!job.getVerified() || Boolean.parseBoolean(snapshot.child("verified").getValue().toString())) {
+                                        Intent intent = new Intent(mContext, MessagingActivity.class);
+                                        Bundle b = new Bundle();
+                                        b.putString("sent", job.getAuthor());
+                                        intent.putExtras(b);
+                                        mContext.startActivity(intent);
+                                    } else {
+                                        Toast.makeText(mContext, "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("id", snapshot.child("id").getValue().toString());
+                                        Fragment selectedFragment = new ProfileFragment();
+                                        selectedFragment.setArguments(bundle);
+                                        ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
-                            }
+                                    }
 
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-                }
-            });
+                    }
+                });
             }
+        }
         if(!job.getVerified())
             holder.verified.setVisibility(View.INVISIBLE);
 
@@ -278,7 +298,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         public class ViewHolder extends RecyclerView.ViewHolder{
 
             public ImageView image,type;
-            public TextView author, title, day, time, reward, location, numOFReviews;
+            public TextView author, title, day, time, reward, location, numOFReviews, status;
             public Button button;
             public RatingBar ratingBar;
             public LinearLayout linearLayoutAds, verified;
@@ -297,6 +317,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                 linearLayoutAds = itemView.findViewById(R.id.layout_ads);
                 ratingBar = itemView.findViewById(R.id.rating_user);
                 numOFReviews = itemView.findViewById(R.id.number_of_reviews);
+                status = itemView.findViewById(R.id.status);
 
 
                 image = itemView.findViewById(R.id.job_image);
