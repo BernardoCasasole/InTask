@@ -169,6 +169,7 @@ public class PopupActivity extends AppCompatActivity {
                                         map.put("type", attributes[0]);
                                         map.put("ads", attributes[1]);
                                         map.put("key",reference.getKey());
+                                        map.put("title",radioButton.getText().toString());
                                         map.put("date",day.getText().toString());
 
                                         reference.setValue(map);

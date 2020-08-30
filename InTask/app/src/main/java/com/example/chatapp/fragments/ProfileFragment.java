@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -37,17 +36,16 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.chatapp.R;
 import com.example.chatapp.adapter.JobAdapter;
+import com.example.chatapp.adapter.RateableAdapter;
 import com.example.chatapp.adapter.TimeAdapter;
 import com.example.chatapp.model.Job;
+import com.example.chatapp.model.Rateable;
 import com.example.chatapp.model.Time;
 import com.example.chatapp.model.User;
 import com.facebook.login.LoginManager;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -78,11 +76,11 @@ public class ProfileFragment extends Fragment {
     View rootView;
     ImageView imageView,verifiedUSerImage, documentImage;
     TextView name,surname, verifiedUser,titleJob,titleTime, numOfRatings, location;
-    Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition, rateUser;
+    Button btn_logout,btn_uploadDocument, btn_updateAddress, btn_updateDocument, getPosition;
     RatingBar ratingBar;
-    LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout, verifiedLayout, updateLayout;
+    LinearLayout uploadDocument1, loginLayout,addressLayout,jobLayout,timeLayout, verifiedLayout, updateLayout, layoutRates;
     RelativeLayout uploadDocument2;
-    RecyclerView recyclerViewJob, recyclerViewTime;
+    RecyclerView recyclerViewJob, recyclerViewTime, recyclerViewRates;
     EditText addressUser;
     String userID;
     boolean myProfile;
@@ -143,7 +141,6 @@ public class ProfileFragment extends Fragment {
         name = rootView.findViewById(R.id.name_user);
         surname = rootView.findViewById(R.id.surname_user);
         ratingBar = rootView.findViewById(R.id.rating_user);
-        rateUser = rootView.findViewById(R.id.rate_user);
         uploadDocument1 = rootView.findViewById(R.id.layout_document_1);
         uploadDocument2 = rootView.findViewById(R.id.layout_document_2);
         verifiedUser = rootView.findViewById(R.id.verified_user);
@@ -158,9 +155,13 @@ public class ProfileFragment extends Fragment {
         timeLayout = rootView.findViewById(R.id.layout_time);
         numOfRatings = rootView.findViewById(R.id.number_of_reviews);
         location = rootView.findViewById(R.id.text_location);
+        layoutRates = rootView.findViewById(R.id.pending_reviews_layout);
+        recyclerViewRates = rootView.findViewById(R.id.pending_reviews_recyclerView);
         loginLayout.setVisibility(View.GONE);
         addressUser.setVisibility(View.GONE);
-        rateUser.setVisibility(View.GONE);
+        layoutRates.setVisibility(View.GONE);
+        recyclerViewRates.setHasFixedSize(true);
+        recyclerViewRates.setLayoutManager(new LinearLayoutManager(recyclerViewRates.getContext()));
         getPosition = rootView.findViewById(R.id.position_button);
         getPosition.setVisibility(View.GONE);
         getPosition.setOnClickListener(new View.OnClickListener() {
@@ -315,41 +316,22 @@ public class ProfileFragment extends Fragment {
 
                 if (user.getSetted_image())
                     uploadImage("profile_images/" + userID + ".jpg", imageView);
-                if (!myProfile) {
+
+                if(myProfile){
+                    final List<Rateable> mRateable = new ArrayList<>();
                     FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("rateable").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                            mRateable.clear();
+                            layoutRates.setVisibility(View.GONE);
                             for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                try {
-                                    if(snapshot.child("user").getValue().equals(firebaseUser.getUid()) &&
-                                    checkDate(snapshot.child("date").getValue().toString())){
-                                    rateUser.setVisibility(View.VISIBLE);
-                                    rateUser.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            ratingBar.setIsIndicator(false);
-                                            ratingBar.setRating(0);
-                                            rateUser.setText("Scegli rate");
-                                            rateUser.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View view) {
-                                                    rateUser.setVisibility(View.GONE);
-                                                    ratingBar.setIsIndicator(true);
-                                                    float rate = ratingBar.getRating();
-                                                    float newRate = (user.getAverage_ratings()*user.getRatings() + rate)/(user.getRatings() + 1);
-                                                    FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("ratings"). setValue(user.getRatings() + 1);
-                                                    FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("average_ratings"). setValue(newRate);
-                                                    FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("rateable").child(snapshot.getKey()).removeValue();
-                                                }
-                                            });
-                                        }
-                                    });
-                                    }
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
+                                layoutRates.setVisibility(View.VISIBLE);
+                                Rateable rateable = snapshot.getValue(Rateable.class);
+                                mRateable.add(rateable);
+
                             }
+
+                            recyclerViewRates.setAdapter(new RateableAdapter(recyclerViewRates.getContext(),mRateable));
 
                         }
 
@@ -358,7 +340,6 @@ public class ProfileFragment extends Fragment {
 
                         }
                     });
-
                 }
             }
             @Override
