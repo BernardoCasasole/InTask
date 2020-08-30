@@ -90,8 +90,32 @@
 
 
                         </TextView>
-
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                        <TextView
+                        android:id="@+id/verified_user"
+                        style="@style/InTaskTheme_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="10dp"
+                        android:text="stato del verificato"/>
+
+                        <ImageView
+                            android:id="@+id/verified_user_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/ic_baseline_close_35"/>
+                        </LinearLayout>
+
                         <Button
                             android:id="@+id/rate_user"
                             android:layout_width="wrap_content"
@@ -265,7 +289,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:layout_marginBottom="10dp">
 
                     <Button
                         android:id="@+id/position_button"
@@ -308,6 +333,12 @@
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints"
                 android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:id="@+id/user_document_update_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                 <LinearLayout
                     android:id="@+id/layout_verified"
                     android:layout_width="match_parent"
@@ -315,21 +346,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/verified_user"
                         style="@style/InTaskTheme_ordinary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_margin="10dp"
-                        android:text="stato del verificato"/>
+                        android:text="Modifica il tuo documento di verifica utente"/>
 
-                    <ImageView
-                        android:id="@+id/verified_user_image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -350,6 +373,7 @@
                         android:padding="5dp"
                         android:text="@string/modifica_documento" />
 
+                </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
