@@ -98,6 +98,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                     map.put("user", chat.getSender());
                     map.put("date", chat.getDate());
                     map.put("key", reference1.getKey());
+                    map.put("title",chat.getTitle());
 
                     reference1.setValue(map);
 
