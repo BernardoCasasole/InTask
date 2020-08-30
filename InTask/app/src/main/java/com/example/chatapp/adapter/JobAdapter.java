@@ -88,10 +88,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         holder.reward.setText(String.valueOf(job.getReward()));
         holder.location.setClickable(true);
         holder.location.setTypeface(null, Typeface.ITALIC);
-        SpannableString content = new SpannableString(job.getLocation());
-        content.setSpan(new UnderlineSpan(), 0, job.getLocation().length(), 0);
         getDistance(job.getLocation(), holder.location);
-        holder.location.setText(content);
         holder.location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
