@@ -23,9 +23,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.chatapp.adapter.FirstMessageAdapter;
+import com.example.chatapp.adapter.JobAdapter;
 import com.example.chatapp.adapter.MessageAdapter;
 import com.example.chatapp.fragments.APIService;
-import com.example.chatapp.fragments.ProfileFragment;
 import com.example.chatapp.model.Chat;
 import com.example.chatapp.model.User;
 import com.example.chatapp.notifications.Client;
@@ -269,7 +270,9 @@ public class MessagingActivity extends AppCompatActivity {
                         mChat.add(chat);
                     }
                 }
-
+                if(mChat.isEmpty())
+                        recyclerView.setAdapter(new FirstMessageAdapter(recyclerView.getContext()));
+                else{
                 messageAdapter = new MessageAdapter(getApplicationContext(),mChat);
                 recyclerView.setAdapter(messageAdapter);
                 recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
@@ -279,6 +282,7 @@ public class MessagingActivity extends AppCompatActivity {
                         recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
                     }
                 });
+            }
             }
 
             @Override
