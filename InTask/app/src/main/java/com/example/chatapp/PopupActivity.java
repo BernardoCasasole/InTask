@@ -78,6 +78,7 @@ public class PopupActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
                 updateLabel();
             }
 
@@ -87,9 +88,13 @@ public class PopupActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                DatePickerDialog datePickerDialog =
+
                 new DatePickerDialog(PopupActivity.this,date , myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
             }
         });
 

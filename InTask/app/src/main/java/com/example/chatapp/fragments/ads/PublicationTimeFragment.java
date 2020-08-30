@@ -32,6 +32,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 //import com.example.chatapp.ProfileActivity;
+import com.example.chatapp.PopupActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.fragments.ads.PublicationChoiceFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -163,9 +164,13 @@ public class PublicationTimeFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(getContext(),date , myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog datePickerDialog =
+
+                        new DatePickerDialog(getContext(),date , myCalendar
+                                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                                myCalendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
             }
         });
 
