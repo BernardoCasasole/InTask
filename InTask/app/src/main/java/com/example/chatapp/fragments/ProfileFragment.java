@@ -470,7 +470,9 @@ public class ProfileFragment extends Fragment {
                 storageReference.child(path).getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
+                        if (getActivity() == null) {
+                            return;
+                        }
                         Glide.with(getContext()).load(finalLocalFile).into(image);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -479,7 +481,7 @@ public class ProfileFragment extends Fragment {
                         // Handle any errors
                     }
                 });
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
             }
 

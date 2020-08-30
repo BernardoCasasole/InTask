@@ -57,7 +57,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="left"
                     android:padding="5dp"
-                    android:text="Mi interessa interessa cercare" />
+                    android:text="Mi interessa cercare" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -958,6 +958,7 @@
             android:layout_height="10dp" />
 
         <TextView
+
             style="@style/InTaskTheme_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

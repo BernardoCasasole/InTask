@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
     Fragment homeFragment;
+    BottomNavigationView bottomNavigationView;
+    boolean close = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
+        bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
         Bundle bundle = new Bundle();
         bundle.putString("myAds", "false");
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selectedFragment = null;
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 Bundle bundle;
+                close = false;
                 switch (item.getItemId()){
                     case R.id.bottom_nav_message:
 
@@ -150,5 +153,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed() {
+        if(close)
+            super.onBackPressed();
+        else {
+            close =true;
+            bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
+            Bundle bundle = new Bundle();
+            bundle.putString("myAds", "false");
+            homeFragment = new HomeFragment();
+            homeFragment.setArguments(bundle);
 
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
+        }
+    }
 }

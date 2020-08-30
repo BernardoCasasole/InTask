@@ -261,6 +261,13 @@ public class MessagingActivity extends AppCompatActivity {
 
                 messageAdapter = new MessageAdapter(getApplicationContext(),mChat);
                 recyclerView.setAdapter(messageAdapter);
+                recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
+                text_send.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
+                    }
+                });
             }
 
             @Override

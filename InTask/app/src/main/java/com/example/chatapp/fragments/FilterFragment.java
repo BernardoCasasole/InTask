@@ -60,7 +60,7 @@ public class FilterFragment extends Fragment {
 
     CheckBox verified, monday, tuesday, wednesday, thursday, friday, saturday, sunday,
             sixTen,tenTwelve, twelveFourteen, fourteenSixteen, sixteenTwenty, twentyMidnight,
-            searchJob, searchTime, fiveKm, tenKm, twentyKm;
+            searchJob, searchTime, fiveKm, tenKm, twentyKm, onehundredKm;
     Button filterButton;
     View view;
     RatingBar ratingBar;
@@ -158,6 +158,7 @@ public class FilterFragment extends Fragment {
         fiveKm = view.findViewById(R.id.fiveKm);
         tenKm = view.findViewById(R.id.tenKm);
         twentyKm = view.findViewById(R.id.twentyKm);
+        onehundredKm = view.findViewById(R.id.onehundredKm);
         min.setText(String.valueOf(minReward.getProgress()));
         minReward.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -241,6 +242,7 @@ public class FilterFragment extends Fragment {
 
                             if (timeHasToBeShown(time,Float.parseFloat(snapshot.child("average_ratings").getValue().toString()))){
                                 found = true;
+                                resultZero.setVisibility(View.GONE);
                                 resultNotZero.setVisibility(View.VISIBLE);
                                 if (firebaseUser == null || (!time.getAuthor().equals(firebaseUser.getUid()))) {
                                     timeAds.add(time);
@@ -252,6 +254,8 @@ public class FilterFragment extends Fragment {
                                 recyclerViewTime.setAdapter(new TimeAdapter(recyclerViewTime.getContext(), timeMyAds, Boolean.parseBoolean(myAds)));
                             else
                                 recyclerViewTime.setAdapter(new TimeAdapter(recyclerViewTime.getContext(), timeAds, Boolean.parseBoolean(myAds)));
+
+
 
                         }
                         @Override
@@ -275,6 +279,7 @@ public class FilterFragment extends Fragment {
     private void showAds() {
 
         scrollView.setVisibility(View.GONE);
+        resultZero.setVisibility(View.VISIBLE);
         recyclerViewJob = view.findViewById(R.id.recycler_view_job);
         recyclerViewJob.setHasFixedSize(true);
         recyclerViewJob.setLayoutManager(new LinearLayoutManager(recyclerViewJob.getContext()));
@@ -308,6 +313,7 @@ public class FilterFragment extends Fragment {
 
                             if (jobHasToBeShown(job,Float.parseFloat(snapshot.child("average_ratings").getValue().toString()))){
                                 found = true;
+                                resultZero.setVisibility(View.GONE);
                                 resultNotZero.setVisibility(View.VISIBLE);
                                 if (firebaseUser == null || (!job.getAuthor().equals(firebaseUser.getUid()))) {
                                     jobAds.add(job);
@@ -342,14 +348,8 @@ public class FilterFragment extends Fragment {
     }
 
     private boolean timeHasToBeShown(Time time, float average_ratings){
-        Log.wtf("1", String.valueOf(checkVerified(time.getVerified())));
-        Log.wtf("2", String.valueOf(checkType(time.getType())));
-        Log.wtf("3", String.valueOf(checkDistance(time.getLocation())));
-        Log.wtf("4", String.valueOf(checkDate(time.getDay())));
-        Log.wtf("5", String.valueOf(checkHour(time.getTime())));
-        Log.wtf("6", String.valueOf(chechRating(average_ratings)));
 
-        return checkVerified(time.getVerified()) && checkType(time.getType()) && checkDistance(time.getLocation())
+        return !time.getAchieved() && !time.getPending() && checkVerified(time.getVerified()) && checkType(time.getType()) && checkDistance(time.getLocation())
                 && checkDate(time.getDay()) && checkHour(time.getTime()) && chechRating(average_ratings);
 
     }
@@ -462,7 +462,7 @@ public class FilterFragment extends Fragment {
 
     private boolean jobHasToBeShown(Job job, float average_ratings){
 
-        return checkVerified(job.getVerified()) && checkType(job.getType()) && checkDistance(job.getLocation())
+        return !job.getAchieved() && !job.getPending() && checkVerified(job.getVerified()) && checkType(job.getType()) && checkDistance(job.getLocation())
                 && checkDate(job.getDay()) && checkHour(job.getTime()) && chechRating(average_ratings) &&
                 checkReward(job.getReward());
     }
@@ -483,13 +483,15 @@ public class FilterFragment extends Fragment {
         otherLong = getLong(otherAddress);
 
         Location.distanceBetween(latitude, longitude,otherLat,otherLong,result);
+        if (onehundredKm.isChecked() && (result[0] / 1000) <= 100)
+            return true;
         if (twentyKm.isChecked() && (result[0] / 1000) <= 20)
             return true;
         if (tenKm.isChecked() && (result[0] / 1000) <= 10)
             return true;
         if (fiveKm.isChecked() && (result[0] / 1000) <= 5)
             return true;
-        if (!twentyKm.isChecked() && !tenKm.isChecked() &&!fiveKm.isChecked())
+        if (!twentyKm.isChecked() && !tenKm.isChecked() &&!fiveKm.isChecked() &&!onehundredKm.isChecked())
                 return true;
 
         return false;
