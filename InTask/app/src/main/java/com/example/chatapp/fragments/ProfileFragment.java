@@ -325,9 +325,15 @@ public class ProfileFragment extends Fragment {
                             mRateable.clear();
                             layoutRates.setVisibility(View.GONE);
                             for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                layoutRates.setVisibility(View.VISIBLE);
                                 Rateable rateable = snapshot.getValue(Rateable.class);
-                                mRateable.add(rateable);
+                                try {
+                                    if(checkDate(rateable.getDate())) {
+                                        layoutRates.setVisibility(View.VISIBLE);
+                                        mRateable.add(rateable);
+                                    }
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
 
                             }
 
