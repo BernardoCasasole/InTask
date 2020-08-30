@@ -123,7 +123,6 @@ public class AdsTimeFragment extends Fragment {
                 date.setText(time.getDay());
                 hour.setText(time.getTime());
                 location.setClickable(true);
-                location.setTypeface(null, Typeface.ITALIC);
                 SpannableString content = new SpannableString(time.getLocation());
                 content.setSpan(new UnderlineSpan(), 0, time.getLocation().length(), 0);
                 location.setText(content);
@@ -274,7 +273,9 @@ public class AdsTimeFragment extends Fragment {
             storageReference.child("time_images/"+ adsID +".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
+                    if (getActivity() == null) {
+                        return;
+                    }
                     Glide.with(getContext()).load(finalLocalFile).into(image);
                 }
             }).addOnFailureListener(new OnFailureListener() {

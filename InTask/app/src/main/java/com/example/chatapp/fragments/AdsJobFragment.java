@@ -123,9 +123,9 @@ public class AdsJobFragment extends Fragment {
                 when.setText(job.getDay().concat(", ").concat(job.getTime()));
                 reward.setText(String.valueOf(job.getReward()));
                 location.setClickable(true);
-                location.setTypeface(null, Typeface.ITALIC);
                 SpannableString content = new SpannableString(job.getLocation());
                 content.setSpan(new UnderlineSpan(), 0, job.getLocation().length(), 0);
+                location.setText(content);
                 location.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -272,7 +272,9 @@ public class AdsJobFragment extends Fragment {
             storageReference.child("job_images/"+ adsID +".jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
+                    if (getActivity() == null) {
+                        return;
+                    }
                     Glide.with(getContext()).load(finalLocalFile).into(image);
                 }
             }).addOnFailureListener(new OnFailureListener() {
