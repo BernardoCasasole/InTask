@@ -79,8 +79,6 @@ public class JobSvFormFragment extends Fragment {
     Button btn_get_position;
     LocationManager locationManager;
     LocationListener locationListener;
-    GoogleMap googleMap;
-    int requestCode;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -215,26 +213,6 @@ public class JobSvFormFragment extends Fragment {
             }
         });
 
-        /*getMaps = rootView.findViewById(R.id.get_maps);
-        getMaps.setClickable(true);
-        getMaps.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                setTargetFragment( new MapFragment(), requestCode);
-                getTargetFragment();
-
-
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MapFragment(),
-
-                        "JOB_FRAGMENT").addToBackStack("JOB_FRAGMENT").commit();
-
-
-            }
-        });
-*/
-
         btn_publish = rootView.findViewById(R.id.proposal_btn_publish);
         btn_publish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,8 +235,6 @@ public class JobSvFormFragment extends Fragment {
                         !description_text.equals("") &&
                         !reward_text.equals("") &&
                         !location_text.equals("") &&
-                        !day_text.equals("") &&
-                        !time_text.equals("") &&
                         !duration_text.equals("") &&
                         checkHour(time_text) &&
                         radioButton != null) {
@@ -317,27 +293,6 @@ public class JobSvFormFragment extends Fragment {
         }
     }
 
-   /*@Override
-    public void onStart() {
-        super.onStart();
-        Bundle b = getActivity().getIntent().getExtras();
-
-        if (b != null) {
-            Geocoder geocoder;
-            List<Address> addresses;
-            geocoder = new Geocoder(getContext(), Locale.getDefault());
-
-
-            try {
-                addresses = geocoder.getFromLocation(Double.parseDouble(b.getString("Lat")), Double.parseDouble(b.getString("Long")), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
-                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-                location.setText(address);
-            } catch (IOException | IndexOutOfBoundsException e) {
-                Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
 
     private void updateLabel() {
         String myFormat = "dd/MM/yy"; //In which you need put here
@@ -347,6 +302,7 @@ public class JobSvFormFragment extends Fragment {
     }
 
     private boolean checkHour(String result){
+        if(result.equals("")) return true;
 
         int a = ((int) result.charAt(0)) - 48;
         int b = ((int) result.charAt(1)) - 48;

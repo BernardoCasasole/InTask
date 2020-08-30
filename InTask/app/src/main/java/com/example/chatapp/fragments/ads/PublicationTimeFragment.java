@@ -225,8 +225,6 @@ public class PublicationTimeFragment extends Fragment {
                 if (!title_text.equals("") &&
                         !description_text.equals("") &&
                         !location_text.equals("") &&
-                        !day_text.equals("") &&
-                        !time_text.equals("") &&
                         !distance_text.equals("") &&
                         checkHour(time_text) &&
                         radioButton != null) {
@@ -290,7 +288,7 @@ public class PublicationTimeFragment extends Fragment {
     }
 
     private boolean checkHour(String result){
-
+        if(result.equals("")) return true;
         int a = ((int) result.charAt(0)) - 48;
         int b = ((int) result.charAt(1)) - 48;
         int c = ((int) result.charAt(3)) - 48;
