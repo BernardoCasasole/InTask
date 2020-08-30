@@ -88,7 +88,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                     map = new HashMap<>();
                     map.put("user", chat.getReceiver());
                     map.put("date", chat.getDate());
-                    map.put("key", reference1.getKey());
+                    map.put("key", chat.getAds());
                     reference1.setValue(map);
 
                     reference1 = FirebaseDatabase.getInstance().getReference("Users").child(chat.getReceiver()).child("rateable").push();

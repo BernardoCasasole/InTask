@@ -158,7 +158,7 @@ public class PopupActivity extends AppCompatActivity {
                                         RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
                                         String tag = (String) radioButton.getTag();
                                         String[] attributes = tag.split("@");
-                                        String message = user.getName() + " ti ha fatto una proposta per " +
+                                        String message = user.getName() + " ha fatto una proposta per " +
                                                 radioButton.getText().toString() + " in data "+ day.getText().toString() +
                                                 ", ora " + time.getText().toString() + ".";
                                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Chats").push();
