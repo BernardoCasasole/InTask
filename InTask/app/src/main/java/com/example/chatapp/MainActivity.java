@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
-        if (firstStart) {
+        if (!firstStart) {
             showStartDialog();
         }
 
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showStartDialog() {
-        //openActiviy_intro();
+        startActivity(new Intent(MainActivity.this, IntroActivity.class));
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("firstStart", false);
