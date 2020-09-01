@@ -12,6 +12,7 @@ public class User {
     private float average_ratings;
     private String location;
     private String typeReg;
+    private Boolean verify_mail;
 
     public String getLocation() {
         return location;
@@ -21,7 +22,7 @@ public class User {
         return typeReg;
     }
 
-    public User(String name, String surname, String id, Boolean setted_image, Boolean verified, String mail, int ratings, float average_ratings, String location, String typeReg) {
+    public User(String name, String surname, String id, Boolean setted_image, Boolean verified, String mail, int ratings, float average_ratings, String location, String typeReg, Boolean verify_mail) {
         this.name = name;
         this.surname = surname;
         this.id = id;
@@ -32,6 +33,11 @@ public class User {
         this.average_ratings = average_ratings;
         this.location = location;
         this.typeReg = typeReg;
+        this.verify_mail = verify_mail;
+    }
+
+    public Boolean getVerify_mail() {
+        return verify_mail;
     }
 
     public User(){

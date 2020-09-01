@@ -210,6 +210,7 @@ public class StartActivity extends AppCompatActivity {
                                         hashMap.put("average_ratings", 0);
                                         hashMap.put("location","");
                                         hashMap.put("typeReg","Facebook");
+                                        hashMap.put("verify_mail",false);
 
                                         String message = getString(R.string.welcome_message_init) + " " + split[0] + getString(R.string.welcome_message_corp);
                                         senEmail(firebaseUser.getEmail(), message);
@@ -278,6 +279,7 @@ public class StartActivity extends AppCompatActivity {
         hashMap.put("average_ratings", 0);
         hashMap.put("location","");
         hashMap.put("typeReg","Google");
+        hashMap.put("verify_mail",false);
 
         String message = getString(R.string.welcome_message_init) + " " + account.getGivenName() + getString(R.string.welcome_message_corp);
         senEmail(account.getEmail(), message);

@@ -164,6 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
                     hashMap.put("average_ratings", 0);
                     hashMap.put("location","");
                     hashMap.put("typeReg","Mail");
+                    hashMap.put("verify_mail",false);
 
                     String message = getString(R.string.welcome_message_init) + " " + name + getString(R.string.welcome_message_corp);
                     senEmail(mail, message);

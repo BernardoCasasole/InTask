@@ -264,14 +264,23 @@ public class ProfileFragment extends Fragment {
                     }
                 });
                 if (!user.getVerified()) {
-
+                    if (user.getVerify_mail()){
+                        verifiedUser.setText("In attesa di verifica");
+                        uploadDocument1.setVisibility(View.GONE);
+                        uploadDocument2.setVisibility(View.GONE);
+                    verifiedUSerImage.setVisibility(View.GONE);
+                }
+                    else {
                         verifiedUser.setText("Utente non verificato");
+                        verifiedUSerImage.setVisibility(View.VISIBLE);
                         verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
+                        uploadDocument1.setVisibility(View.VISIBLE);
+                        uploadDocument2.setVisibility(View.VISIBLE);
+                    }
                      if(myProfile) {
                         verifiedLayout.setVisibility(View.GONE);
                         btn_uploadDocument.setVisibility(View.VISIBLE);
-                        uploadDocument1.setVisibility(View.VISIBLE);
-                        uploadDocument2.setVisibility(View.VISIBLE);
+
                         documentImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -287,14 +296,16 @@ public class ProfileFragment extends Fragment {
                                     sendEmail(user.getName() + " " + getString(R.string.img_verified_upload_corp), getString(R.string.img_verified_upload_subj), "intaskapp@gmail.com");
                                     sendEmail(user.getName() + " " + getString(R.string.img_verified_upload_corp), getString(R.string.img_verified_upload_subj), "chriscamma96@gmail.com");
                                     sendEmail(getString(R.string.welcome_message_init) + " "+ user.getName() + getString(R.string.img_verified_upload_corp_user),  getString(R.string.img_verified_upload_subj_user), user.getMail());
+                                    databaseReference.child("verify_mail").setValue(true);
                                 }
-                                    //databaseReference.child("verified").setValue(true);
+
                             }
                         });
                     }
                 } else {
                     verifiedLayout.setVisibility(View.VISIBLE);
                     verifiedUser.setText("Utente verificato");
+                    verifiedUSerImage.setVisibility(View.VISIBLE);
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
                     if (myProfile) {
                         updateLayout.setVisibility(View.VISIBLE);

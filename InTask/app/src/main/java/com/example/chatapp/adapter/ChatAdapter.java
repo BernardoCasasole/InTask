@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -118,6 +119,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                     }
 
                 }
+                if(user.getVerified())
+                holder.verified.setImageResource(R.drawable.ic_baseline_check_35);
+                else
+                    holder.verified.setImageResource(R.drawable.ic_baseline_close_35);
                 holder.openChat.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -143,36 +148,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             }
         });
 
-        holder.deleteChat.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                FirebaseDatabase.getInstance().getReference("Chats").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                        for(DataSnapshot snapshot: dataSnapshot.getChildren() ) {
-                            Chat chat = snapshot.getValue(Chat.class);
-                            if(chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(friend) ||
-                                    chat.getReceiver().equals(friend)&&chat.getSender().equals(firebaseUser.getUid())){
-
-                                FirebaseDatabase.getInstance().getReference("Chats").child(snapshot.getKey()).removeValue();
-                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-            }
-        });
-
     }
 
 
@@ -186,14 +161,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         public CircleImageView image;
         public TextView name;
         public Button openChat;
-        public ImageButton deleteChat;
+        public ImageView verified;
 
         public ViewHolder(View itemView){
 
             super(itemView);
             name = itemView.findViewById(R.id.name_surname);
             openChat = itemView.findViewById(R.id.chat_with);
-            deleteChat = itemView.findViewById(R.id.delete_chat);
+            verified = itemView.findViewById(R.id.delete_chat);
 
             image = itemView.findViewById(R.id.profile_image);
 

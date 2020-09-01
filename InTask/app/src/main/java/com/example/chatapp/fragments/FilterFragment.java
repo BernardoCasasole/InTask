@@ -468,8 +468,16 @@ public class FilterFragment extends Fragment {
     }
 
     private boolean checkReward(Float reward) {
-
-        return reward >= minReward.getProgress() && reward <= maxReward.getProgress();
+        if (minReward.getProgress() == 0)
+            if (maxReward.getProgress()==200)
+                return true;
+            else
+                return reward <= maxReward.getProgress();
+        else
+            if (maxReward.getProgress()==200)
+                return reward >= minReward.getProgress();
+            else
+                return reward >= minReward.getProgress() && reward <= maxReward.getProgress();
     }
 
     private boolean checkDistance(String otherAddress){

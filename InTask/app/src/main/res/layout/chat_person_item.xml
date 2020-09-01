@@ -38,7 +38,21 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/contatta_layout_button"
+                android:gravity="center">
 
+                <ImageView
+                    android:id="@+id/delete_chat"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_close_35"></ImageView>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/contatta_layout_button"
                 android:layout_width="wrap_content"
@@ -62,21 +76,7 @@
                 </Button>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_toRightOf="@id/contatta_layout_button"
-                android:gravity="center">
 
-                <ImageButton
-                    android:id="@+id/delete_chat"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_close_35"></ImageButton>
-            </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>

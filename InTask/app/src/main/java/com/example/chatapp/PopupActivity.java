@@ -246,7 +246,7 @@ public class PopupActivity extends AppCompatActivity {
                         public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                             if(response.code()==200){
                                 if(response.body().success!=1){
-                                    Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                    Log.wtf("DADA","errore");
                                 }
 
                             }
