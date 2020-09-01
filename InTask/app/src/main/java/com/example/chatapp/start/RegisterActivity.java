@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.chatapp.JavaMailAPI;
 import com.facebook.AccessToken;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -164,6 +165,8 @@ public class RegisterActivity extends AppCompatActivity {
                     hashMap.put("location","");
                     hashMap.put("typeReg","Mail");
 
+                    String message = getString(R.string.welcome_message_init) + " " + name + getString(R.string.welcome_message_corp);
+                    senEmail(mail, message);
                     reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -187,5 +190,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    private void senEmail(String mEmail, String mMessage) {
+        String mSubject = "registrazione InTask";
 
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
+
+        javaMailAPI.execute();
+    }
 }

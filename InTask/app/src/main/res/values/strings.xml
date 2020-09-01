@@ -121,4 +121,11 @@
     <string name="ricordati_di_tenere_in_considerazione_se">Hai alcune esperienze da recensire!\nRicordati di tenere in considerazione se:</string>
     <string name="u2022_l_utente_stato_di_parola">• L\'utente è stato di parola</string>
 
+    <string name="img_verified_upload_subj"> nuova foto documento caricata che richiede verifica</string>
+    <string name="img_verified_upload_subj_user"> Foto documento ricevuta!</string>
+
+    <string name="img_verified_upload_corp"> ha caricato la mail per essere verificato</string>
+    <string name="img_verified_upload_corp_user"> !\n\n\nAbbiamo ricevuto la foto del tuo documrnto\nUn nostro operatore si occuperà di effettuare un controllo.\nTi notificheremo non appena il controllo sarà terminato e sarai diventato un utente verificato!\n\n\nSaluti,\nIl team di InTask."</string>
+    <string name="welcome_message_corp">"!\n\n\nIl team di InTask ti da il benvenuto!\n\nLa registrazione è avvenuta con successo.\n\n\nSaluti,\nIl team di InTask."</string>
+    <string name="welcome_message_init">Ciao </string>
 </resources>

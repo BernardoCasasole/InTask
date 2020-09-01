@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.chatapp.JavaMailAPI;
 import com.example.chatapp.MainActivity;
 import com.example.chatapp.R;
 import com.facebook.AccessToken;
@@ -210,6 +211,8 @@ public class StartActivity extends AppCompatActivity {
                                         hashMap.put("location","");
                                         hashMap.put("typeReg","Facebook");
 
+                                        String message = getString(R.string.welcome_message_init) + " " + split[0] + getString(R.string.welcome_message_corp);
+                                        senEmail(firebaseUser.getEmail(), message);
                                         reference.child(userId).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -276,6 +279,8 @@ public class StartActivity extends AppCompatActivity {
         hashMap.put("location","");
         hashMap.put("typeReg","Google");
 
+        String message = getString(R.string.welcome_message_init) + " " + account.getGivenName() + getString(R.string.welcome_message_corp);
+        senEmail(account.getEmail(), message);
         reference.child(userId).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -303,5 +308,12 @@ public class StartActivity extends AppCompatActivity {
         });
 
 }
+    private void senEmail(String mEmail, String mMessage) {
+        String mSubject = "registrazione InTask";
+
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
+
+        javaMailAPI.execute();
+    }
 }
 

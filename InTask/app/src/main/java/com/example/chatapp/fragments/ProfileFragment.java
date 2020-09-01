@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.chatapp.JavaMailAPI;
 import com.example.chatapp.R;
 import com.example.chatapp.adapter.JobAdapter;
 import com.example.chatapp.adapter.RateableAdapter;
@@ -240,7 +241,7 @@ public class ProfileFragment extends Fragment {
                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
             }
         });
-        if(userID.equals(firebaseUser.getUid())) {
+        if(firebaseUser != null && userID.equals(firebaseUser.getUid())) {
             setImageProfile();
         }
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -282,8 +283,12 @@ public class ProfileFragment extends Fragment {
                             public void onClick(View view) {
                                 if (btn_uploadDocument.getTag().equals("default"))
                                     setImageDocument();
-                                else
-                                    databaseReference.child("verified").setValue(true);
+                                else{
+                                    sendEmail(user.getName() + " " + getString(R.string.img_verified_upload_corp), getString(R.string.img_verified_upload_subj), "intaskapp@gmail.com");
+                                    sendEmail(user.getName() + " " + getString(R.string.img_verified_upload_corp), getString(R.string.img_verified_upload_subj), "chriscamma96@gmail.com");
+                                    sendEmail(getString(R.string.welcome_message_init) + " "+ user.getName() + getString(R.string.img_verified_upload_corp_user),  getString(R.string.img_verified_upload_subj_user), user.getMail());
+                                }
+                                    //databaseReference.child("verified").setValue(true);
                             }
                         });
                     }
@@ -568,6 +573,12 @@ public class ProfileFragment extends Fragment {
 
 
 
+    }
+    private void sendEmail(String mMessage, String mSubject, String mEmail) {
+
+        JavaMailAPI javaMailAPI = new JavaMailAPI(getContext(), mEmail, mSubject, mMessage);
+
+        javaMailAPI.execute();
     }
 
 }
