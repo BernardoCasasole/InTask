@@ -203,5 +203,10 @@ We will notify you as soon as the check is finished and you have become a verifi
     <string name="libretto_famiiglia">By accepting our terms and conditions of use you certify that you will only use payment systems that are legal in your country (click here to find out more about "Libretto Famiglia", an example from the Italian legislation).</string>
     <string name="accetto_i_termini_e_le_condizioni_di_servizio">I accept the terms and conditions of service</string>
     <string name="conferma">Confirm</string>
-
+    <string name="sing_in_facebook">Sign in</string>
+    <string name="accordo_con_utente_raggiunto">New task succesfully scheduled</string>
+    <string name="complimenti">Congratulations</string>
+    <string name="_agreement_">! \nYou successfully scheduled the task </string>
+    <string name="agreement_corp">\nRemember that the following day you will have the opportunity to rate and review your experience with </string>
+    <string name="agreement_end">\n\n\nBest regards,\n\nInTask team</string>
 </resources>

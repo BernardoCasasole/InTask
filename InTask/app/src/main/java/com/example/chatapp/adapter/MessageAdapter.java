@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.chatapp.JavaMailAPI;
 import com.example.chatapp.R;
 import com.example.chatapp.model.Chat;
 import com.google.firebase.auth.FirebaseAuth;
@@ -163,5 +164,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
 
         }
+    }
+
+    private void senEmail(String mEmail, String mMessage) {
+        String mSubject = getApplicationContext().getResources().getString(R.string.accordo_con_utente_raggiunto);
+
+        JavaMailAPI javaMailAPI = new JavaMailAPI(mContext, mEmail, mSubject, mMessage);
+
+        javaMailAPI.execute();
     }
 }

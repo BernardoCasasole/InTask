@@ -71,7 +71,7 @@
 
             <com.facebook.login.widget.LoginButton
                 xmlns:facebook="http://schemas.android.com/apk/res-auto"
-                facebook:com_facebook_login_text="Sign in"
+                facebook:com_facebook_login_text="@string/facebook_sign_in"
                 android:id="@+id/fb_button"
                 android:paddingTop="12.5dp"
                 android:paddingBottom="12.5dp"

@@ -120,7 +120,7 @@
     <string name="img_verified_upload_subj_user"> Foto documento ricevuta!</string>
 
     <string name="img_verified_upload_corp"> ha caricato la mail per essere verificato</string>
-    <string name="img_verified_upload_corp_user"> !\n\n\nAbbiamo ricevuto la foto del tuo documrnto\nUn nostro operatore si occuperà di effettuare un controllo.\nTi notificheremo non appena il controllo sarà terminato e sarai diventato un utente verificato!\n\n\nSaluti,\nIl team di InTask."</string>
+    <string name="img_verified_upload_corp_user"> !\n\n\nAbbiamo ricevuto la foto del tuo documento. \nUn nostro operatore si occuperà di effettuare un controllo.\nTi notificheremo non appena il controllo sarà terminato e sarai diventato un utente verificato!\n\n\nSaluti,\nIl team di InTask."</string>
     <string name="welcome_message_corp">"!\n\n\nIl team di InTask ti da il benvenuto!\n\nLa registrazione è avvenuta con successo.\n\n\nSaluti,\nIl team di InTask."</string>
     <string name="welcome_message_init">Ciao </string>
     <string name="archiviato">Archiviato</string>
@@ -202,4 +202,10 @@
     <string name="libretto_famiiglia">Accettando i nostri termini e condizioni d\'uso certifichi che utilizzerai solo sistemi di pagamento legali nel tuo paese (clicca qui per sapere di più del sistema Libretto Famiiglia).</string>
     <string name="accetto_i_termini_e_le_condizioni_di_servizio">Accetto i termini e le condizioni di servizio</string>
     <string name="conferma">Conferma</string>
+    <string name="sing_in_facebook">Accedi</string>
+    <string name="accordo_con_utente_raggiunto">Nuovo accordo per un lavoro raggiunto con successo</string>
+    <string name="complimenti">Complimenti</string>
+    <string name="_agreement_">! \nHai raggiunto un nuovo accordo per il lavoro</string>
+    <string name="agreement_corp">\nRicordati che il giorno seguente avrai la possibilità di recensre la tua esperienza con l\'utente </string>
+    <string name="agreement_end">\n\n\nDistinti saluti,\n\nIl team di inTask</string>
 </resources>
