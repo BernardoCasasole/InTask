@@ -57,7 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Titolo"
+                            android:text="@string/titolo"
                             android:drawableStart="@drawable/ic_baseline_library_books_24"/>
 
                         <TextView
@@ -66,7 +66,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Pubblicato Da"
+                            android:text="@string/pubblicato_da"
                             android:drawableStart="@drawable/ic_baseline_person_24"/>
 
                         <TextView
@@ -75,7 +75,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Data, Ora"
+                            android:text="@string/data_ora"
                             android:drawableStart="@drawable/ic_baseline_access_time_24"/>
                         <TextView
                             android:id="@+id/amount_job_pubb"
@@ -83,7 +83,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="25 eur"
+                            android:text="25.00 eur"
                             android:drawableStart="@drawable/ic_baseline_euro_24"/>
                     </LinearLayout>
 
@@ -125,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="Categoria:"
+                android:text="@string/categoria"
                 android:padding="8dp"
                 android:textStyle="italic"
                 />  <TextView
@@ -157,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Indirizzo"
+                    android:text="@string/indirizzo"
                     android:padding="8dp"
                     android:textStyle="italic"
                     />  <TextView
@@ -166,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="0, Via dei Matti, Roma, 02300, IT"
+                android:text="0, Via strada, Roma, 02300, IT"
                 android:padding="8dp"
                 />
             </LinearLayout>
@@ -188,7 +188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Stato annuncio:"
+                    android:text="@string/stato_annuncio"
                     android:padding="8dp"
                     android:textStyle="italic"
                     />
@@ -218,7 +218,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Ore necessarie stimate"
+                    android:text="@string/ore_necessarie_stimate"
                     android:padding="8dp"
                     android:textStyle="italic"
                     />  <TextView
@@ -251,15 +251,10 @@
                     android:layout_margin="5dp"
                     android:drawableEnd="@drawable/ic_baseline_check_35"
                     android:padding="8dp"
-                    android:text="Accetta solo se verificato:"
+                    android:text="@string/accetta_solo_se_verificato"
                     android:textStyle="italic" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="#014F59" />
+
             <Button
                 android:layout_marginBottom="20dp"
                 android:id="@+id/button_contact"
@@ -267,6 +262,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/custom_button"
                 android:padding="1dp"

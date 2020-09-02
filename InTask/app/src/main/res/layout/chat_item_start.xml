@@ -20,7 +20,7 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:padding="5dp"
-            android:text="Benvenuto nella chat di inTask!"
+            android:text="@string/benvenuto_nella_chat_di_intask"
             android:backgroundTint="@android:color/transparent">
         </TextView>
         <TextView
@@ -34,8 +34,8 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:padding="5dp"
-            android:text="Metti d'accordo con gli utenti, pianifica data e ora, e poi ufficializza il vostro appuntamento cliccando sul bottone 'organizza'. Invia la richiesta o attendi che ti venga inviata, accettala e il gioco è fatto!\n Potrai valutare la tua esperienza e l'utente dopo la data concordata attraverso la tua pagina profilo tuente"
-            android:gravity="left"
+            android:text="@string/metti_d_accordo_con_gli_utenti_pianifica_data_e_ora_e_poi_ufficializza_il_vostro_appuntamento_cliccando_sul_bottone_organizza_invia_la_richiesta_o_attendi_che_ti_venga_inviata_accettala_e_il_gioco_fatto_n_potrai_valutare_la_tua_esperienza_e_l_utente_dopo_la_data_concordata_attraverso_la_tua_pagina_profilo_tuente"
+            android:gravity="center"
             android:backgroundTint="@android:color/transparent">
         </TextView>
 

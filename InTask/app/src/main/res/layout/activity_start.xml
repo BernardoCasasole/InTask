@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:text="oppure"
+            android:text="@string/oppure"
             android:textColor="#FF014F59"
             android:textSize="16sp"
             android:gravity="center">
@@ -63,18 +63,20 @@
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/google_button"
-                android:layout_width="130dp"
-                android:layout_height="35dp"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
                 android:textSize="15sp"
                 android:layout_gravity="center"
                 />
 
             <com.facebook.login.widget.LoginButton
                 xmlns:facebook="http://schemas.android.com/apk/res-auto"
-                facebook:com_facebook_login_text="Accedi"
+                facebook:com_facebook_login_text="Sign in"
                 android:id="@+id/fb_button"
-                android:layout_width="120dp"
-                android:layout_height="80dp"
+                android:paddingTop="12.5dp"
+                android:paddingBottom="12.5dp"
+                android:layout_width="140dp"
+                android:layout_height="45dp"
                 android:drawableStart="@drawable/ic_fb_logo"
                 android:textSize="14sp">
 

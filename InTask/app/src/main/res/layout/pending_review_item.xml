@@ -17,7 +17,7 @@
             android:id="@+id/pending_reviews_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valuta, da 1 a 5, la tua esperienza con Utente relativa al lavoro Lavoro"
+            android:text="@string/valuta_da_1_a_5_la_tua_esperienza_con"
             style="@style/InTaskTheme_ordinary"
             android:padding="10dp">
         </TextView>
@@ -40,7 +40,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:background="@drawable/custom_button"
-            android:padding="5dp"
+            android:padding="8dp"
             android:text="@string/conferma_valutazione" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

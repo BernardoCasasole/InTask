@@ -161,7 +161,7 @@ public class StartActivity extends AppCompatActivity {
                             updateUI(account);
 
                         } else {
-                            Toast.makeText(StartActivity.this, "Errore nella registrazione", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(StartActivity.this, getString(R.string.Errore_nella_registrazione), Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -246,7 +246,7 @@ public class StartActivity extends AppCompatActivity {
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(StartActivity.this, "Errore nella registrazione", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(StartActivity.this, getString(R.string.Errore_nella_registrazione), Toast.LENGTH_SHORT).show();
 
 
                         }
@@ -311,7 +311,7 @@ public class StartActivity extends AppCompatActivity {
 
 }
     private void senEmail(String mEmail, String mMessage) {
-        String mSubject = "registrazione InTask";
+        String mSubject = getString(R.string.successo_registrazione);
 
         JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
 

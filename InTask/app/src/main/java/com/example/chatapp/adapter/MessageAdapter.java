@@ -22,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
     private Context mContext;
@@ -75,7 +77,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("sender", chat.getReceiver());
                         map.put("receiver", chat.getSender());
-                        map.put("message", "Proposta accettata");
+                        map.put("message", getApplicationContext().getResources().getString(R.string.proposta_accettata));
                         map.put("type", "none");
                         map.put("ads", "");
                         map.put("key", reference.getKey());
@@ -116,7 +118,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("sender", chat.getReceiver());
                         map.put("receiver", chat.getSender());
-                        map.put("message", "Proposta rifiutata");
+                        map.put("message", getApplicationContext().getResources().getString(R.string.proposta_rifiutata));
                         map.put("type", "none");
                         map.put("ads", "");
                         map.put("key", reference.getKey());

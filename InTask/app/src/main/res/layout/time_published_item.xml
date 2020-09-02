@@ -6,184 +6,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/edit_text_background"
     android:backgroundTint="#0C004361"
-    android:layout_margin="5dp">
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
 
     <LinearLayout
         android:id="@+id/layout_ads"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        android:layout_marginRight="5dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="left"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_gravity="center"
+                android:layout_height="80dp"
+                android:layout_gravity="left"
                 android:gravity="center">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/job_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="5dp"
                     android:src="@drawable/work"
                     android:layout_alignParentLeft="true"/>
             </RelativeLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-                <GridLayout
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:rowCount="3"
-                    android:columnCount="2"
-                    android:layout_margin="3dp">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardElevation="0dp"
-                        android:backgroundTint="@android:color/transparent"
-                        >
-
-                        <TextView
-                            android:id="@+id/job_title"
-                            style="@style/InTaskTheme_ordinary"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_margin="5dp"
-                            android:layout_toRightOf="@+id/job_image"
-                            android:maxWidth="150dp"
-                            android:text="Titolo del job" />
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardElevation="0dp"
-                        android:backgroundTint="@android:color/transparent"
-                        >
-                        <TextView
-                            android:id="@+id/job_date"
-                            style="@style/InTaskTheme_ordinary"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_margin="5dp"
-                            android:layout_toRightOf="@+id/job_image"
-                            android:text="11/09/01" />
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardElevation="0dp"
-                        android:backgroundTint="@android:color/transparent"
-                        >
-                        <TextView
-                            android:maxWidth="150dp"
-                            android:id="@+id/job_publisher"
-                            style="@style/InTaskTheme_ordinary"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_margin="5dp"
-                            android:layout_toRightOf="@+id/job_title"
-                            android:text="Publisher Job"
-                            android:textStyle="italic" />
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardElevation="0dp"
-                        android:backgroundTint="@android:color/transparent"
-                        >
-
-                        <TextView
-                            android:id="@+id/job_hour"
-                            style="@style/InTaskTheme_ordinary"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_margin="5dp"
-                            android:layout_toRightOf="@+id/job_title"
-                            android:text="11.45" />
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardElevation="0dp"
-                        android:backgroundTint="@android:color/transparent"
-                        >
-
-                            <TextView
-                                android:id="@+id/status"
-                                style="@style/InTaskTheme_small"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                />
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardElevation="0dp"
-                        android:backgroundTint="@android:color/transparent"
-                        >
-                    <LinearLayout
-                        android:id="@+id/job_verified"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_baseline_check_15"
-                            android:layout_marginLeft="5dp"
-                            android:layout_gravity="center">
-                        </ImageView>
-                        <TextView
-
-
-                            style="@style/InTaskTheme_small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="10dp"
-                            android:text="verificato" />
-                    </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-
-                </GridLayout>
-
-
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -191,59 +50,204 @@
                     android:id="@+id/job_symbol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
                     android:background="@drawable/edit_text_background"
                     android:src="@drawable/ic_baseline_local_florist_24" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_marginLeft="43dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RatingBar
-                    android:id="@+id/rating_user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:numStars="5"
-                    android:stepSize="0.1"
-                    android:isIndicator="true"
-                    android:layout_margin="10dp"/>
-                <TextView
-                    android:id="@+id/number_of_reviews"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/InTaskTheme_small"
-                    android:text="(0)"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp">
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-                </TextView>
-            </LinearLayout>
-
-
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="right"
-                android:orientation="horizontal">
+                android:layout_margin="3dp"
+                android:columnCount="2"
+                android:rowCount="3"
+                >
 
-                <Button
-                    android:padding="3dp"
-                    android:id="@+id/button"
-                    style="@style/InTaskTheme_small"
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/custom_button"
-                    android:text="@string/contatta_button" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:id="@+id/job_title"
+                        style="@style/InTaskTheme_ordinary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@+id/job_image"
+                        android:maxWidth="140dp"
+                        android:text="Titolo del job"
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:id="@+id/job_date"
+                        style="@style/InTaskTheme_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@+id/job_image"
+                        android:text="11/09/01" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:id="@+id/job_publisher"
+                        style="@style/InTaskTheme_ordinary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@+id/job_title"
+                        android:maxWidth="140dp"
+                        android:text="Publisher Job"
+                        android:textStyle="italic" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:id="@+id/job_hour"
+                        style="@style/InTaskTheme_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@+id/job_title"
+                        android:text="11.45" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:id="@+id/status"
+                        style="@style/InTaskTheme_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:id="@+id/job_verified"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="2dp"
+                            android:text="@string/richiede_verifica" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_check_15" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:minHeight="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RatingBar
+                            android:id="@+id/rating_user"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:stepSize="0.1" />
+
+                        <TextView
+                            android:id="@+id/number_of_reviews"
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:text="(0)">
+
+                        </TextView>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                    <Button
+                        android:id="@+id/button"
+                        style="@style/InTaskTheme_small"
+                        android:layout_width="75dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="3dp"
+                        android:text="@string/contatta_button"
+                        android:layout_marginBottom="5dp"/>
+                </androidx.cardview.widget.CardView>
+
+
+            </GridLayout>
+
 
         </LinearLayout>
 

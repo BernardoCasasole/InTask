@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }else{
 
-                    Toast.makeText(LoginActivity.this,"Autenticazione fallita!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,getString(R.string.autenticazione_fallita),Toast.LENGTH_SHORT).show();
 
                 }
             }

@@ -158,9 +158,9 @@ public class PopupActivity extends AppCompatActivity {
                                         RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
                                         String tag = (String) radioButton.getTag();
                                         String[] attributes = tag.split("@");
-                                        String message = user.getName() + " ha fatto una proposta per " +
-                                                radioButton.getText().toString() + " in data "+ day.getText().toString() +
-                                                ", ora " + time.getText().toString() + ".";
+                                        String message = user.getName() + " " + getString(R.string.proposta_per) + " " +
+                                                radioButton.getText().toString() + " " +  getString(R.string.in_data) + day.getText().toString() +
+                                                ", " +  getString(R.string.ora) + " " + time.getText().toString() + ".";
                                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Chats").push();
                                         HashMap<String, Object> map = new HashMap<>();
                                         map.put("sender", firebaseUser.getUid());
@@ -215,12 +215,12 @@ public class PopupActivity extends AppCompatActivity {
         int b = ((int) result.charAt(1)) - 48;
         int c = ((int) result.charAt(3)) - 48;
         if(a < 0 || b < 0 || c < 0) {
-            Toast.makeText(PopupActivity.this, "Inserire orario corretto ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PopupActivity.this,  getString(R.string.inserire_orario_corretto), Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if((a > 2 || (a == 2 && b > 3)) || c > 59) {
-            Toast.makeText(PopupActivity.this, "Inserire orario corretto", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PopupActivity.this,  getString(R.string.inserire_orario_corretto), Toast.LENGTH_SHORT).show();
             return false;
         }
         return  true;
@@ -237,8 +237,8 @@ public class PopupActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
 
-                    Data data = new Data(userId,receiverId, "Nuovo messaggio da "+ name +"!",message);
-                    Notification notification = new Notification(message, "Nuovo messaggio da "+ name +"!",".MessagingActivity");
+                    Data data = new Data(userId,receiverId,   getString(R.string.nuovo_messaggio_da)+ " "+ name ,message);
+                    Notification notification = new Notification(message, getString(R.string.nuovo_messaggio_da)+ " "+ name ,".MessagingActivity");
                     Sender sender = new Sender(data,snapshot.getValue(String.class));
 
                     apiService.sendNotification(sender).enqueue(new Callback<MyResponse>() {

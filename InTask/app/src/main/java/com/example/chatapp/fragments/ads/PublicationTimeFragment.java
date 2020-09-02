@@ -98,7 +98,7 @@ public class PublicationTimeFragment extends Fragment {
 
             @Override
             public void onProviderDisabled(@NonNull String provider) {
-                Log.wtf("Boh","accendiGPS");
+                Log.wtf("Boh",getString(R.string.accendi_gps));
             }
         };
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -138,7 +138,7 @@ public class PublicationTimeFragment extends Fragment {
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
                     location.setText(address);
                 } catch (IOException | IndexOutOfBoundsException e) {
-                    Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.indirizzo_non_trovato), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -244,7 +244,7 @@ public class PublicationTimeFragment extends Fragment {
                     map.put("setted_image", uploaded);
                     map.put("pending", false);
                     map.put("achieved", false);
-                    Toast.makeText(getContext(), "Annuncio pubblicato con successo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.annuncio_pubblicato_con_successo), Toast.LENGTH_SHORT).show();
 
                     databaseReference.child(key).setValue(map);
                     if (uploaded) {
@@ -255,7 +255,7 @@ public class PublicationTimeFragment extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PublicationChoiceFragment()).commit();
 
                 } else
-                    Toast.makeText(getContext(), "Devi riempire tutti i campi correttamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.riempi_tutti_i_campi_correttamente), Toast.LENGTH_SHORT).show();
 
 
             }
@@ -293,12 +293,12 @@ public class PublicationTimeFragment extends Fragment {
         int b = ((int) result.charAt(1)) - 48;
         int c = ((int) result.charAt(3)) - 48;
         if(a < 0 || b < 0 || c < 0) {
-            Toast.makeText(getContext(), "Inserire orario corretto ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.inserire_orario_corretto, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if((a > 2 || (a == 2 && b > 3)) || c > 59) {
-            Toast.makeText(getContext(), "Inserire orario corretto", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.inserire_orario_corretto, Toast.LENGTH_SHORT).show();
             return false;
         }
         return  true;

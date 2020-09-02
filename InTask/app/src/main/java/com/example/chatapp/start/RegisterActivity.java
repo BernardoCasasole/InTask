@@ -107,18 +107,18 @@ public class RegisterActivity extends AppCompatActivity {
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
 
                             if (data.getValue(User.class).getMail().equals(text_mail)) {
-                                Toast.makeText(getApplicationContext(), "Mail già esistente!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getString(R.string.mail_esistentte), Toast.LENGTH_SHORT).show();
                                 found = true;
                             }
                         }
                         if (!found) {
 
                             if (TextUtils.isEmpty(text_mail) | TextUtils.isEmpty(text_name) | TextUtils.isEmpty(text_surname) | TextUtils.isEmpty(text_password)) {
-                                Toast.makeText(getApplicationContext(), "Riempi tutti i campi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getString(R.string.riempi_tutti_i_campi_correttamente), Toast.LENGTH_SHORT).show();
                             } else if (text_password.length() < 8) {
-                                Toast.makeText(getApplicationContext(), "La password deve essere almeno di 8 caratteri!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.lunghezza_password, Toast.LENGTH_SHORT).show();
                             } else if (text_name.contains(" ") | text_surname.contains(" ")) {
-                                Toast.makeText(getApplicationContext(), "Non usare spazi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_spazi, Toast.LENGTH_SHORT).show();
                             } else {
                                 register(text_name, text_surname, text_mail, text_password);
                             }
@@ -181,7 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Non puoi registarti con questa mail e/o passowrd", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.no_em_or_password_allowrd), Toast.LENGTH_SHORT).show();
 
                 }
             }

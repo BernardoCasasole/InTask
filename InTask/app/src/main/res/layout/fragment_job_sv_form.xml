@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-medium"
             android:shadowColor="#807B7B"
-            android:text="Dicci qualcosa sul lavoro che vuoi proporre"
+            android:text="@string/dicci_qualcosa_sul_lavoro_che_vuoi_proporre"
             android:textAlignment="center"
             android:textSize="20dp" />
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Cerco qualcuno per..."
+            android:hint="@string/cerco_qualcuno_per"
             android:minHeight="25dp"
             android:textSize="12dp" />
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Il lavoro consisterà in..."
+            android:hint="@string/il_lavoro_consister_in"
             android:minHeight="65dp"
             android:textSize="12dp" />
 
@@ -83,7 +83,7 @@
             android:padding="10dp"
             android:id="@+id/proposal_reward"
             android:layout_width="match_parent"
-            android:hint="0,00 eur"
+            android:hint="0.00 eur"
             android:textSize="14dp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
@@ -227,7 +227,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
-            android:hint="Via, n°, Città, Nazione, CAP..."
+            android:hint="@string/via_n_citt_nazione_cap"
             android:minHeight="25dp"
             android:textSize="12dp" />
 
@@ -283,7 +283,7 @@
                 android:clickable="true"
                 android:focusable="false"
                 android:inputType="date"
-                android:hint="Data.."
+                android:hint="@string/gg_mm_aaaa"
                 android:minHeight="25dp"
                 android:textSize="12dp" />
             <Space
@@ -297,7 +297,7 @@
                 android:layout_margin="0dp"
                 android:background="@drawable/edit_text_background"
                 android:inputType="time"
-                android:hint="Ora.. (hh:mm)"
+                android:hint="hh:mm"
                 android:minHeight="25dp"
                 android:textSize="12dp" />
 
@@ -313,7 +313,7 @@
                 android:layout_margin="0dp"
                 android:inputType="time"
                 android:background="@drawable/edit_text_background"
-                android:hint="Numero di ore approssivamente necessarie..."
+                android:hint="@string/ore_necessarie_stimate"
                 android:minHeight="25dp"
                 android:textSize="12dp" />
         </LinearLayout>
@@ -337,7 +337,7 @@
             android:id="@+id/proposal_btn_publish"
             android:layout_width="120dp"
             android:layout_height="55dp"
-            android:text="Pubblica"
+            android:text="@string/pubblica"
             android:background="@drawable/custom_button"
             android:textStyle="bold"
             style="@style/InTaskTheme_ordinary">

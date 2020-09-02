@@ -1,11 +1,13 @@
 package com.example.chatapp;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,12 +48,11 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
-        if (!firstStart) {
-            showStartDialog();
+
+        if (firstStart) {
+            showStartDialog();;
         }
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -174,10 +177,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showStartDialog() {
-        startActivity(new Intent(MainActivity.this, IntroActivity.class));
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("firstStart", false);
         editor.apply();
+        startActivity(new Intent(MainActivity.this, IntroActivity.class));
     }
 }

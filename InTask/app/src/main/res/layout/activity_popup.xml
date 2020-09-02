@@ -2,11 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="40dp">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
-        android:layout_margin="10dp"
+        android:layout_margin="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -19,7 +18,7 @@
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_baseline_access_time_24"
             android:fontFamily="sans-serif-condensed-light"
-            android:text="Quando?"
+            android:text="@string/quando_"
             android:textColor="#FF014F59"
             android:textSize="16sp" />
         <LinearLayout
@@ -36,7 +35,7 @@
                 android:clickable="true"
                 android:focusable="false"
                 android:inputType="date"
-                android:hint="Data.."
+                android:hint="@string/gg_mm_aaaa"
                 android:minHeight="25dp"
                 android:textSize="12dp" />
             <Space
@@ -48,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="Ora.. (hh:mm)"
+                android:hint="(hh:mm)"
                 android:inputType="time"
                 android:minHeight="25dp"
                 android:padding="10dp"

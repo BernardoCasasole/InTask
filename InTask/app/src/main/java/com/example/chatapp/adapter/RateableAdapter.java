@@ -25,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class RateableAdapter extends RecyclerView.Adapter<RateableAdapter.ViewHolder> {
 
     private Context mContext;
@@ -48,7 +50,7 @@ public class RateableAdapter extends RecyclerView.Adapter<RateableAdapter.ViewHo
             @Override
             public void onDataChange(@NonNull final DataSnapshot snapshot) {
                 final User user = snapshot.getValue(User.class);
-                String title = "Valuta, da 1 a 5, la tua esperienza con " + user.getName() + " relativa al lavoro " + rateable.getTitle() + ".";
+                String title = getApplicationContext().getResources().getString(R.string.valuta_da_1_a_5_la_tua_esperienza_con) + user.getName() + getApplicationContext().getResources().getString(R.string.relativa_al_lavoro) + rateable.getTitle() + ".";
 
                 holder.title.setText(title);
                 holder.buttonRate.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +61,7 @@ public class RateableAdapter extends RecyclerView.Adapter<RateableAdapter.ViewHo
                         FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("ratings"). setValue(user.getRatings() + 1);
                         FirebaseDatabase.getInstance().getReference("Users").child(user.getId()).child("average_ratings"). setValue(newRate);
                         FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("rateable").child(rateable.getKey()).removeValue();
-                        Toast.makeText(mContext, "Utente valutato correttamente!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, getApplicationContext().getResources().getString(R.string.utente_valutato_correttamente), Toast.LENGTH_SHORT).show();
 
                     }
                 });

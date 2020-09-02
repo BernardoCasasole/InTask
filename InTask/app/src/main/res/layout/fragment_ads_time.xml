@@ -57,7 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Titolo"
+                            android:text="@string/titolo"
                             android:drawableStart="@drawable/ic_baseline_library_books_24"/>
 
                         <TextView
@@ -66,7 +66,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Pubblicato Da"
+                            android:text="@string/pubblicato_da"
                             android:drawableStart="@drawable/ic_baseline_person_24"/>
 
                         <TextView
@@ -75,7 +75,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Data"
+                            android:text="@string/data"
                             android:drawableStart="@drawable/ic_baseline_calendar_today_24"/>
                         <TextView
                             android:id="@+id/hour_time_pubb"
@@ -83,7 +83,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Ora"
+                            android:text="@string/ora_"
                             android:drawableStart="@drawable/ic_baseline_access_time_24"/>
                     </LinearLayout>
 
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Categoria:"
+                    android:text="@string/categoria"
                     android:padding="8dp"
                     android:textStyle="italic"
                     />  <TextView
@@ -151,7 +151,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Indirizzo"
+                    android:text="@string/indirizzo"
                     android:padding="8dp"
                     android:textStyle="italic"
                     />  <TextView
@@ -180,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Stato annuncio:"
+                    android:text="@string/stato_annuncio"
                     android:padding="8dp"
                     android:textStyle="italic"
                     />
@@ -210,7 +210,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Disponibilità a muoversi:"
+                    android:text="@string/disponibilit_a_muoversi"
                     android:padding="8dp"
                     android:textStyle="italic"
                     />  <TextView
@@ -243,16 +243,12 @@
                     android:layout_margin="5dp"
                     android:drawableEnd="@drawable/ic_baseline_check_35"
                     android:padding="8dp"
-                    android:text="Accetta solo se verificato:"
+                    android:text="@string/accetta_solo_se_verificato"
                     android:textStyle="italic" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="#014F59" />
+
             <Button
+                android:layout_marginTop="20dp"
                 android:id="@+id/button_contact"
                 style="@style/InTaskTheme_ordinary"
                 android:layout_width="wrap_content"

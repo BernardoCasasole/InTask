@@ -44,7 +44,7 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/profile_image"
             android:gravity="center"
-            android:text="Name Surname" />
+            android:text="@string/name_surname" />
 
         <LinearLayout
             android:layout_centerVertical="true"

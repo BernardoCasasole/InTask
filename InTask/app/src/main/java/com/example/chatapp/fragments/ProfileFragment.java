@@ -119,7 +119,7 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onProviderDisabled(@NonNull String provider) {
-                Log.wtf("Boh","accendiGPS");
+                Log.wtf("Boh",getString(R.string.accendi_gps));
             }
         };
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -179,7 +179,7 @@ public class ProfileFragment extends Fragment {
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
                     addressUser.setText(address);
                 } catch (IOException | IndexOutOfBoundsException e) {
-                    Toast.makeText(getContext(), "Indirizzo non trovato", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.indirizzo_non_trovato), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -207,19 +207,19 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 getPosition.setVisibility(View.VISIBLE);
                 addressUser.setVisibility(View.VISIBLE);
-                btn_updateAddress.setText("salva modifiche");
+                btn_updateAddress.setText(getString(R.string.salva_modifiche));
                 location.setVisibility(View.GONE);
                 btn_updateAddress.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         getPosition.setVisibility(View.GONE);
-                        btn_updateAddress.setText("modifica indirizzo");
+                        btn_updateAddress.setText(getString(R.string.modifica_indirizzo));
                         if(addressUser.getText().toString().equals("")){
-                            Toast.makeText(getContext(),"Riempi il campo!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),getString(R.string.riempi_il_campo),Toast.LENGTH_SHORT).show();
                         }else{
 
                             databaseReference.child("location").setValue(addressUser.getText().toString());
-                            Toast.makeText(getContext(),"Indirizzo modificato!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),getString(R.string.indirizzo_modificato),Toast.LENGTH_SHORT).show();
                             addressUser.setVisibility(View.GONE);
                             location.setVisibility(View.VISIBLE);
                         }
@@ -265,13 +265,13 @@ public class ProfileFragment extends Fragment {
                 });
                 if (!user.getVerified()) {
                     if (user.getVerify_mail()){
-                        verifiedUser.setText("In attesa di verifica");
+                        verifiedUser.setText(getString(R.string.in_attesa_di_verifica));
                         uploadDocument1.setVisibility(View.GONE);
                         uploadDocument2.setVisibility(View.GONE);
                     verifiedUSerImage.setVisibility(View.GONE);
                 }
                     else {
-                        verifiedUser.setText("Utente non verificato");
+                        verifiedUser.setText(getString(R.string.utente_non_verificato));
                         verifiedUSerImage.setVisibility(View.VISIBLE);
                         verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
                         uploadDocument1.setVisibility(View.VISIBLE);
@@ -304,7 +304,7 @@ public class ProfileFragment extends Fragment {
                     }
                 } else {
                     verifiedLayout.setVisibility(View.VISIBLE);
-                    verifiedUser.setText("Utente verificato");
+                    verifiedUser.setText(getString(R.string.utente_verificato));
                     verifiedUSerImage.setVisibility(View.VISIBLE);
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
                     if (myProfile) {
@@ -370,17 +370,19 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        recyclerViewTime = rootView.findViewById(R.id.view_pager_time_off);
-        recyclerViewTime.setHasFixedSize(true);
-        recyclerViewTime.setLayoutManager(new LinearLayoutManager(recyclerViewTime.getContext()));
         recyclerViewJob = rootView.findViewById(R.id.view_pager_job_off);
-        recyclerViewJob.setHasFixedSize(true);
+
         recyclerViewJob.setLayoutManager(new LinearLayoutManager(recyclerViewJob.getContext()));
 
         readAdsJob();
+
+
+
+        recyclerViewTime = rootView.findViewById(R.id.view_pager_time_off);
+
+
+        recyclerViewTime.setLayoutManager(new LinearLayoutManager(recyclerViewTime.getContext()));
         readAdsTime();
-
-
         return rootView;
     }
 
@@ -534,7 +536,7 @@ public class ProfileFragment extends Fragment {
                 if (myProfile)
                     recyclerViewTime.setAdapter(new TimeAdapter(recyclerViewTime.getContext(), mAds, true));
                 else {
-                    titleTime.setText("Disponibilità a lavorare");
+                    titleTime.setText(getString(R.string.disponibilit_a_lavorare));
                     recyclerViewTime.setAdapter(new TimeAdapter(recyclerViewTime.getContext(), mAds, false));
                 }
             }
@@ -571,7 +573,7 @@ public class ProfileFragment extends Fragment {
                 if (myProfile)
                     recyclerViewJob.setAdapter(new JobAdapter(recyclerViewJob.getContext(), mAds, true));
                 else{
-                    titleJob.setText("Offerte di lavoro");
+                    titleJob.setText(getString(R.string.le_offerte_di_lavoro));
                     recyclerViewJob.setAdapter(new JobAdapter(recyclerViewJob.getContext(), mAds, false));
             }
             }

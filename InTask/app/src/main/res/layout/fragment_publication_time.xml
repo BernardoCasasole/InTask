@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Vorrei lavorare come..."
+            android:hint="@string/vorrei_lavorare_come"
             android:minHeight="25dp"
             android:textSize="12dp" />
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Il lavoro può consisitere in..."
+            android:hint="@string/il_lavoro_pu_consisitere_in"
             android:minHeight="65dp"
             android:textSize="12dp" />
 
@@ -203,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
-                android:hint="Via, n°, Città, Nazione, CAP..."
+                android:hint="@string/via_n_citt_nazione_cap"
                 android:minHeight="25dp"
                 android:textSize="12dp" />
 
@@ -263,7 +263,7 @@
                 android:clickable="true"
                 android:focusable="false"
                 android:inputType="date"
-                android:hint="Data.."
+                android:hint="@string/gg_mm_aaaa"
                 android:minHeight="25dp"
                 android:textSize="12dp" />
             <Space
@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="Ora.. (hh:mm)"
+                android:hint="hh:mm"
                 android:inputType="time"
                 android:minHeight="25dp"
                 android:padding="10dp"
@@ -301,7 +301,7 @@
             android:padding="10dp"
             android:id="@+id/distance"
             android:layout_width="match_parent"
-            android:hint="0,00 km"
+            android:hint="0.00 km"
             android:textSize="13sp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
@@ -327,7 +327,7 @@
             android:id="@+id/btn_publish"
             android:layout_width="120dp"
             android:layout_height="55dp"
-            android:text="Pubblica"
+            android:text="@string/pubblica"
             android:background="@drawable/custom_button"
             android:fontFamily="sans-serif-medium"
             android:textSize="18sp"

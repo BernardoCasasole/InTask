@@ -103,7 +103,7 @@ public class FilterFragment extends Fragment {
 
             @Override
             public void onProviderDisabled(@NonNull String provider) {
-                Log.wtf("Boh","accendiGPS");
+                Log.wtf("Boh",getString(R.string.accendi_gps));
             }
         };
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -204,7 +204,7 @@ public class FilterFragment extends Fragment {
             public void onClick(View view) {
 
                 if(!searchTime.isChecked() && !searchJob.isChecked())
-                    Toast.makeText(getContext(), "Scegli quali annunci cercare!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.scegli_quali_annunci_cercare), Toast.LENGTH_SHORT).show();
                 else {
                     showAds();
                     if (searchJob.isChecked())

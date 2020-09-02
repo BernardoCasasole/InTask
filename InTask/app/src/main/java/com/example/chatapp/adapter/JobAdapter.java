@@ -59,6 +59,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
     private Context mContext;
@@ -99,13 +101,13 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             }
         });
         if(job.getAchieved()) {
-            holder.status.setText("Archiviato");
+            holder.status.setText(getApplicationContext().getResources().getString(R.string.archiviato));
             holder.status.setTextColor(Color.RED);
         }else if(job.getPending())
-            holder.status.setText(("In trattativa"));
+            holder.status.setText(getApplicationContext().getResources().getString(R.string.in_trattativa));
 
         else {
-            holder.status.setText(("Disponibile"));
+            holder.status.setText(getApplicationContext().getResources().getString(R.string.disponibile));
             holder.status.setTextColor(Color.rgb(0, 153, 0));
         }
         FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
@@ -155,7 +157,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                                         intent.putExtras(b);
                                         mContext.startActivity(intent);
                                     } else {
-                                        Toast.makeText(mContext, "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mContext, getApplicationContext().getResources().getString(R.string.devi_verificare_l_account_prima_di_contattare_questo_utente), Toast.LENGTH_SHORT).show();
                                         Bundle bundle = new Bundle();
                                         bundle.putString("id", snapshot.child("id").getValue().toString());
                                         Fragment selectedFragment = new ProfileFragment();

@@ -48,6 +48,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
     private Context mContext;
@@ -75,13 +77,13 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
         holder.day.setText(time.getDay());
         holder.time.setText(time.getTime());
         if(time.getAchieved()) {
-            holder.status.setText("Archiviato");
+            holder.status.setText(getApplicationContext().getResources().getString(R.string.archiviato));
             holder.status.setTextColor(Color.RED);
         }else if(time.getPending())
-            holder.status.setText(("In trattativa"));
+            holder.status.setText((getApplicationContext().getResources().getString(R.string.in_trattativa)));
 
         else {
-            holder.status.setText(("Disponibile"));
+            holder.status.setText((getApplicationContext().getResources().getString(R.string.disponibile)));
             holder.status.setTextColor(Color.rgb(0, 153, 0));
         }
         FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
@@ -100,7 +102,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
     if(!time.getAchieved() && !time.getPending()) {
         holder.button.setVisibility(View.VISIBLE);
         if (myAds) {
-            holder.button.setText("Elimina");
+            holder.button.setText(getApplicationContext().getResources().getString(R.string.elimina));
             holder.button.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -114,7 +116,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 }
             });
         } else {
-            holder.button.setText("Contatta");
+            holder.button.setText(getApplicationContext().getResources().getString(R.string.contatta_button));
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -132,7 +134,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                                     intent.putExtras(b);
                                     mContext.startActivity(intent);
                                 } else {
-                                    Toast.makeText(mContext, "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(mContext, getApplicationContext().getResources().getString(R.string.devi_verificare_l_account_prima_di_contattare_questo_utente), Toast.LENGTH_SHORT).show();
                                     Bundle bundle = new Bundle();
                                     bundle.putString("id", snapshot.child("id").getValue().toString());
                                     Fragment selectedFragment = new ProfileFragment();

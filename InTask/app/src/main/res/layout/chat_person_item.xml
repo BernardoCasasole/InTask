@@ -13,8 +13,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="6dp"
@@ -71,7 +71,7 @@
                     android:foregroundGravity="center_vertical"
                     android:gravity="center"
                     android:padding="1dp"
-                    android:text="contatta">
+                    android:text="@string/contatta_button">
 
                 </Button>
             </LinearLayout>

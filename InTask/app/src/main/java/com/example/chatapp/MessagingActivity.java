@@ -296,8 +296,8 @@ public class MessagingActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
 
-                    Data data = new Data(userId,receiverId, "Nuovo messaggio da "+ name +"!",message);
-                    Notification notification = new Notification(message, "Nuovo messaggio da "+ name +"!",".MessagingActivity");
+                    Data data = new Data(userId,receiverId, getString(R.string.nuovo_messaggio_da)+ " "+ name,message);
+                    Notification notification = new Notification(message, getString(R.string.nuovo_messaggio_da)+ " "+  name,".MessagingActivity");
                     Sender sender = new Sender(data,snapshot.getValue(String.class));
 
                     apiService.sendNotification(sender).enqueue(new Callback<MyResponse>() {

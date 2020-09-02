@@ -57,7 +57,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="left"
                     android:padding="5dp"
-                    android:text="Mi interessa cercare" />
+                    android:text="@string/mi_interessa_cercare" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -537,7 +537,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="left"
                     android:padding="5dp"
-                    android:text="Giorno della settimana" />
+                    android:text="@string/giorno_della_settimana" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -566,7 +566,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Lun" />
+                                android:text="@string/lun" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -581,7 +581,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Mar" />
+                                android:text="@string/mar" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -596,7 +596,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Mer" />
+                                android:text="@string/mer" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -611,7 +611,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Gio" />
+                                android:text="@string/gio" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -626,7 +626,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Ven" />
+                                android:text="@string/ven" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -641,7 +641,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Sab" />
+                                android:text="@string/sab" />
                         </androidx.cardview.widget.CardView>
 
 
@@ -657,7 +657,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="Dom" />
+                                android:text="@string/dom" />
                         </androidx.cardview.widget.CardView>
 
                     </GridLayout>
@@ -893,14 +893,16 @@
 
             <Button
                 android:id="@+id/filter_btn"
-                style="@style/InTaskTheme_subtitle"
+                style="@style/InTaskTheme_ordinary"
+                android:textStyle="bold"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/custom_button"
                 android:gravity="center"
-                android:text="@string/filter"
-                android:layout_marginBottom="20dp"/>
+                android:text="@string/filter" />
 
 
         </LinearLayout>

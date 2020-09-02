@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ScrollView
         android:layout_width="match_parent"
@@ -51,45 +51,53 @@
                         android:layout_height="wrap_content"
                         android:minWidth="150dp"
                         android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/name_user"
-                            style="@style/InTaskTheme_subtitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="Nome" />
-
-                        <TextView
-                            android:id="@+id/surname_user"
-                            style="@style/InTaskTheme_subtitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="Cognome" />
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-                        <RatingBar
-                            android:id="@+id/rating_user"
+                            <TextView
+                                android:id="@+id/name_user"
+                                style="@style/InTaskTheme_subtitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/name" />
+
+                            <TextView
+                                android:id="@+id/surname_user"
+                                style="@style/InTaskTheme_subtitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/surname" />
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="?android:attr/ratingBarStyleSmall"
-                            android:numStars="5"
-                            android:stepSize="0.1"
-                            android:isIndicator="true"
-                            android:layout_margin="10dp"/>
-                        <TextView
-                            android:id="@+id/number_of_reviews"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/InTaskTheme_small"
-                            android:text="(0)"
-                            android:layout_gravity="center">
+                            android:orientation="horizontal">
+                            <RatingBar
+                                android:id="@+id/rating_user"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="?android:attr/ratingBarStyleSmall"
+                                android:numStars="5"
+                                android:stepSize="0.1"
+                                android:isIndicator="true"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"/>
+
+                            <TextView
+                                android:id="@+id/number_of_reviews"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/InTaskTheme_small"
+                                android:text="(0)"
+                                android:layout_gravity="center">
 
 
 
-                        </TextView>
+                            </TextView>
                         </LinearLayout>
 
                         <LinearLayout
@@ -97,23 +105,23 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:gravity="center">
-                        <TextView
-                        android:id="@+id/verified_user"
-                        style="@style/InTaskTheme_small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="5dp"
-                        android:text="stato del verificato"/>
+                            <TextView
+                                android:id="@+id/verified_user"
+                                style="@style/InTaskTheme_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="5dp"
+                                android:text="@string/utente_verificato"/>
 
-                        <ImageView
-                            android:id="@+id/verified_user_image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/ic_baseline_close_35"/>
+                            <ImageView
+                                android:id="@+id/verified_user_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="1dp"
+                                android:layout_marginRight="10dp"
+                                android:src="@drawable/ic_baseline_close_35"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -198,7 +206,7 @@
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/edit_text_background"
-                        android:hint="Modifica la tua password"
+                        android:hint="@string/modifica_la_tua_password"
                         android:inputType="textPassword"
                         android:minWidth="250dp"
                         android:padding="10dp" />
@@ -213,7 +221,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custom_button"
-                    android:padding="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:text="@string/salva_modifiche" />
                 <View
                     android:layout_width="match_parent"
@@ -238,14 +247,14 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true">
+                        android:layout_gravity="top">
                         <TextView
                             android:textStyle="bold"
                             style="@style/InTaskTheme_ordinary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Indirizzo" />
+                            android:text="@string/indirizzo" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -262,15 +271,21 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="10dp"
                             android:background="@drawable/edit_text_background"
-                            android:hint="Inserisci il tuo indirizzo"
+                            android:hint="@string/via_n_citt_nazione_cap"
                             android:minWidth="250dp"
-                            android:padding="10dp" />
+                            android:padding="10dp"
+                            style="@style/InTaskTheme_small"/>
                         <TextView
                             android:id="@+id/text_location"
                             style="@style/InTaskTheme_small"
                             android:layout_width="match_parent"
+                            android:layout_marginRight="5dp"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_height="wrap_content"
-                            android:text="00, Via inserita, Città, Nazione, 12121" />
+                            android:text="@string/via_n_citt_nazione_cap" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -290,7 +305,8 @@
                         android:text="@string/inserisci_posizione_attuale"
                         android:textColor="#FF014F59"
                         android:fontFamily="sans-serif-condensed-light"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="8dp"
                         android:textSize="10sp"
                         android:background="@drawable/custom_button"
                         android:drawableRight="@drawable/ic_baseline_add_location_24"
@@ -304,12 +320,13 @@
                         android:id="@+id/user_address_update_button"
                         style="@style/InTaskTheme_small"
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
+                        android:layout_height="26dp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/custom_button"
                         android:gravity="center"
-                        android:padding="5dp"
-                        android:layout_marginRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:text="@string/modifica_indirizzo" />
                 </LinearLayout>
                 <View
@@ -329,7 +346,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="7dp"
-                    android:text="Valuta gli utenti con cui hai lavorato"
+                    android:text="@string/valuta_gli_utenti_con_cui_hai_lavorato"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"/>
@@ -369,7 +386,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/pending_reviews_recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="20dp">
 
@@ -389,41 +406,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/layout_verified"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/InTaskTheme_ordinary"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/layout_verified"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="10dp"
-                        android:text="Modifica il tuo documento di verifica utente"/>
+                        android:orientation="horizontal">
 
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="right"
-                    android:gravity="right">
+                        <TextView
+                            style="@style/InTaskTheme_ordinary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="10dp"
+                            android:text="@string/modifica_il_tuo_documento_di_verifica_utente"/>
 
-                    <Button
-                        android:id="@+id/user_document_update"
-                        style="@style/InTaskTheme_small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_gravity="right"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/custom_button"
-                        android:padding="5dp"
-                        android:text="@string/modifica_documento" />
+                        android:gravity="right">
 
-                </LinearLayout>
+                        <Button
+                            android:id="@+id/user_document_update"
+                            style="@style/InTaskTheme_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/custom_button"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/modifica_documento" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -432,8 +450,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_gravity="center"
-                    tools:ignore="MissingConstraints"
-                    android:layout_marginTop="20dp">
+                    tools:ignore="MissingConstraints">
                     <TextView
                         android:id="@+id/became_verified_user"
                         style="@style/InTaskTheme_subtitle"
@@ -443,68 +460,69 @@
                         android:text="@string/diventa_un_utente_verificato"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"/>
-                    <TextView
-                        android:id="@+id/became_verified_expl_user"
-                        style="@style/InTaskTheme_small"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="@string/expl_photo"
-                        />
-                    <RelativeLayout
-                        android:id="@+id/layout_document_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/verified_photo_text_user"
-                            style="@style/InTaskTheme_ordinary"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="20dp">
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="@string/immagine_documento_string" />
-
-                        <ImageView
-                            android:id="@+id/document_image"
-                            android:layout_width="80dp"
-                            android:layout_height="100dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="55dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/edit_text_background"
-                            android:src="@drawable/ic_passport_svgrepo_com"
-                             />
-                    </RelativeLayout>
-                    <Button
-                        android:tag="default"
-                        android:id="@+id/user_document_upload"
-                        android:padding="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/custom_button"
-                        android:text="@string/carica_documento"
-                        style="@style/InTaskTheme_small">
-                    </Button>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/became_verified_expl_user"
+                                style="@style/InTaskTheme_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxWidth="220dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/expl_photo"
+                                />
+                            <Button
+                                android:id="@+id/user_document_upload"
+                                style="@style/InTaskTheme_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:background="@drawable/custom_button"
+                                android:padding="8dp"
+                                android:tag="default"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/carica_documento" />
+                        </LinearLayout>
+                        <RelativeLayout
+                            android:id="@+id/layout_document_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:gravity="right">
+                            <ImageView
+                                android:id="@+id/document_image"
+                                android:layout_width="80dp"
+                                android:layout_height="100dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/edit_text_background"
+                                android:src="@drawable/ic_passport_svgrepo_com" />
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="#014F59" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout_job"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                tools:ignore="MissingConstraints"
                 android:layout_marginTop="20dp">
 
                 <TextView
@@ -522,13 +540,16 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="10dp"
+                android:background="#014F59" />
             <LinearLayout
                 android:id="@+id/layout_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                tools:ignore="MissingConstraints"
                 android:layout_marginTop="20dp">
                 <TextView
                     android:id="@+id/title_time"
@@ -547,39 +568,41 @@
                     />
             </LinearLayout>
 
+
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/time_public_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-        <!--
-        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
-        AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
-        behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
-            @Override
-            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
-                return false;
-            }
-        });-->
-            <RelativeLayout
+            <!--
+            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
+            AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
+            behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+                @Override
+                public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                    return false;
+                }
+            });-->
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_gravity="center"
                 android:layout_marginBottom="25dp"
                 android:layout_marginTop="25dp"
                 >
 
                 <Button
-                    android:layout_centerVertical="true"
+                    android:gravity="center"
                     android:id="@+id/logout_id"
                     style="@style/InTaskTheme_small"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:background="@drawable/custom_button"
-                    android:padding="5dp"
+                    android:padding="8dp"
                     android:text="@string/logout" />
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>

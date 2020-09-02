@@ -59,9 +59,9 @@ public class HomeFragment extends Fragment {
         Fragment fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
         if(Boolean.parseBoolean(myAds))
-            title = "Le tue disponibilità";
+            title = getString(R.string.le_tue_disponibilit_a_lavorare);
         else
-            title = "I nostri professionisti";
+            title = getString(R.string.i_nostri_professionisti);
 
         viewPageAdapter.addFragments(fragment,title);
 
@@ -72,9 +72,9 @@ public class HomeFragment extends Fragment {
         fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
         if(Boolean.parseBoolean(myAds))
-            title = "Le tue offerte di lavoro";
+            title = getString(R.string.le_tue_offerte_di_lavoro);
         else
-            title = "Le offerte di lavoro";
+            title = getString(R.string.le_offerte_di_lavoro);
 
         viewPageAdapter.addFragments(fragment,title);
 

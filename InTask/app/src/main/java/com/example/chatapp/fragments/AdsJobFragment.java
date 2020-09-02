@@ -137,12 +137,12 @@ public class AdsJobFragment extends Fragment {
                 description.setText(job.getDescription());
                 type.setText(job.getType());
                 if(job.getAchieved()) {
-                    status.setText("Archiviato");
+                    status.setText(getString(R.string.archiviato));
                     status.setTextColor(Color.RED);
                 }else if(job.getPending())
-                    status.setText(("In trattativa"));
+                    status.setText(getString(R.string.in_trattativa));
                 else {
-                    status.setText(("Disponibile"));
+                    status.setText(getString(R.string.disponibile));
                     status.setTextColor(Color.rgb(0, 153, 0));
                 }
 
@@ -192,10 +192,10 @@ public class AdsJobFragment extends Fragment {
                 }
 
                 if(!job.getVerified()){
-                    verified.setText("Utente non verificato");
+                    verified.setText(getString(R.string.utente_non_verificato));
                     verified.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_close_35, 0);
                 }else{
-                    verified.setText("Utente verificato");
+                    verified.setText(getString(R.string.utente_verificato));
                     verified.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_35, 0);
                 }
 
@@ -222,7 +222,7 @@ public class AdsJobFragment extends Fragment {
                                             intent.putExtras(b);
                                             getContext().startActivity(intent);
                                         } else {
-                                            Toast.makeText(getContext(), "Devi verificare l'account prima di contattare questo utente!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getContext(), getString(R.string.devi_verificare_l_account_prima_di_contattare_questo_utente), Toast.LENGTH_SHORT).show();
                                             Bundle bundle = new Bundle();
                                             bundle.putString("id", snapshot.child("id").getValue().toString());
                                             Fragment selectedFragment = new ProfileFragment();
