@@ -116,10 +116,18 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 User userSender = snapshot.child(chat.getSender()).getValue(User.class);
                                 User userReceiver = snapshot.child(chat.getReceiver()).getValue(User.class);
-                                //CHIAMA QUI
-                                //userSender.getName() e userReceiver.getName()
-                                //userSender.getMail() e userReceiver.getMail()
-                                //chat.getDate(), chat.getTitle() e chat.getTime()
+                                String message_to_sender = getApplicationContext().getResources().getString(R.string.complimenti) + " " + userSender.getName() +
+                                        getApplicationContext().getResources().getString(R.string._agreement_) + " " + chat.getTitle()  + " " + getApplicationContext().getResources().getString(R.string.in_data) + " " + chat.getDate() + " " + getApplicationContext().getResources().getString(R.string.time) + " " + chat.getTime() + "." +
+                                        getApplicationContext().getResources().getString(R.string.agreement_corp) + " " + userReceiver.getName() +"." +
+                                        getApplicationContext().getResources().getString(R.string.agreement_end);
+                                String message_to_reciver = getApplicationContext().getResources().getString(R.string.complimenti) + " " + userReceiver.getName() +
+                                        getApplicationContext().getResources().getString(R.string._agreement_) + " " + chat.getTitle()  + " " + getApplicationContext().getResources().getString(R.string.in_data) + " " + chat.getDate() + " " + getApplicationContext().getResources().getString(R.string.time) + " " + chat.getTime() + "." +
+                                        getApplicationContext().getResources().getString(R.string.agreement_corp) + " " + userSender.getName() +"." +
+                                        getApplicationContext().getResources().getString(R.string.agreement_end);
+                                String sender_mail = userSender.getMail();
+                                String reciver_mail = userReceiver.getMail();
+                                senEmail(sender_mail, message_to_sender);
+                                senEmail(reciver_mail, message_to_reciver);
                             }
 
                             @Override

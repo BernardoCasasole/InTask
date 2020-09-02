@@ -209,4 +209,5 @@ We will notify you as soon as the check is finished and you have become a verifi
     <string name="_agreement_">! \nYou successfully scheduled the task </string>
     <string name="agreement_corp">\nRemember that the following day you will have the opportunity to rate and review your experience with </string>
     <string name="agreement_end">\n\n\nBest regards,\n\nInTask team</string>
+    <string name="time">at </string>
 </resources>

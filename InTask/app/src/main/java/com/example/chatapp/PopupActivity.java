@@ -159,7 +159,7 @@ public class PopupActivity extends AppCompatActivity {
                                         String tag = (String) radioButton.getTag();
                                         String[] attributes = tag.split("@");
                                         String message = user.getName() + " " + getString(R.string.proposta_per) + " " +
-                                                radioButton.getText().toString() + " " +  getString(R.string.in_data) + day.getText().toString() +
+                                                radioButton.getText().toString() + " " +  getString(R.string.in_data)  + " " + day.getText().toString() +
                                                 ", " +  getString(R.string.ora) + " " + time.getText().toString() + ".";
                                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Chats").push();
                                         HashMap<String, Object> map = new HashMap<>();

@@ -206,6 +206,7 @@
     <string name="accordo_con_utente_raggiunto">Nuovo accordo per un lavoro raggiunto con successo</string>
     <string name="complimenti">Complimenti</string>
     <string name="_agreement_">! \nHai raggiunto un nuovo accordo per il lavoro</string>
-    <string name="agreement_corp">\nRicordati che il giorno seguente avrai la possibilità di recensre la tua esperienza con l\'utente </string>
+    <string name="agreement_corp">\nRicordati che il giorno seguente avrai la possibilità di recensire la tua esperienza con l\'utente </string>
     <string name="agreement_end">\n\n\nDistinti saluti,\n\nIl team di inTask</string>
+    <string name="time">alle ore </string>
 </resources>
