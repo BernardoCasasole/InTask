@@ -10,8 +10,9 @@ public class Chat {
     private String key;
     private String date;
     private String title;
+    private String time;
 
-    public Chat(String sender, String receiver, String message, String type, String ads, String key, String date, String title) {
+    public Chat(String sender, String receiver, String message, String type, String ads, String key, String date, String title, String time) {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;
@@ -19,7 +20,12 @@ public class Chat {
         this.ads = ads;
         this.key = key;
         this.date = date;
+        this.time = time;
         this.title = title;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     public String getTitle() {

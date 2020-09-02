@@ -15,10 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.chatapp.JavaMailAPI;
 import com.example.chatapp.R;
 import com.example.chatapp.model.Chat;
+import com.example.chatapp.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -106,6 +110,23 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                         map.put("title", chat.getTitle());
 
                         reference1.setValue(map);
+
+                        FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                User userSender = snapshot.child(chat.getSender()).getValue(User.class);
+                                User userReceiver = snapshot.child(chat.getReceiver()).getValue(User.class);
+                                //CHIAMA QUI
+                                //userSender.getName() e userReceiver.getName()
+                                //userSender.getMail() e userReceiver.getMail()
+                                //chat.getDate(), chat.getTitle() e chat.getTime()
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
 
                     }
                 });

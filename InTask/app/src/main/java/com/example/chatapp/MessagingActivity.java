@@ -225,6 +225,7 @@ public class MessagingActivity extends AppCompatActivity {
         map.put("key",reference.getKey());
         map.put("date","");
         map.put("title","");
+        map.put("time","");
 
         reference.setValue(map);
 

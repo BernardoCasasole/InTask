@@ -171,6 +171,7 @@ public class PopupActivity extends AppCompatActivity {
                                         map.put("key",reference.getKey());
                                         map.put("title",radioButton.getText().toString());
                                         map.put("date",day.getText().toString());
+                                        map.put("time",time.getText().toString());
 
                                         reference.setValue(map);
                                         sendNotifications(userID, user.getId(), user.getName(), message);
