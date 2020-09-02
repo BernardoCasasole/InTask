@@ -90,12 +90,11 @@ public class StartActivity extends AppCompatActivity {
         // Initialize Facebook Login button
         callbackManager = CallbackManager.Factory.create();
 
-        fb_register.setReadPermissions("email", "public_profile");
+        fb_register.setPermissions("email", "public_profile", "user_friends");
         fb_register.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
             @Override
             public void onSuccess(LoginResult loginResult) {
-
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
@@ -146,9 +145,9 @@ public class StartActivity extends AppCompatActivity {
                 Log.w("lol", "Google sign in failed", e);
                 // ...
             }
-        }else
+        }else {
             callbackManager.onActivityResult(requestCode, resultCode, data);
-
+        }
     }
 
     private void firebaseAuthWithGoogle(final GoogleSignInAccount account) {
@@ -175,7 +174,6 @@ public class StartActivity extends AppCompatActivity {
 
 
     private void handleFacebookAccessToken(AccessToken token) {
-
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         Intent intent = new Intent(StartActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
