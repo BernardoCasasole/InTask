@@ -374,18 +374,9 @@ public class ProfileFragment extends Fragment {
         });
 
         recyclerViewJob = rootView.findViewById(R.id.view_pager_job_off);
-
         recyclerViewJob.setLayoutManager(new LinearLayoutManager(recyclerViewJob.getContext()));
-
         readAdsJob();
 
-
-
-        recyclerViewTime = rootView.findViewById(R.id.view_pager_time_off);
-
-
-        recyclerViewTime.setLayoutManager(new LinearLayoutManager(recyclerViewTime.getContext()));
-        readAdsTime();
         return rootView;
     }
 
@@ -555,7 +546,6 @@ public class ProfileFragment extends Fragment {
 
         final List<Job> mAds = new ArrayList<>();
 
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Job");
 
 
@@ -579,6 +569,11 @@ public class ProfileFragment extends Fragment {
                     titleJob.setText(getString(R.string.le_offerte_di_lavoro));
                     recyclerViewJob.setAdapter(new JobAdapter(recyclerViewJob.getContext(), mAds, false));
             }
+                recyclerViewTime = rootView.findViewById(R.id.view_pager_time_off);
+
+
+                recyclerViewTime.setLayoutManager(new LinearLayoutManager(recyclerViewTime.getContext()));
+                readAdsTime();
             }
 
             @Override
