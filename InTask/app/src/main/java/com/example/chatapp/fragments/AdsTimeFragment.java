@@ -137,7 +137,7 @@ public class AdsTimeFragment extends Fragment {
                     status.setText(getString(R.string.archiviato));
                     status.setTextColor(Color.RED);
                 }else if(time.getPending())
-                    status.setText(getString(R.string.in_trattativa));
+                    status.setText(getActivity().getString(R.string.in_trattativa));
 
                 else {
                     status.setText(getString(R.string.disponibile));

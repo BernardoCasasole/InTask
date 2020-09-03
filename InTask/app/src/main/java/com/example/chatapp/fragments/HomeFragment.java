@@ -72,9 +72,9 @@ public class HomeFragment extends Fragment {
         fragment = new HomeAdsFragment();
         fragment.setArguments(bundle);
         if(Boolean.parseBoolean(myAds))
-            title = getString(R.string.le_tue_offerte_di_lavoro);
+            title = getActivity().getString(R.string.le_tue_offerte_di_lavoro);
         else
-            title = getString(R.string.le_offerte_di_lavoro);
+            title = getActivity().getString(R.string.le_offerte_di_lavoro);
 
         viewPageAdapter.addFragments(fragment,title);
 

@@ -137,12 +137,12 @@ public class AdsJobFragment extends Fragment {
                 description.setText(job.getDescription());
                 type.setText(job.getType());
                 if(job.getAchieved()) {
-                    status.setText(getString(R.string.archiviato));
+                    status.setText(getActivity().getString(R.string.archiviato));
                     status.setTextColor(Color.RED);
                 }else if(job.getPending())
-                    status.setText(getString(R.string.in_trattativa));
+                    status.setText(getActivity().getString(R.string.in_trattativa));
                 else {
-                    status.setText(getString(R.string.disponibile));
+                    status.setText(getActivity().getString(R.string.disponibile));
                     status.setTextColor(Color.rgb(0, 153, 0));
                 }
 
@@ -222,7 +222,7 @@ public class AdsJobFragment extends Fragment {
                                             intent.putExtras(b);
                                             getContext().startActivity(intent);
                                         } else {
-                                            Toast.makeText(getContext(), getString(R.string.devi_verificare_l_account_prima_di_contattare_questo_utente), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getContext(), getActivity().getString(R.string.devi_verificare_l_account_prima_di_contattare_questo_utente), Toast.LENGTH_SHORT).show();
                                             Bundle bundle = new Bundle();
                                             bundle.putString("id", snapshot.child("id").getValue().toString());
                                             Fragment selectedFragment = new ProfileFragment();

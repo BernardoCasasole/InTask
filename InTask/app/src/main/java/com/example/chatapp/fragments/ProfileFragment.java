@@ -119,7 +119,7 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onProviderDisabled(@NonNull String provider) {
-                Log.wtf("Boh",getString(R.string.accendi_gps));
+                Log.wtf("Boh",getActivity().getString(R.string.accendi_gps));
             }
         };
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -179,7 +179,7 @@ public class ProfileFragment extends Fragment {
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
                     addressUser.setText(address);
                 } catch (IOException | IndexOutOfBoundsException e) {
-                    Toast.makeText(getContext(), getString(R.string.indirizzo_non_trovato), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getActivity().getString(R.string.indirizzo_non_trovato), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -207,19 +207,19 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 getPosition.setVisibility(View.VISIBLE);
                 addressUser.setVisibility(View.VISIBLE);
-                btn_updateAddress.setText(getString(R.string.salva_modifiche));
+                btn_updateAddress.setText(getActivity().getString(R.string.salva_modifiche));
                 location.setVisibility(View.GONE);
                 btn_updateAddress.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         getPosition.setVisibility(View.GONE);
-                        btn_updateAddress.setText(getString(R.string.modifica_indirizzo));
+                        btn_updateAddress.setText(getActivity().getString(R.string.modifica_indirizzo));
                         if(addressUser.getText().toString().equals("")){
-                            Toast.makeText(getContext(),getString(R.string.riempi_il_campo),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),getActivity().getString(R.string.riempi_il_campo),Toast.LENGTH_SHORT).show();
                         }else{
 
                             databaseReference.child("location").setValue(addressUser.getText().toString());
-                            Toast.makeText(getContext(),getString(R.string.indirizzo_modificato),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),getActivity().getString(R.string.indirizzo_modificato),Toast.LENGTH_SHORT).show();
                             addressUser.setVisibility(View.GONE);
                             location.setVisibility(View.VISIBLE);
                         }

@@ -256,7 +256,7 @@ public class JobSvFormFragment extends Fragment {
                     map.put("pending", false);
                     map.put("achieved", false);
 
-                    Toast.makeText(getContext(), getString(R.string.annuncio_pubblicato_con_successo), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getActivity().getString(R.string.annuncio_pubblicato_con_successo), Toast.LENGTH_SHORT).show();
                     if (uploaded) {
 
                         StorageReference childRef = storageReference.child("/job_images/" + key + ".jpg");
