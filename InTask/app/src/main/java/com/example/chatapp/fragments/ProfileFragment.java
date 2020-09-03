@@ -84,7 +84,7 @@ public class ProfileFragment extends Fragment {
     RecyclerView recyclerViewJob, recyclerViewTime, recyclerViewRates;
     EditText addressUser;
     String userID;
-    boolean myProfile;
+    boolean myProfile, buttonAdd;
     double latitude, longitude;
     LocationManager locationManager;
     LocationListener locationListener;
@@ -108,6 +108,7 @@ public class ProfileFragment extends Fragment {
         if(b != null) {
             userID = b.getString("id");
         }
+        buttonAdd = true;
         locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
@@ -205,13 +206,14 @@ public class ProfileFragment extends Fragment {
         btn_updateAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getPosition.setVisibility(View.VISIBLE);
-                addressUser.setVisibility(View.VISIBLE);
-                btn_updateAddress.setText(getActivity().getString(R.string.salva_modifiche));
-                location.setVisibility(View.GONE);
-                btn_updateAddress.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                if(buttonAdd) {
+                    getPosition.setVisibility(View.VISIBLE);
+                    addressUser.setVisibility(View.VISIBLE);
+                    btn_updateAddress.setText(getActivity().getString(R.string.salva_modifiche));
+                    location.setVisibility(View.GONE);
+
+                }else{
+
                         getPosition.setVisibility(View.GONE);
                         btn_updateAddress.setText(getActivity().getString(R.string.modifica_indirizzo));
                         if(addressUser.getText().toString().equals("")){
@@ -224,10 +226,8 @@ public class ProfileFragment extends Fragment {
                             location.setVisibility(View.VISIBLE);
                         }
                     }
-                });
-
-            }
-        });
+                buttonAdd = !buttonAdd;
+        }});
 
 
 
@@ -265,13 +265,15 @@ public class ProfileFragment extends Fragment {
                 });
                 if (!user.getVerified()) {
                     if (user.getVerify_mail()){
-                        verifiedUser.setText(getString(R.string.in_attesa_di_verifica));
+                        if(getActivity()!= null)
+                        verifiedUser.setText(getActivity().getString(R.string.in_attesa_di_verifica));
                         uploadDocument1.setVisibility(View.GONE);
                         uploadDocument2.setVisibility(View.GONE);
                     verifiedUSerImage.setVisibility(View.GONE);
                 }
                     else {
-                        verifiedUser.setText(getString(R.string.utente_non_verificato));
+                        if(getActivity()!= null)
+                        verifiedUser.setText(getActivity().getString(R.string.utente_non_verificato));
                         verifiedUSerImage.setVisibility(View.VISIBLE);
                         verifiedUSerImage.setImageResource(R.drawable.ic_baseline_close_35);
                         uploadDocument1.setVisibility(View.VISIBLE);
@@ -304,7 +306,8 @@ public class ProfileFragment extends Fragment {
                     }
                 } else {
                     verifiedLayout.setVisibility(View.VISIBLE);
-                    verifiedUser.setText(getString(R.string.utente_verificato));
+                    if(getActivity()!= null)
+                    verifiedUser.setText(getActivity().getString(R.string.utente_verificato));
                     verifiedUSerImage.setVisibility(View.VISIBLE);
                     verifiedUSerImage.setImageResource(R.drawable.ic_baseline_check_35);
                     if (myProfile) {
