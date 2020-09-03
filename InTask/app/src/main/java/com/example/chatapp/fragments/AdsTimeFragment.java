@@ -202,7 +202,7 @@ public class AdsTimeFragment extends Fragment {
 
 
 
-                if(time.getPending() || time.getAchieved() && (firebaseUser!= null && time.getAuthor().equals(firebaseUser.getUid()))){
+                if(time.getPending() || time.getAchieved() || (firebaseUser!= null && time.getAuthor().equals(firebaseUser.getUid()))){
                     btn_contact.setVisibility(View.GONE);
                 }
                 else{
