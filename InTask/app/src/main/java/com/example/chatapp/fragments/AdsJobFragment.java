@@ -135,7 +135,7 @@ public class AdsJobFragment extends Fragment {
                 });
                 duration.setText(job.getDuration());
                 description.setText(job.getDescription());
-                type.setText(job.getType());
+
                 if(job.getAchieved()) {
                     status.setText(getActivity().getString(R.string.archiviato));
                     status.setTextColor(Color.RED);
@@ -148,45 +148,70 @@ public class AdsJobFragment extends Fragment {
 
                 switch (job.getType()) {
                     case "Giardinaggio":
+                    case "Gardening":
+                        type.setText(getActivity().getString(R.string.Giardinaggio));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_local_florist_24, 0);
                         break;
                     case "Babysitting":
+                        type.setText(getActivity().getString(R.string.Babysitting));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_outline_child_friendly_24, 0);
                         break;
                     case "Cucinare":
+                    case "Cooking":
+                        type.setText(getActivity().getString(R.string.Cucinare));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_local_pizza_24, 0);
                         break;
                     case "Pulizie":
+                    case "Cleaning":
+                        type.setText(getActivity().getString(R.string.Pulizie));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_outline_local_laundry_service_24, 0);
                         break;
                     case "Ripetizioni":
+                    case "Private lessons":
+                        type.setText(getActivity().getString(R.string.Ripetizioni));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_menu_book_24, 0);
                         break;
                     case "Trasloco":
+                    case "Moving":
+                        type.setText(getActivity().getString(R.string.Trasloco));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_local_shipping_24, 0);
                         break;
                     case "Riparazioni":
+                    case "Fixing stuff":
+                        type.setText(getActivity().getString(R.string.Riparazioni));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_build_24, 0);
                         break;
                     case "Dogsitting":
+                        type.setText(getActivity().getString(R.string.Dogsitting));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_dog, 0);
                         break;
                     case "Personal Training":
+                        type.setText(getActivity().getString(R.string.Personal_Training));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_fitness_center_24, 0);
                         break;
                     case "Supporto Informatico":
+                    case "It support":
+                        type.setText(getActivity().getString(R.string.Supporto_informatico));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_computer_24, 0);
                         break;
                     case "Trasporto":
+                    case "Transportation":
+                        type.setText(getActivity().getString(R.string.Trasporto));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_directions_car_24, 0);
                         break;
                     case "Spesa":
+                    case "Grocery shopping":
+                        type.setText(getActivity().getString(R.string.Spesa));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_local_grocery_store_24, 0);
                         break;
                     case "Decimo al Calcetto":
+                    case "Soccer player":
+                        type.setText(getActivity().getString(R.string.Calcetto));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_sports_soccer_24, 0);
                         break;
                     case "Altro":
+                    case "Others":
+                        type.setText(getActivity().getString(R.string.altro));
                         type.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_more_horiz_24, 0);
                         break;
                 }
