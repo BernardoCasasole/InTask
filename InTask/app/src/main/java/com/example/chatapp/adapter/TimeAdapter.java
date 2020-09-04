@@ -225,26 +225,32 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
         }
 
-        switch (time.getType()) {
+        switch (time.getType())  {
             case "Giardinaggio":
+            case "Gardening":
                 holder.type.setImageResource(R.drawable.ic_baseline_local_florist_24);
                 break;
             case "Babysitting":
                 holder.type.setImageResource(R.drawable.ic_outline_child_friendly_24);
                 break;
             case "Cucinare":
+            case "Cooking":
                 holder.type.setImageResource(R.drawable.ic_baseline_local_pizza_24);
                 break;
             case "Pulizie":
+            case "Cleaning":
                 holder.type.setImageResource(R.drawable.ic_outline_local_laundry_service_24);
                 break;
             case "Ripetizioni":
+            case "Private lessons":
                 holder.type.setImageResource(R.drawable.ic_baseline_menu_book_24);
                 break;
             case "Trasloco":
+            case "Moving":
                 holder.type.setImageResource(R.drawable.ic_baseline_local_shipping_24);
                 break;
             case "Riparazioni":
+            case "Fixing stuff":
                 holder.type.setImageResource(R.drawable.ic_baseline_build_24);
                 break;
             case "Dogsitting":
@@ -254,18 +260,23 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                 holder.type.setImageResource(R.drawable.ic_baseline_fitness_center_24);
                 break;
             case "Supporto Informatico":
+            case "It support":
                 holder.type.setImageResource(R.drawable.ic_baseline_computer_24);
                 break;
             case "Trasporto":
+            case "Transportation":
                 holder.type.setImageResource(R.drawable.ic_baseline_directions_car_24);
                 break;
             case "Spesa":
+            case "Grocery shopping":
                 holder.type.setImageResource(R.drawable.ic_baseline_local_grocery_store_24);
                 break;
             case "Decimo al Calcetto":
+            case "Soccer player":
                 holder.type.setImageResource(R.drawable.ic_baseline_sports_soccer_24);
                 break;
             case "Altro":
+            case "Others":
                 holder.type.setImageResource(R.drawable.ic_baseline_more_horiz_24);
                 break;
         }
