@@ -359,6 +359,7 @@ public class FilterFragment extends Fragment {
     }
 
     private boolean checkHour(String time) {
+        if (time.equals("")) return true;
         int a = ((int) time.charAt(0)) - 48;
         int b = ((int) time.charAt(1)) - 48;
 
@@ -383,7 +384,7 @@ public class FilterFragment extends Fragment {
     }
 
     private boolean checkDate(String day) {
-
+    if(day.equals("")) return true;
         String input_date=day;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
         Date myDate = null;
@@ -417,33 +418,33 @@ public class FilterFragment extends Fragment {
     }
 
     private boolean checkType(String type) {
-        if(buttonFlorist.isChecked() && type.equals("Giardinaggio"))
+        if(buttonFlorist.isChecked() && (type.equals("Giardinaggio")||type.equals("Gardening")))
             return true;
         if(buttonChild.isChecked() && type.equals("Babysitting"))
             return true;
-        if(buttonPizza.isChecked() && type.equals("Cucinare"))
+        if(buttonPizza.isChecked() && (type.equals("Cucinare")||type.equals("Cooking")))
             return true;
-        if(buttonLocal.isChecked() && type.equals("Pulizie"))
+        if(buttonLocal.isChecked() && (type.equals("Pulizie")||type.equals("Cleaning")))
             return true;
-        if(buttonMenuBook.isChecked() && type.equals("Ripetizioni"))
+        if(buttonMenuBook.isChecked() && (type.equals("Ripetizioni")||type.equals("Private lessons")))
             return true;
-        if(buttonShipping.isChecked() && type.equals("Trasloco"))
+        if(buttonShipping.isChecked() && (type.equals("Trasloco")||type.equals("Moving")))
             return true;
-        if(buttonBuild.isChecked() && type.equals("Riparazioni"))
+        if(buttonBuild.isChecked() && (type.equals("Riparazioni")||type.equals("Fixing stuff")))
             return true;
         if(buttonDog.isChecked() && type.equals("Dogsitting"))
             return true;
         if(buttonFitness.isChecked() && type.equals("Personal Training"))
             return true;
-        if(buttonComputer.isChecked() && type.equals("Supporto Informatico"))
+        if(buttonComputer.isChecked() && (type.equals("Supporto Informatico")||type.equals("It support")))
             return true;
-        if(buttonCar.isChecked() && type.equals("Trasporto"))
+        if(buttonCar.isChecked() && (type.equals("Trasporto")||type.equals("Transportation")))
             return true;
-        if(buttonStore.isChecked() && type.equals("Spesa"))
+        if(buttonStore.isChecked() && (type.equals("Spesa")||type.equals("Grocery shopping")))
             return true;
-        if(buttonSoccer.isChecked() && type.equals("Decimo al Calcetto"))
+        if(buttonSoccer.isChecked() && (type.equals("Decimo al Calcetto")||type.equals("Soccer player")))
             return true;
-        if(buttonMore.isChecked() && type.equals("Altro"))
+        if(buttonMore.isChecked() && (type.equals("Altro")||type.equals("Others")))
             return true;
         if(!buttonFlorist.isChecked() && !buttonChild.isChecked() &&
                 !buttonPizza.isChecked() && !buttonLocal.isChecked() &&

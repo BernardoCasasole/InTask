@@ -125,7 +125,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         if(!job.getAchieved() && !job.getPending()) {
             holder.button.setVisibility(View.VISIBLE);
             if (myAds) {
-                holder.button.setText("Elimina");
+                holder.button.setText(getApplicationContext().getResources().getString(R.string.elimina));
                 holder.button.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -139,7 +139,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                     }
                 });
             } else {
-                holder.button.setText("Contatta");
+                holder.button.setText(getApplicationContext().getResources().getString(R.string.contatta_button));
                 holder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
