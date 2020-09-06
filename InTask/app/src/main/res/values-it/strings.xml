@@ -69,7 +69,7 @@
     <string name="name">Nome</string>
     <string name="surname">Cognome</string>
     <string name="quando">Quando? (indica data e ora solo se necessarie)</string>
-    <string name="facebook_sign_in">Sign In</string>
+    <string name="facebook_sign_in">Accedi</string>
     <string name="inserisci_posizione_attuale">inserisci posizione attuale</string>
     <string name="posizione">Posizione</string>
     <string name="salva_modifiche">Salva modifiche</string>
